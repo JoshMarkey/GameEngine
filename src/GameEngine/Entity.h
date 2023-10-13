@@ -2,8 +2,8 @@
 #include<vector>
 namespace myengine
 {
-	struct Core;
 	struct Component;
+	struct Core;
 	struct Entity
 	{
 		Entity();
@@ -25,9 +25,10 @@ namespace myengine
 			return rtn;
 		}
 
+	private:
 		void tick();
 		bool alive();
-	private:
+		friend struct Core;
 		bool m_alive;
 		void display();
 	};
