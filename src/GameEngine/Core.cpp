@@ -18,12 +18,13 @@ namespace myengine
 				SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 				640, 480, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
 
-			if (!rtn)
+			if (!rtn->m_window)
 			{
 				SDL_Quit();
 				throw std::runtime_error("Failed to create Window");
 			}
-			if (!rtn->m_context = SDL_GL_CreateContext(rtn->m_window))
+			rtn->m_context = SDL_GL_CreateContext(rtn->m_window);
+			if(!rtn->m_context)
 			{
 				SDL_DestroyWindow(rtn->m_window);
 				SDL_Quit();
@@ -69,5 +70,12 @@ namespace myengine
 		void Core::stop()
 		{
 			m_running = false;
+		}
+
+		Core::~Core()
+		{
+			SDL_GL_DeleteContext(m_context);
+			SDL_DestroyWindow(m_window);
+			SDL_Quit();
 		}
 }
