@@ -1,5 +1,6 @@
 #include <iostream>
 #include <GameEngine/Core.h>
+#undef main
 using namespace myengine;
 
 int main() 

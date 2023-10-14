@@ -1,8 +1,10 @@
 #include <memory>
 #include <vector>
+#include <SDL2/SDL.h>
 namespace myengine
 {
 	struct Entity;
+
 	struct Core
 	{
 	public:
