@@ -21,6 +21,14 @@ namespace myengine
 		return m_alive;
 	}
 
+	void Entity::display()
+	{
+		for (int i = 0; i < m_components.size(); i++)
+		{
+			m_components[i].get()->onDisplay();
+		}
+	}
+
 	void Entity::kill()
 	{
 		if (!m_alive) return;

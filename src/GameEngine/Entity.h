@@ -9,12 +9,6 @@ namespace myengine
 		Entity();
 
 	public:
-
-		std::weak_ptr<Entity> m_self;
-		std::shared_ptr<Core> m_core;
-		std::vector<std::shared_ptr<Component>> m_components;
-		void kill();
-
 		template <typename T>
 		std::shared_ptr<T> addComponent()
 		{
@@ -24,6 +18,12 @@ namespace myengine
 			m_components.push_back(rtn);
 			return rtn;
 		}
+		std::weak_ptr<Entity> m_self;
+		std::shared_ptr<Core> m_core;
+		std::vector<std::shared_ptr<Component>> m_components;
+		void kill();
+
+		
 
 	private:
 		void tick();

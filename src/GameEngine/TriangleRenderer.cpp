@@ -3,7 +3,15 @@
 myengine::TriangleRenderer::TriangleRenderer()
 {
 
+}
 
+void myengine::TriangleRenderer::onDisplay()
+{
+	m_shader.renderOrtho(&m_Quad, &m_tex);
+}
+
+void myengine::TriangleRenderer::initialize()
+{
 	std::shared_ptr<Vbo> pos = std::make_shared<Vbo>();
 	pos->add(glm::vec3(-0.5f, 0.70f, 0.0f));
 	pos->add(glm::vec3(-0.5f, -0.70f, 0.0f));
@@ -30,10 +38,4 @@ myengine::TriangleRenderer::TriangleRenderer()
 
 	m_shader = Shader("Shaders/GUI/FragShader.txt", "Shaders/GUI/VertShader.txt");
 
-
-}
-
-void myengine::TriangleRenderer::onDisplay()
-{
-	m_shader.renderOrtho(&m_Quad, &m_tex);
 }

@@ -7,10 +7,11 @@ namespace myengine
 	{
 		TriangleRenderer();
 		~TriangleRenderer();
-
+	public:
+		void onDisplay() override;
+		void initialize();
 	private:
 		Vao m_Quad;
-		void onDisplay();
 		Model m_mesh;
 		Shader m_shader;
 		Camera m_cam;
