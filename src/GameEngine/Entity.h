@@ -7,7 +7,7 @@ namespace myengine
 	struct Entity
 	{
 		Entity();
-
+		~Entity();
 	public:
 		template <typename T>
 		std::shared_ptr<T> addComponent()
@@ -18,15 +18,30 @@ namespace myengine
 			m_components.push_back(rtn);
 			return rtn;
 		}
+
+		template <typename T>
+		std::shared_ptr<T> getComponent()
+		{
+			for (int i = 0; i < m_components.size(); i++)
+			{
+				std::shared_ptr<T> rtn;
+				rtn = std::dynamic_pointer_cast<T>(m_components.at(i));
+				if (rtn)
+				{
+					return rtn;
+				}
+			}
+			return NULL;
+		}
 		std::weak_ptr<Entity> m_self;
 		std::shared_ptr<Core> m_core;
 		std::vector<std::shared_ptr<Component>> m_components;
 		void kill();
 
-		
+
+		void tick();
 
 	private:
-		void tick();
 		bool alive();
 		friend struct Core;
 		bool m_alive;

@@ -7,6 +7,10 @@ namespace myengine
 		m_alive = true;
 	}
 
+	Entity::~Entity()
+	{
+	}
+
 	void Entity::tick()
 	{
 		for (size_t ci = 0; ci < m_components.size(); ++ci)

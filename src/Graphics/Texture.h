@@ -1,7 +1,6 @@
 #pragma once
 #include <GL/glew.h>
 #include<stdexcept>
-#include "stb_image.h"
 #include <glm/glm.hpp>
 
 struct Texture

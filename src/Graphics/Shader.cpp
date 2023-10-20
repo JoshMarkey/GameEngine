@@ -14,6 +14,10 @@ Shader::Shader(std::string fragment, std::string vertex)
 	link();
 }
 
+Shader::Shader()
+{
+}
+
 GLuint Shader::createShader(std::string filename, GLuint shader)
 {
 	//import shader code using a text file

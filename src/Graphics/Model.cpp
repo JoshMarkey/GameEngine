@@ -13,6 +13,14 @@ Model::Model(std::string _name) :
 	
 }
 
+Model::Model()
+{
+}
+
+Model::~Model()
+{
+}
+
 GLuint Model::getId()
 {
 	//If no current ID, load the model

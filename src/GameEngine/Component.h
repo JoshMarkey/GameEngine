@@ -1,10 +1,13 @@
+#pragma once
+#include <memory>
 namespace myengine
 {
 	struct Entity;
+
 	struct Component
 	{
 	public:
-		Entity m_entity;
+		std::weak_ptr<Entity> m_entity;
 	private:
 		friend Entity;
 		virtual void onTick();

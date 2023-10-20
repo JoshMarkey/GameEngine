@@ -10,6 +10,7 @@ namespace myengine
 	public:
 		void onDisplay() override;
 		void initialize();
+		void onTick() override;
 	private:
 		Vao m_Quad;
 		Model m_mesh;

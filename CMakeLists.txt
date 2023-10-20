@@ -44,6 +44,10 @@ src/GameEngine/Transform.h
 src/GameEngine/Transform.cpp
 src/GameEngine/TriangleRenderer.cpp
 src/GameEngine/TriangleRenderer.h
+src/GameEngine/NativeWindow.h
+src/GameEngine/NativeWindow.cpp
+src/GameEngine/Enviroment.cpp
+src/GameEngine/Enviroment.h
 )
 
 add_executable(demo
