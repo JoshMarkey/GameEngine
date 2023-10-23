@@ -1,4 +1,7 @@
+#pragma once
 #include "TriangleRenderer.h"
+#include "Entity.h"
+#include "Transform.h"
 
 namespace myengine
 {
@@ -8,11 +11,13 @@ namespace myengine
 	}
 	TriangleRenderer::TriangleRenderer()
 	{
-
+		angle = 0.0f;
 	}
 
 	void TriangleRenderer::onDisplay()
 	{
+		std::shared_ptr<Entity> entity = m_entity.lock();
+		m_shader.bindOrthoMatrix(entity->transform->getProjection(), entity->transform->getModel());
 		m_shader.renderOrtho(&m_Quad, &m_tex);
 	}
 
@@ -48,6 +53,12 @@ namespace myengine
 
 	void TriangleRenderer::onTick()
 	{
-		
+		std::shared_ptr<Entity> entity = m_entity.lock();
+		angle = 0.01;
+		entity->transform->rotate(angle,glm::vec3(0, 1, 0));
+		if (angle > 360)
+		{
+			angle -= 360;
+		}
 	}
 }

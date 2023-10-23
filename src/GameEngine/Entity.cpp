@@ -1,10 +1,13 @@
 #include "Entity.h"
 #include "Component.h"
+#include "Transform.h"
+
 namespace myengine
 {
 	myengine::Entity::Entity()
 	{
 		m_alive = true;
+		transform = addComponent<Transform>();
 	}
 
 	Entity::~Entity()

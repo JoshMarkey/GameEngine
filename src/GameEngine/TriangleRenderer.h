@@ -11,6 +11,7 @@ namespace myengine
 		void onDisplay() override;
 		void initialize();
 		void onTick() override;
+		float angle;
 	private:
 		Vao m_Quad;
 		Model m_mesh;

@@ -4,6 +4,7 @@ namespace myengine
 {
 	struct Component;
 	struct Core;
+	struct Transform;
 	struct Entity
 	{
 		Entity();
@@ -36,6 +37,7 @@ namespace myengine
 		std::weak_ptr<Entity> m_self;
 		std::shared_ptr<Core> m_core;
 		std::vector<std::shared_ptr<Component>> m_components;
+		std::shared_ptr<Transform> transform;
 		void kill();
 
 
