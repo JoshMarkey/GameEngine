@@ -1,8 +1,8 @@
 #include "Enviroment.h"
 #include <windows.h>
-namespace myengine 
+namespace myengine
 {
-	void Enviroment::tick()
+	void Enviroment::init()
 	{
 #ifdef _WIN32
 		lastTime = GetTickCount();
@@ -11,20 +11,21 @@ namespace myengine
 		gettimeofday(&tv, NULL);
 		lastTime = (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000;
 #endif
-		
+	}
+		void Enviroment::tick() {
 #ifdef _WIN32
 			DWORD curr = GetTickCount();
 #else
 			struct timeval tv = { 0 };
-		gettimeofday(&tv, NULL);
-		double curr = (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000;
+			gettimeofday(&tv, NULL);
+			double curr = (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000;
 #endif
-		float diff = curr - lastTime;
-		deltaTime = diff / 1000.0f;
-		lastTime = curr;
-	}
-	float Enviroment::DT()
-	{
-		return deltaTime;
-	}
+			float diff = curr - lastTime;
+			deltaTime = diff / 1000.0f;
+			lastTime = curr;
+		}
+		float Enviroment::DT()
+		{
+			return deltaTime;
+		}
 }

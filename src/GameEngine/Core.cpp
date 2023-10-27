@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include <Graphics/rend.h>
 #include "NativeWindow.h"
+#include "Enviroment.h"
 
 namespace myengine
 {
@@ -34,6 +35,8 @@ namespace myengine
 			}
 
 			glewInit();
+			rtn->enviroment = std::make_shared<Enviroment>();
+			rtn->enviroment->init();
 			return rtn;
 		}
 
@@ -63,6 +66,9 @@ namespace myengine
 				}
 				glClearColor(0, 1, 0, 1);
 				glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+
+				enviroment->tick();
+
 				for (int i = 0; i < m_entities.size(); i++)
 				{
 					m_entities[i]->tick();

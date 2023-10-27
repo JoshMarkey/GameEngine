@@ -5,6 +5,7 @@ namespace myengine
 {
 	struct Entity;
 	struct NativeWindow;
+	struct Enviroment;
 
 	struct Core
 	{
@@ -12,6 +13,7 @@ namespace myengine
 		std::shared_ptr< NativeWindow> m_window;
 		static std::shared_ptr<Core> initialize();
 		std::shared_ptr<Entity> addEntity();
+		std::shared_ptr<Enviroment> enviroment;
 		void run();
 		~Core();
 

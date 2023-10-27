@@ -22,6 +22,6 @@ namespace myengine {
 	}
 	void Transform::rotate(float angle, glm::vec3 rot)
 	{
-		rotmat = glm::rotate(rotmat, angle, rot);
+		rotmat = glm::rotate(rotmat, glm::radians(angle), rot);
 	}
 }

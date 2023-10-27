@@ -9,6 +9,7 @@ namespace myengine
 		float lastTime;
 		float deltaTime;
 		void tick();
+		void init();
 	public:
 		float DT();
 

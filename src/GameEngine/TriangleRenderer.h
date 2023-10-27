@@ -13,10 +13,10 @@ namespace myengine
 		void onTick() override;
 		float angle;
 	private:
-		Vao m_Quad;
-		Model m_mesh;
-		Shader m_shader;
-		Camera m_cam;
-		Texture m_tex;
+		graphics::Vao m_Quad;
+		graphics::Model m_mesh;
+		graphics::Shader m_shader;
+		graphics::Camera m_cam;
+		graphics::Texture m_tex;
 	};
 }

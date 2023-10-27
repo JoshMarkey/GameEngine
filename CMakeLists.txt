@@ -48,6 +48,14 @@ src/GameEngine/NativeWindow.h
 src/GameEngine/NativeWindow.cpp
 src/GameEngine/Enviroment.cpp
 src/GameEngine/Enviroment.h
+src/GameEngine/Texture.cpp
+src/GameEngine/Texture.h
+src/GameEngine/Model.cpp
+src/GameEngine/Model.h
+src/GameEngine/Resource.cpp
+src/GameEngine/Resource.h
+src/GameEngine/Resources.cpp
+src/GameEngine/Resources.h
 )
 
 add_executable(demo

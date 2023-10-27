@@ -3,24 +3,25 @@
 #include <vector>
 #include <glm/glm.hpp>
 #include<stdexcept>
+namespace graphics {
+	struct RenderTexture
+	{
+		RenderTexture(int _width, int _height);
+		~RenderTexture();
 
-struct RenderTexture
-{
-	RenderTexture(int _width, int _height);
-	~RenderTexture();
+		void bind();
+		void unbind();
 
-	void bind();
-	void unbind();
+		GLuint getTexture();
 
-	GLuint getTexture();
+	private:
+		GLuint m_fboId;
+		GLuint m_texId;
+		GLuint m_rboId;
 
-private:
-	GLuint m_fboId;
-	GLuint m_texId;
-	GLuint m_rboId;
+		bool m_dirty;
+		int m_width;
+		int m_height;
+	};
 
-	bool m_dirty;
-	int m_width;
-	int m_height;
-};
-
+}
