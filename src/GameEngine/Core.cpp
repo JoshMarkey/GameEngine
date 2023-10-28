@@ -12,6 +12,7 @@ namespace myengine
 			rtn->m_self = rtn;
 			rtn->m_running = false;
 			rtn->m_window = std::make_shared<NativeWindow>();
+			rtn->m_resources = std::make_shared<Resources>();
 
 			if (SDL_Init(SDL_INIT_VIDEO) < 0)
 			{
@@ -73,6 +74,8 @@ namespace myengine
 				{
 					m_entities[i]->tick();
 				}
+
+				m_resources->checkDelete();
 
 				for (int i = 0; i < m_entities.size(); i++)
 				{

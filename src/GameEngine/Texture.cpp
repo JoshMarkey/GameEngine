@@ -3,6 +3,7 @@ namespace myengine
 {
 	void myengine::Texture::onLoad()
 	{
-		tex.load(getPath().c_str());
+		m_texture = std::make_shared<graphics::Texture>();
+		m_texture->load(getPath().c_str());
 	}
 }

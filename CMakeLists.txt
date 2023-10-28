@@ -56,6 +56,8 @@ src/GameEngine/Resource.cpp
 src/GameEngine/Resource.h
 src/GameEngine/Resources.cpp
 src/GameEngine/Resources.h
+src/GameEngine/Shader.cpp
+src/GameEngine/Shader.h
 )
 
 add_executable(demo

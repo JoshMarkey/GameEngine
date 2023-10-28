@@ -8,20 +8,28 @@ namespace myengine {
 	{
 		position = glm::vec3(0);
 		rotation = glm::vec3(0);
-		rotmat = glm::mat4(1);
+		scale = glm::vec3(1);
 	}
 
 	glm::mat4 Transform::getProjection()
 	{
-		return glm::translate(rotmat,position);
+		return glm::mat4(1);
 	}
 
 	glm::mat4 Transform::getModel()
 	{
-		return glm::mat4(1);
+		glm::mat4 rtn = glm::translate(glm::mat4(1), position);
+
+		rtn = glm::rotate(rtn, glm::radians(rotation.x), glm::vec3(1, 0, 0));
+		rtn = glm::rotate(rtn, glm::radians(rotation.y), glm::vec3(0, 1, 0));
+		rtn = glm::rotate(rtn, glm::radians(rotation.z), glm::vec3(0, 0, 1));
+
+		rtn = glm::scale(rtn, scale);
+
+		return rtn;
 	}
-	void Transform::rotate(float angle, glm::vec3 rot)
+	void Transform::rotate(glm::vec3 rot)
 	{
-		rotmat = glm::rotate(rotmat, glm::radians(angle), rot);
+		rotation += rot;
 	}
 }

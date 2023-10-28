@@ -1,6 +1,7 @@
 #include <memory>
 #include <vector>
 #include <SDL2/SDL.h>
+#include "Resources.h"
 namespace myengine
 {
 	struct Entity;
@@ -14,6 +15,7 @@ namespace myengine
 		static std::shared_ptr<Core> initialize();
 		std::shared_ptr<Entity> addEntity();
 		std::shared_ptr<Enviroment> enviroment;
+		std::shared_ptr<Resources> m_resources;
 		void run();
 		~Core();
 

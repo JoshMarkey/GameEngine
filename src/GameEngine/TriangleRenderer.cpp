@@ -58,7 +58,7 @@ namespace myengine
 		std::shared_ptr<Entity> entity = m_entity.lock();
 		angle = 360 * entity->m_core->enviroment->DT();
 		//std::cout << angle << std::endl;
-		entity->transform->rotate(angle,glm::vec3(0, 0, 1));
+		entity->transform->rotate(glm::vec3(0, 0, angle));
 		if (angle > 360)
 		{
 			angle -= 360;
