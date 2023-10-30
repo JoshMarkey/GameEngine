@@ -3,6 +3,7 @@
 #include <Graphics/rend.h>
 #include "NativeWindow.h"
 #include "Enviroment.h"
+#include "Resources.h"
 
 namespace myengine
 {
@@ -55,6 +56,12 @@ namespace myengine
 
 		void Core::run()
 		{
+			std::string modelPath = "../Models/Cat/Model.obj";
+			std::string texPath = "../Models/Cat/Tex.png";
+			std::shared_ptr<Model> catModel = m_resources->load<Model>(modelPath);
+			std::shared_ptr<Texture> catTex = m_resources->load<Texture>(texPath);
+			catModel->linkTexture(catTex);
+
 			bool running = true;
 			while (running)
 			{
@@ -87,6 +94,8 @@ namespace myengine
 
 		void Core::start()
 		{
+			
+
 
 			m_running = true;
 			while (m_running)

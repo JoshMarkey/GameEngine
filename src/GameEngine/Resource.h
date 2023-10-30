@@ -3,14 +3,15 @@
 #include <Graphics/rend.h>
 namespace myengine
 {
+	struct Texture;
 	struct Resource
 	{
 	public:
-		Resource(std::string _path);
-		virtual void onLoad() = 0;
+		Resource();
+		virtual void onLoad(std::string _path);
 		std::string getPath() const;
-	private:
+		void load(std::string _path);
 		std::string path;
-		void load();
+	private:
 	};
 }

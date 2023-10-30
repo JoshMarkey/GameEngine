@@ -22,3 +22,5 @@ void myengine::Resources::checkDelete()
 		deleteFlags.erase(deleteFlags.begin());
 	}
 }
+
+

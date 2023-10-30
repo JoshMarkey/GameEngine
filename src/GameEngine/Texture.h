@@ -4,10 +4,10 @@
 
 namespace myengine 
 {
-	struct Texture : private Resource
+	struct Texture : Resource
 	{
 	public:
-		void onLoad() override;
+		void onLoad(std::string _path) override;
 
 		std::shared_ptr<graphics::Texture> m_texture;
 	private:
