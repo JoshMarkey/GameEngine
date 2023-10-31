@@ -9,18 +9,18 @@ namespace myengine {
 	{
 	public:
 		template <typename T>
-		std::shared_ptr<T> load(std::string _path)
+		std::shared_ptr<T> load(std::string _path, std::string _path2 = "")
 		{
-			
-			for (int i = 0; i < m_resources.size(); i++)
+			for (size_t i = 0; i < m_resources.size(); ++i)
 			{
 				if (m_resources.at(i)->getPath() == _path)
-					return m_resources.at(i);
+					return std::dynamic_pointer_cast<T>  (m_resources.at(i));
 			}
 
 			try
-			{				
+			{
 				std::shared_ptr<T> rtn = std::make_shared<T>();
+				rtn->secondPath = _path2;
 				rtn->load(_path);
 				m_resources.push_back(rtn);
 				return rtn;

@@ -8,7 +8,7 @@ namespace myengine
 	{
 	public:
 		void onLoad(std::string _path) override;
-
+		std::shared_ptr<graphics::Texture> getTexture();
 		std::shared_ptr<graphics::Texture> m_texture;
 	private:
 	};

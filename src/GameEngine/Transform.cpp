@@ -13,7 +13,7 @@ namespace myengine {
 
 	glm::mat4 Transform::getProjection()
 	{
-		return glm::mat4(1);
+		return glm::perspective(glm::radians(45.0f), 1.0f, 0.01f, 150.0f);
 	}
 
 	glm::mat4 Transform::getModel()
@@ -28,6 +28,12 @@ namespace myengine {
 
 		return rtn;
 	}
+
+	void Transform::move(glm::vec3 pos)
+	{
+		position += pos;
+	}
+
 	void Transform::rotate(glm::vec3 rot)
 	{
 		rotation += rot;

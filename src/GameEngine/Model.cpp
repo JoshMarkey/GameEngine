@@ -1,5 +1,5 @@
 #include "Model.h"
-
+#include "Texture.h"
 namespace myengine
 {
 	void Model::onLoad(std::string _path)
@@ -11,6 +11,18 @@ namespace myengine
 	{
 		m_texture = tex;
 	}
+
+	std::shared_ptr<graphics::Model> Model::getModel()
+	{
+		return m_model;
+	}
+
+	std::shared_ptr<graphics::Texture> Model::getTexture()
+	{
+		return m_texture.lock()->getTexture();
+	}
+
+	
 
 	
 }

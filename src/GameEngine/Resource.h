@@ -12,6 +12,7 @@ namespace myengine
 		std::string getPath() const;
 		void load(std::string _path);
 		std::string path;
+		std::string secondPath;
 	private:
 	};
 }

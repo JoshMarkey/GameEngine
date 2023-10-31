@@ -12,6 +12,7 @@ namespace myengine
 		glm::vec3 scale;
 		glm::mat4 getProjection();
 		glm::mat4 getModel();
+		void move(glm::vec3 pos);
 		void rotate(glm::vec3 rot);
 		
 	};
