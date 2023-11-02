@@ -13,7 +13,7 @@ int main()
 
 
 	std::shared_ptr<Entity> entity = core->addEntity();
-	std::shared_ptr<TriangleRenderer> component = entity->addComponent<TriangleRenderer>();
+	//std::shared_ptr<TriangleRenderer> component = entity->addComponent<TriangleRenderer>();
 	std::shared_ptr<Transform> component2 = entity->addComponent<Transform>();
 	std::shared_ptr<Cat> component3 = entity->addComponent<Cat>();
 
