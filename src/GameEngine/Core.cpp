@@ -55,12 +55,7 @@ namespace myengine
 		}
 
 		void Core::run()
-		{
-			std::string modelPath = "../Models/Cat/Model.obj";
-			std::string texPath = "../Models/Cat/Tex.png";
-			std::shared_ptr<Model> catModel = m_resources->load<Model>(modelPath);
-			std::shared_ptr<Texture> catTex = m_resources->load<Texture>(texPath);
-			catModel->linkTexture(catTex);
+		{		
 
 			bool running = true;
 			while (running)

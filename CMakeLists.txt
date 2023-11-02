@@ -58,6 +58,10 @@ src/GameEngine/Resources.cpp
 src/GameEngine/Resources.h
 src/GameEngine/Shader.cpp
 src/GameEngine/Shader.h
+src/GameEngine/Input.cpp
+src/GameEngine/Input.h
+src/GameEngine/Cat.cpp
+src/GameEngine/Cat.h
 )
 
 add_executable(demo

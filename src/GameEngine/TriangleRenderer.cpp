@@ -20,19 +20,7 @@ namespace myengine
 	{
 		std::shared_ptr<Entity> entity = m_entity.lock();
 		m_shader.bindOrthoMatrix(entity->transform->getProjection(), entity->transform->getModel());
-		//m_shader.renderOrtho(&m_Quad, &m_tex);
-
-
-		std::string fragPath = "../Shaders/Light/FragShader.txt";
-		std::string vertPath = "../Shaders/Light/VertShader.txt";
-
-		std::shared_ptr<Shader> lightShader = entity->m_core->m_resources->load<Shader>(fragPath, vertPath);
-		std::shared_ptr<Model> model = entity->m_core->m_resources->load<Model>("../Models/Cat/Model.obj");
-
-		lightShader->m_shader.get()->bindMatrix("u_Projection", entity->transform->getProjection());
-		lightShader->m_shader.get()->bindMatrix("u_Model", entity->transform->getModel());
-
-		lightShader->m_shader.get()->render(model->getModel().get(), model->getTexture().get());
+		m_shader.renderOrtho(&m_Quad, &m_tex);
 	}
 
 	void TriangleRenderer::initialize()
@@ -63,8 +51,6 @@ namespace myengine
 
 		m_shader = graphics::Shader("../Shaders/GUI/FragShader.txt", "../Shaders/GUI/VertShader.txt");
 
-		std::shared_ptr<Entity> entity = m_entity.lock();
-		entity->transform->move(glm::vec3(0, -0.5, -8));
 	}
 
 	void TriangleRenderer::onTick()
