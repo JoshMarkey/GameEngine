@@ -15,7 +15,7 @@ namespace myengine
 		{
 			std::shared_ptr<T> rtn = std::make_shared<T>();
 			rtn->m_entity = m_self;
-			rtn->initialize();
+			rtn->onInitialise();
 			m_components.push_back(rtn);
 			return rtn;
 		}
@@ -35,11 +35,10 @@ namespace myengine
 			return NULL;
 		}
 		std::weak_ptr<Entity> m_self;
-		std::shared_ptr<Core> m_core;
 		std::vector<std::shared_ptr<Component>> m_components;
 		std::shared_ptr<Transform> transform;
 		void kill();
-
+		std::shared_ptr<Core> getCore();
 
 		void tick();
 
@@ -48,5 +47,6 @@ namespace myengine
 		friend struct Core;
 		bool m_alive;
 		void display();
+		std::shared_ptr<Core> m_core;
 	};
 }

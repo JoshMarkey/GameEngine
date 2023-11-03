@@ -56,7 +56,7 @@ namespace myengine
 	void TriangleRenderer::onTick()
 	{
 		std::shared_ptr<Entity> entity = m_entity.lock();
-		angle = 360 * entity->m_core->enviroment->DT();
+		angle = 360 * DT();
 		//std::cout << angle << std::endl;
 		entity->transform->rotate(glm::vec3(0, angle, 0));
 		if (angle > 360)

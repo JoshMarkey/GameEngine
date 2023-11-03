@@ -3,16 +3,19 @@
 namespace myengine
 {
 	struct Entity;
+	struct Core;
 
 	struct Component
 	{
 	public:
 		std::weak_ptr<Entity> m_entity;
+		std::shared_ptr<Core> getCore();
+		float DT();
 	private:
 		friend Entity;
 		virtual void onTick();
 		virtual void onDisplay();
-		virtual void initialize();
+		virtual void onInitialise();
 		void tick();
 		void display();
 	};

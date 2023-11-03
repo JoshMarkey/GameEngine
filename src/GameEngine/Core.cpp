@@ -4,6 +4,7 @@
 #include "NativeWindow.h"
 #include "Enviroment.h"
 #include "Resources.h"
+#include "Transform.h"
 
 namespace myengine
 {
@@ -14,6 +15,7 @@ namespace myengine
 			rtn->m_running = false;
 			rtn->m_window = std::make_shared<NativeWindow>();
 			rtn->m_resources = std::make_shared<Resources>();
+			rtn->m_input = std::make_shared<Input>();
 
 			if (SDL_Init(SDL_INIT_VIDEO) < 0)
 			{
@@ -37,8 +39,8 @@ namespace myengine
 			}
 
 			glewInit();
-			rtn->enviroment = std::make_shared<Enviroment>();
-			rtn->enviroment->init();
+			rtn->m_enviroment = std::make_shared<Enviroment>();
+			rtn->m_enviroment->init();
 			return rtn;
 		}
 
@@ -50,6 +52,7 @@ namespace myengine
 
 			rtn->m_core = m_self.lock();
 			rtn->m_self = rtn;
+			rtn->transform = rtn->addComponent<Transform>();
 
 			return rtn;
 		}
@@ -60,17 +63,23 @@ namespace myengine
 			bool running = true;
 			while (running)
 			{
-				SDL_Event event;
-				while (SDL_PollEvent(&event)) {
-					if (event.type == SDL_QUIT)
-					{
-						running = false;
-					}
+				if (!m_input->tick())
+				{
+					return;
 				}
+
+				m_input->printKeys();
+
+				if (m_input->getKeyDown(SDLK_ESCAPE))
+				{
+					running = false;
+				}
+
+
 				glClearColor(0, 1, 0, 1);
 				glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
-				enviroment->tick();
+				m_enviroment->tick();
 
 				for (int i = 0; i < m_entities.size(); i++)
 				{
@@ -89,9 +98,6 @@ namespace myengine
 
 		void Core::start()
 		{
-			
-
-
 			m_running = true;
 			while (m_running)
 			{
@@ -118,5 +124,17 @@ namespace myengine
 
 		Core::~Core()
 		{
+		}
+		std::shared_ptr<Enviroment> Core::getEnviroment()
+		{
+			return m_enviroment;
+		}
+		std::shared_ptr<Resources> Core::getResources()
+		{
+			return m_resources;
+		}
+		std::shared_ptr<Input> Core::getInput()
+		{
+			return m_input;
 		}
 }

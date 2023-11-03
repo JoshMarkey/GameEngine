@@ -7,7 +7,7 @@ namespace myengine
 	myengine::Entity::Entity()
 	{
 		m_alive = true;
-		transform = addComponent<Transform>();
+		
 	}
 
 	Entity::~Entity()
@@ -44,6 +44,11 @@ namespace myengine
 		{
 			//m_components.at(ci)->kill();
 		}
+	}
+
+	std::shared_ptr<Core> Entity::getCore()
+	{
+		return m_core;
 	}
 
 

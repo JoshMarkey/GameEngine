@@ -62,6 +62,8 @@ src/GameEngine/Input.cpp
 src/GameEngine/Input.h
 src/GameEngine/Cat.cpp
 src/GameEngine/Cat.h
+src/GameEngine/ModelRenderer.cpp
+src/GameEngine/ModelRenderer.h
 )
 
 add_executable(demo
