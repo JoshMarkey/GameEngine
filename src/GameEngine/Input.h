@@ -16,5 +16,47 @@ namespace myengine
 		bool getKeyDown(int keyCode);
 		bool getKeyUp(int keyCode);
 		void printKeys();
+		int getCode(KeyCodes code);
+	};
+
+	enum KeyCodes {
+		n1,
+		n2,
+		n3,
+		n4,
+		n5,
+		n6,
+		n7,
+		n8,
+		n9,
+		n0,
+		q,
+		w,
+		e,
+		r,
+		t,
+		y,
+		u,
+		i,
+		o,
+		p,
+		a,
+		s,
+		d,
+		f,
+		g,
+		h,
+		j,
+		k,
+		l,
+		z,
+		x,
+		c,
+		v,
+		b,
+		n,
+		m,
+		shift,
+		control,
 	};
 }
