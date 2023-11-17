@@ -4,6 +4,10 @@
 #include "Enviroment.h"
 namespace myengine
 {
+	std::shared_ptr<Entity> Component::getEntity()
+	{
+		return m_entity.lock();
+	}
 	void Component::onTick()
 	{
 	}

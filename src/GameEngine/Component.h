@@ -11,6 +11,7 @@ namespace myengine
 		std::weak_ptr<Entity> m_entity;
 		std::shared_ptr<Core> getCore();
 		float DT();
+		std::shared_ptr<Entity> getEntity();
 	private:
 		friend Entity;
 		virtual void onTick();

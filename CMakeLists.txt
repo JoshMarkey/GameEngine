@@ -64,6 +64,12 @@ src/GameEngine/Cat.cpp
 src/GameEngine/Cat.h
 src/GameEngine/ModelRenderer.cpp
 src/GameEngine/ModelRenderer.h
+src/GameEngine/BoxCollider.cpp
+src/GameEngine/BoxCollider.h
+src/GameEngine/Collider.cpp
+src/GameEngine/Collider.h
+src/GameEngine/RigidBody.cpp
+src/GameEngine/RigidBody.h
 )
 
 add_executable(demo

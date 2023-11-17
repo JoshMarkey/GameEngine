@@ -11,6 +11,7 @@ namespace myengine
 		void onTick() override;
 		void onInitialise() override;
 		float angle;
+		bool player = false;
 	private:
 		graphics::Camera m_cam;
 		std::string modelPath;

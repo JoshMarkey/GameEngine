@@ -23,26 +23,28 @@ namespace myengine
 		{
 			angle -= 360;
 		}
-
-		if (getCore()->getInput()->getKey(SDLK_d))
+		if (player)
 		{
-			entity->transform->move(glm::vec3(10, 0, 0) * DT());
-		}
-		if (getCore()->getInput()->getKey(SDLK_a))
-		{
-			entity->transform->move(glm::vec3(-10, 0, 0) * DT());
-		}
-		if (getCore()->getInput()->getKey(SDLK_w))
-		{
-			entity->transform->move(glm::vec3(0, 0, -10) * DT());
-		}
-		if (getCore()->getInput()->getKey(SDLK_w))
-		{
-			entity->transform->move(glm::vec3(0, 0, 10) * DT());
+			if (getCore()->getInput()->getKey(KeyCodes::d))
+			{
+				entity->transform->move(glm::vec3(10, 0, 0) * DT());
+			}
+			if (getCore()->getInput()->getKey(KeyCodes::a))
+			{
+				entity->transform->move(glm::vec3(-10, 0, 0) * DT());
+			}
+			if (getCore()->getInput()->getKey(KeyCodes::w))
+			{
+				entity->transform->move(glm::vec3(0, 0, -10) * DT());
+			}
+			if (getCore()->getInput()->getKey(SDLK_w))
+			{
+				entity->transform->move(glm::vec3(KeyCodes::s) * DT());
+			}
 		}
 	}
 	void Cat::onInitialise()
 	{
-		m_entity.lock()->transform->move(glm::vec3(0, -0.5, -8));
+		m_entity.lock()->transform->move(glm::vec3(0, -0.5, -14));
 	}
 }

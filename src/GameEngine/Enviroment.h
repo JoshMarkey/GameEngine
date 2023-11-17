@@ -1,4 +1,6 @@
 
+#include <windows.h>
+
 namespace myengine
 {
 	struct Core;
@@ -6,7 +8,7 @@ namespace myengine
 	{
 	private:
 		friend Core;
-		float lastTime;
+		DWORD lastTime;
 		float deltaTime;
 		void tick();
 		void init();

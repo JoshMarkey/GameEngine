@@ -23,7 +23,7 @@ namespace myengine
 			}
 			rtn->m_window->m_window = SDL_CreateWindow("SDL2 Platform",
 				SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-				640, 480, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
+				1000, 800, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
 
 			if (!rtn->m_window->m_window)
 			{
@@ -75,11 +75,11 @@ namespace myengine
 					running = false;
 				}
 
-
 				glClearColor(0, 1, 0, 1);
 				glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
 				m_enviroment->tick();
+				//std::cout << m_enviroment->DT() << std::endl;
 
 				for (int i = 0; i < m_entities.size(); i++)
 				{

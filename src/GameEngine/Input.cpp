@@ -85,12 +85,4 @@ namespace myengine
 			std::cout << pressedKeys[i] << std::endl;
 		}
 	}
-
-	int Input::getCode(KeyCodes code)
-	{
-		switch (code)
-		{
-
-		}
-	}
 }
