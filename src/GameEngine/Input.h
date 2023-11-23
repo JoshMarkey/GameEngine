@@ -15,7 +15,6 @@ namespace myengine
 		bool getKey(int keyCode);
 		bool getKeyDown(int keyCode);
 		bool getKeyUp(int keyCode);
-		void printKeys();
 	};
 
 	enum KeyCodes {

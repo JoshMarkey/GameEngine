@@ -78,11 +78,4 @@ namespace myengine
 		}
 		return false;
 	}
-	void Input::printKeys()
-	{
-		for (int i = 0; i < pressedKeys.size(); i++)
-		{
-			std::cout << pressedKeys[i] << std::endl;
-		}
-	}
 }

@@ -20,16 +20,15 @@ int main()
 	std::shared_ptr<Transform> component2 = entity->addComponent<Transform>();
 	std::shared_ptr<Cat> component3 = entity->addComponent<Cat>();
 	std::shared_ptr<ModelRenderer> component4 = entity->addComponent<ModelRenderer>();
-	entity->addComponent<BoxCollider>();
+	entity->addComponent<BoxCollider>()->setSize(glm::vec3(1.2, 3, 1.2));
 	entity->addComponent<RigidBody>();
 
 	std::shared_ptr<Entity> entity2 = core->addEntity();
-	std::shared_ptr<Transform> trans = entity2->addComponent<Transform>();
+	entity2->addComponent<Transform>()->position = glm::vec3(2,0,0);
 	std::shared_ptr<Cat> cat = entity2->addComponent<Cat>();
 	cat->player = true;
 	entity2->addComponent<ModelRenderer>();
-	std::shared_ptr<BoxCollider> bc = entity2->addComponent<BoxCollider>();
-	bc->setSize(glm::vec3(1, 1, 1));
+	entity2->addComponent<BoxCollider>()->setSize(glm::vec3(1.2, 3, 1.2));
 
 	entity2->addComponent<RigidBody>();
 	

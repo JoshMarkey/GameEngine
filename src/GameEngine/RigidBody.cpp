@@ -18,7 +18,11 @@ namespace myengine {
 			{
 				if (self->colliding(colliders.at(c)))
 				{
-					//std::cout << "COLLIDING" << std::endl;
+					colliders.at(c)->getEntity()->transform->position = 
+						self->getCollisionResponse(colliders.at(c)->getEntity()->transform->position + colliders.at(c)->getOffset(),
+						colliders.at(c)->getSize());
+
+					//std::cout << "ADFGADFH" << std::endl;
 				}
 			}
 		}

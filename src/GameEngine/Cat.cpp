@@ -15,6 +15,8 @@ namespace myengine
 
 	void Cat::onTick()
 	{
+		if (player)
+		{
 		std::shared_ptr<Entity> entity = m_entity.lock();
 		angle = 360 * DT();
 		//std::cout << angle << std::endl;
@@ -23,8 +25,7 @@ namespace myengine
 		{
 			angle -= 360;
 		}
-		if (player)
-		{
+		
 			if (getCore()->getInput()->getKey(KeyCodes::d))
 			{
 				entity->transform->move(glm::vec3(10, 0, 0) * DT());
@@ -37,14 +38,14 @@ namespace myengine
 			{
 				entity->transform->move(glm::vec3(0, 0, -10) * DT());
 			}
-			if (getCore()->getInput()->getKey(SDLK_w))
+			if (getCore()->getInput()->getKey(KeyCodes::s))
 			{
-				entity->transform->move(glm::vec3(KeyCodes::s) * DT());
+				entity->transform->move(glm::vec3(0, 0, 10) * DT());
 			}
 		}
 	}
 	void Cat::onInitialise()
 	{
-		m_entity.lock()->transform->move(glm::vec3(0, -0.5, -14));
+		m_entity.lock()->transform->move(glm::vec3(0, -1.5, -14));
 	}
 }

@@ -60,26 +60,23 @@ namespace myengine
 		void Core::run()
 		{		
 
-			bool running = true;
-			while (running)
+			m_running = true;
+			while (m_running)
 			{
 				if (!m_input->tick())
 				{
 					return;
 				}
 
-				m_input->printKeys();
-
 				if (m_input->getKeyDown(SDLK_ESCAPE))
 				{
-					running = false;
+					m_running = false;
 				}
 
 				glClearColor(0, 1, 0, 1);
 				glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
 				m_enviroment->tick();
-				//std::cout << m_enviroment->DT() << std::endl;
 
 				for (int i = 0; i < m_entities.size(); i++)
 				{
@@ -96,27 +93,7 @@ namespace myengine
 			}
 		}
 
-		void Core::start()
-		{
-			m_running = true;
-			while (m_running)
-			{
-				for (size_t ei = 0; ei < m_entities.size(); ++ei)
-				{
-					m_entities[ei]->tick();
-				}
 
-				for (size_t ei = 0; ei < m_entities.size(); ++ei)
-				{
-					if (!m_entities[ei]->alive())
-					{
-						m_entities.erase(m_entities.begin() + ei);
-						--ei;
-					}
-				}
-
-			}
-		}
 		void Core::stop()
 		{
 			m_running = false;
