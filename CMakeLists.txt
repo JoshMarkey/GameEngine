@@ -74,5 +74,7 @@ src/GameEngine/RigidBody.h
 
 add_executable(demo
 src/demo/main.cpp
+src/demo/Map.cpp
+src/demo/map.h
 )
 target_link_libraries(demo GameEngine Graphics SDL2)

@@ -4,6 +4,7 @@ namespace graphics {
 		m_name(_name),
 		m_model(0),
 		m_modelMatrix(1.0),
+		m_faces(std::vector<bu::Face>{}),
 		m_projectionMatrix(glm::perspective(glm::radians(45.0f), 1.0f, 0.01f, 100.0f)),
 		m_viewingMatrix(glm::mat4(1.0)),
 		m_verts(0),
@@ -26,8 +27,9 @@ namespace graphics {
 		//If no current ID, load the model
 		if (!m_model)
 		{
-			m_model = buLoadModel(m_name, m_verts);
+			m_model = buLoadModel(m_name, m_verts, m_faces);
 		}
+
 		return m_model;
 	}
 
@@ -35,6 +37,11 @@ namespace graphics {
 	{
 		//return total number of verts
 		return m_verts;
+	}
+
+	std::vector<bu::Face> Model::getFaces()
+	{
+		return m_faces;
 	}
 
 	void Model::updateMatrix(glm::vec3 position, glm::vec3 scale, glm::vec3 rotation, glm::mat4 view, glm::mat4 projection)

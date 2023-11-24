@@ -15,11 +15,8 @@ bool myengine::BoxCollider::colliding(std::shared_ptr<BoxCollider> _other)
 bool myengine::BoxCollider::colliding(glm::vec3 position, glm::vec3 size)
 {
 	glm::vec3 a = getEntity()->transform->position + m_offset;
-	glm::vec3 b = position;
-	glm::vec3 ahs = m_size / 2.0f;
-	glm::vec3 bhs = size / 2.0f;
 
-	return checkCollision(a, b, ahs, bhs);
+	return checkCollision(a, position, m_size / 2.0f, size / 2.0f);
 }
 
 
