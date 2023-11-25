@@ -1,9 +1,6 @@
 #pragma once
 #include <iostream>
-#include <GameEngine/Core.h>
-#include <GameEngine/TriangleRenderer.h>
 #include <GameEngine/Cat.h>
-#include <GameEngine/ModelRenderer.h>
 #include "Map.h"
 #undef main
 using namespace myengine;

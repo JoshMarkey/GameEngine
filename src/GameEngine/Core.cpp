@@ -1,10 +1,12 @@
+#pragma once
 #include "Core.h"
 #include "Entity.h"
 #include <Graphics/rend.h>
 #include "NativeWindow.h"
 #include "Enviroment.h"
-#include "Resources.h"
 #include "Transform.h"
+#include "Audio.h"
+
 
 namespace myengine
 {
@@ -16,7 +18,8 @@ namespace myengine
 			rtn->m_window = std::make_shared<NativeWindow>();
 			rtn->m_resources = std::make_shared<Resources>();
 			rtn->m_input = std::make_shared<Input>();
-
+			rtn->m_audio = std::make_shared<Audio>();
+			//sdl
 			if (SDL_Init(SDL_INIT_VIDEO) < 0)
 			{
 				throw std::runtime_error("Failed to initialize SDL");
@@ -39,6 +42,30 @@ namespace myengine
 			}
 
 			glewInit();
+			//audio
+			rtn->m_audio->m_device = alcOpenDevice(NULL);
+
+			if (!rtn->m_audio->m_device)
+			{
+				throw std::runtime_error("Failed to open audio device");
+			}
+
+			rtn->m_audio->m_context = alcCreateContext(rtn->m_audio->m_device, NULL);
+
+			if (!rtn->m_audio->m_context)
+			{
+				alcCloseDevice(rtn->m_audio->m_device);
+				throw std::runtime_error("Failed to create audio context");
+			}
+
+			if (!alcMakeContextCurrent(rtn->m_audio->m_context))
+			{
+				alcDestroyContext(rtn->m_audio->m_context);
+				alcCloseDevice(rtn->m_audio->m_device);
+				throw std::runtime_error("Failed to make context current");
+			}
+
+
 			rtn->m_enviroment = std::make_shared<Enviroment>();
 			rtn->m_enviroment->init();
 			return rtn;
@@ -58,8 +85,7 @@ namespace myengine
 		}
 
 		void Core::run()
-		{		
-
+		{
 			m_running = true;
 			while (m_running)
 			{
@@ -113,5 +139,9 @@ namespace myengine
 		std::shared_ptr<Input> Core::getInput()
 		{
 			return m_input;
+		}
+		std::shared_ptr<Audio> Core::getAudio()
+		{
+			return m_audio;
 		}
 }

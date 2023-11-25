@@ -9,6 +9,7 @@ namespace myengine
 	struct Entity;
 	struct NativeWindow;
 	struct Enviroment;
+	struct Audio;
 
 	struct Core
 	{
@@ -20,6 +21,7 @@ namespace myengine
 		std::shared_ptr<Enviroment> getEnviroment();
 		std::shared_ptr<Resources> getResources();
 		std::shared_ptr<Input> getInput();
+		std::shared_ptr<Audio> getAudio();
 
 
 		void start();
@@ -49,6 +51,7 @@ namespace myengine
 
 	private:
 		std::shared_ptr< NativeWindow> m_window;
+		std::shared_ptr< Audio> m_audio;
 		std::vector<std::shared_ptr<Entity>> m_entities;
 		bool m_running;
 		std::weak_ptr<Core>m_self;

@@ -70,11 +70,18 @@ src/GameEngine/Collider.cpp
 src/GameEngine/Collider.h
 src/GameEngine/RigidBody.cpp
 src/GameEngine/RigidBody.h
+src/GameEngine/SoundSource.cpp
+src/GameEngine/SoundSource.h
+src/GameEngine/AudioSource.cpp
+src/GameEngine/AudioSource.h
+src/GameEngine/Audio.cpp
+src/GameEngine/Audio.h
 )
+
 
 add_executable(demo
 src/demo/main.cpp
 src/demo/Map.cpp
-src/demo/map.h
+src/demo/Map.h
 )
-target_link_libraries(demo GameEngine Graphics SDL2)
+target_link_libraries(demo GameEngine Graphics SDL2 openal32)
