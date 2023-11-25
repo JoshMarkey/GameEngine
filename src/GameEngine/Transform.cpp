@@ -11,11 +11,6 @@ namespace myengine {
 		scale = glm::vec3(1);
 	}
 
-	glm::mat4 Transform::getProjection()
-	{
-		return glm::perspective(glm::radians(45.0f), 1.0f, 0.01f, 150.0f);
-	}
-
 	glm::mat4 Transform::getModel()
 	{
 		glm::mat4 rtn = glm::translate(glm::mat4(1), position);

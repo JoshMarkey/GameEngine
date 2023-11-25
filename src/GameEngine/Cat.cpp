@@ -4,6 +4,7 @@
 #include "Core.h"
 #include "Enviroment.h"
 #include "AudioSource.h"
+#include "Camera.h"
 
 namespace myengine
 {
@@ -18,15 +19,15 @@ namespace myengine
 	{
 		if (player)
 		{
-		std::shared_ptr<Entity> entity = m_entity.lock();
-		angle = 360 * DT();
-		//std::cout << angle << std::endl;
-		entity->transform->rotate(glm::vec3(0, angle, 0));
-		if (angle > 360)
-		{
-			angle -= 360;
-		}
-		
+			std::shared_ptr<Entity> entity = m_entity.lock();
+			angle = 360 * DT();
+			//std::cout << angle << std::endl;
+			entity->transform->rotate(glm::vec3(0, angle, 0));
+			if (angle > 360)
+			{
+				angle -= 360;
+			}
+			
 			if (getCore()->getInput()->getKey(KeyCodes::d))
 			{
 				entity->transform->move(glm::vec3(10, 0, 0) * DT());
@@ -43,11 +44,13 @@ namespace myengine
 			{
 				entity->transform->move(glm::vec3(0, 0, 10) * DT());
 			}
+			
 		}
 	}
 	void Cat::onInitialise()
 	{
-		getCore()->getResources()->load<AudioSource>("../Audio/dixie_horn.ogg");
+		//getCore()->getResources()->load<AudioSource>("../Audio/dixie_horn.ogg");
 		m_entity.lock()->transform->move(glm::vec3(0, -1.5, -14));
+		getCore()->camera->getComponent<Camera>()->setTarget(getEntity()->transform);
 	}
 }

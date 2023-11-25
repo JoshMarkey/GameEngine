@@ -16,7 +16,7 @@ namespace myengine
 		angle = 0.0f;
 	}
 
-	void TriangleRenderer::onDisplay()
+	void TriangleRenderer::onDisplay(std::shared_ptr<Entity> camera)
 	{
 		std::shared_ptr<Entity> entity = m_entity.lock();
 		m_shader.bindOrthoMatrix(entity->transform->getProjection(), entity->transform->getModel());

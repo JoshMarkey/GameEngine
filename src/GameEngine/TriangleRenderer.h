@@ -3,12 +3,13 @@
 
 namespace myengine
 {
+	struct Entity;
 	struct TriangleRenderer : Component
 	{
 		TriangleRenderer();
 		~TriangleRenderer();
 	public:
-		void onDisplay() override;
+		void onDisplay(std::shared_ptr<Entity> camera) override;
 		void initialize();
 		void onTick() override;
 		float angle;

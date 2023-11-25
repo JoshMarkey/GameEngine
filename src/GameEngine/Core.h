@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include "Resources.h"
 #include "Input.h"
+#include "Camera.h"
 namespace myengine
 {
 	struct Entity;
@@ -22,7 +23,7 @@ namespace myengine
 		std::shared_ptr<Resources> getResources();
 		std::shared_ptr<Input> getInput();
 		std::shared_ptr<Audio> getAudio();
-
+		std::shared_ptr<Entity> camera;
 
 		void start();
 		void stop();

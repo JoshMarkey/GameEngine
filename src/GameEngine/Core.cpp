@@ -68,6 +68,8 @@ namespace myengine
 
 			rtn->m_enviroment = std::make_shared<Enviroment>();
 			rtn->m_enviroment->init();
+			rtn->camera = rtn->addEntity();
+			rtn->camera->addComponent<Camera>();
 			return rtn;
 		}
 
@@ -113,7 +115,7 @@ namespace myengine
 
 				for (int i = 0; i < m_entities.size(); i++)
 				{
-					m_entities[i]->display();
+					m_entities[i]->display(camera);
 				}
 				SDL_GL_SwapWindow(m_window->m_window);
 			}

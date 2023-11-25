@@ -28,11 +28,11 @@ namespace myengine
 		return m_alive;
 	}
 
-	void Entity::display()
+	void Entity::display(std::shared_ptr<Entity> camera)
 	{
 		for (int i = 0; i < m_components.size(); i++)
 		{
-			m_components[i].get()->onDisplay();
+			m_components[i].get()->onDisplay(camera);
 		}
 	}
 

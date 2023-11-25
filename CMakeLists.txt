@@ -76,6 +76,8 @@ src/GameEngine/AudioSource.cpp
 src/GameEngine/AudioSource.h
 src/GameEngine/Audio.cpp
 src/GameEngine/Audio.h
+src/GameEngine/Camera.cpp
+src/GameEngine/Camera.h
 )
 
 
