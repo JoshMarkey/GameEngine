@@ -8,13 +8,15 @@ namespace myengine
 
 		pressedKeys.clear();
 		releasedKeys.clear();
-
+		//Find all mouse and keyboard input and add to appropriate collection
 		while (SDL_PollEvent(&event))
 		{
+			//QUIT
 			if (event.type == SDL_QUIT)
 			{
 				return false;
 			}
+			//KEYBOARD
 			if (event.type == SDL_KEYDOWN)
 			{
 				if (std::find(keys.begin(), keys.end(), event.key.keysym.sym) != keys.end())
@@ -38,7 +40,37 @@ namespace myengine
 					}
 				}
 			}
+			//MOUSE
+			else if (event.type == SDL_MOUSEBUTTONDOWN)
+			{
+				if (std::find(keys.begin(), keys.end(), event.button.button) != keys.end())
+				{
+					continue;
+				}
+				else
+				{
+					keys.push_back(event.button.button);
+					pressedKeys.push_back(event.button.button);
+				}
+			}
+			else if (event.type == SDL_MOUSEBUTTONUP)
+			{
+				for (int i = 0; i < keys.size(); i++)
+				{
+					if (keys[i] == event.button.button)
+					{
+						keys.erase(keys.begin() + i);
+						releasedKeys.push_back(i);
+					}
+				}
+			}
 		}
+		//MOUSE POS
+		int x;
+		int y;
+		SDL_GetMouseState(&x,&y);
+		mousePos.x = x;
+		mousePos.y = y;
 		return true;
 	}
 

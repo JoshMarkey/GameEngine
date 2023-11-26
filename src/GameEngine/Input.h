@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h>
 #include <vector>
 #include <iostream>
+#include <glm/ext.hpp>
 namespace myengine
 {
 	struct Core;
@@ -10,11 +11,13 @@ namespace myengine
 		std::vector<int> keys;
 		std::vector<int> pressedKeys;
 		std::vector<int> releasedKeys;
+		glm::vec2 mousePos;
 	public:
 		bool tick();
 		bool getKey(int keyCode);
 		bool getKeyDown(int keyCode);
 		bool getKeyUp(int keyCode);
+
 	};
 
 	enum KeyCodes {
@@ -56,5 +59,8 @@ namespace myengine
 		m = SDLK_m,
 		shift = SDLK_LSHIFT,
 		control = SDLK_LCTRL,
+		leftMouse = SDL_BUTTON_LEFT,
+		rightMouse = SDL_BUTTON_RIGHT,
+		middleMouse = SDL_BUTTON_MIDDLE
 	};
 }
