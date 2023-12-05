@@ -50,6 +50,7 @@ namespace myengine
 	void Cat::onInitialise()
 	{
 		//getCore()->getResources()->load<AudioSource>("../Audio/dixie_horn.ogg");
+		
 		m_entity.lock()->transform->move(glm::vec3(0, -1.5, -14));
 		getCore()->camera->getComponent<Camera>()->setTarget(getEntity()->transform);
 	}

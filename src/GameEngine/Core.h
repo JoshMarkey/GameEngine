@@ -11,6 +11,7 @@ namespace myengine
 	struct NativeWindow;
 	struct Enviroment;
 	struct Audio;
+	struct Gui;
 
 	struct Core
 	{
@@ -23,6 +24,7 @@ namespace myengine
 		std::shared_ptr<Resources> getResources();
 		std::shared_ptr<Input> getInput();
 		std::shared_ptr<Audio> getAudio();
+		std::shared_ptr<Gui> getGui();
 		std::shared_ptr<Entity> camera;
 
 		void start();
@@ -59,7 +61,7 @@ namespace myengine
 		std::shared_ptr<Enviroment> m_enviroment;
 		std::shared_ptr<Resources> m_resources;
 		std::shared_ptr<Input> m_input;
-
+		std::shared_ptr<Gui> m_gui;
 	};
 
 }

@@ -21,6 +21,9 @@ namespace myengine
 	{
 		onTick();
 	}
+	void Component::onGui()
+	{
+	}
 	std::shared_ptr<Core> Component::getCore()
 	{
 		return m_entity.lock()->getCore();

@@ -6,7 +6,7 @@
 #include "Enviroment.h"
 #include "Transform.h"
 #include "Audio.h"
-
+#include "Gui.h"
 
 namespace myengine
 {
@@ -19,6 +19,7 @@ namespace myengine
 			rtn->m_resources = std::make_shared<Resources>();
 			rtn->m_input = std::make_shared<Input>();
 			rtn->m_audio = std::make_shared<Audio>();
+			rtn->m_gui = std::make_shared<Gui>();
 			//sdl
 			if (SDL_Init(SDL_INIT_VIDEO) < 0)
 			{
@@ -68,6 +69,7 @@ namespace myengine
 
 			rtn->m_enviroment = std::make_shared<Enviroment>();
 			rtn->m_enviroment->init();
+			rtn->m_gui->initialise(rtn);
 			rtn->camera = rtn->addEntity();
 			rtn->camera->addComponent<Camera>();
 			return rtn;
@@ -117,6 +119,12 @@ namespace myengine
 				{
 					m_entities[i]->display(camera);
 				}
+
+				for (int i = 0; i < m_entities.size(); i++)
+				{
+					m_entities[i]->onGui();
+				}
+
 				SDL_GL_SwapWindow(m_window->m_window);
 			}
 		}
@@ -145,5 +153,9 @@ namespace myengine
 		std::shared_ptr<Audio> Core::getAudio()
 		{
 			return m_audio;
+		}
+		std::shared_ptr<Gui> Core::getGui()
+		{
+			return m_gui;
 		}
 }

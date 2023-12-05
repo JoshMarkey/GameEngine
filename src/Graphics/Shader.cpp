@@ -153,13 +153,13 @@ namespace graphics {
 		glBindVertexArray(mesh->getId());
 		glBindTexture(GL_TEXTURE_2D, tex->getID());
 		//glEnable(GL_CULL_FACE);
-		glEnable(GL_DEPTH_TEST);
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		//glEnable(GL_DEPTH_TEST);
+		//glEnable(GL_BLEND);
+		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 		//glDisable(GL_CULL_FACE);
-		glDisable(GL_DEPTH_TEST);
-		glDisable(GL_BLEND);
+		//glDisable(GL_DEPTH_TEST);
+		//glDisable(GL_BLEND);
 
 
 		// Reset the state

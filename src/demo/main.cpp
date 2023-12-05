@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <GameEngine/Cat.h>
+#include <GameEngine/TriangleGui.h>
 #include "Map.h"
 #undef main
 using namespace myengine;
@@ -16,6 +17,7 @@ int main()
 	player->addComponent<BoxCollider>()->setSize(glm::vec3(1.2, 3, 1.2));
 
 	player->addComponent<RigidBody>();
+	player->addComponent<TriangleGui>();
 
 	//create map entity with 'prefab' map component
 	core->addEntity()->addComponent<Map>();

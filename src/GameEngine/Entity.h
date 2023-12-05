@@ -41,6 +41,7 @@ namespace myengine
 		std::shared_ptr<Core> getCore();
 
 		void tick();
+		void onGui();
 
 	private:
 		bool alive();

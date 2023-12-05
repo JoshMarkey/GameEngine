@@ -248,6 +248,10 @@ src/GameEngine/Audio.cpp
 src/GameEngine/Audio.h
 src/GameEngine/Camera.cpp
 src/GameEngine/Camera.h
+src/GameEngine/Gui.h
+src/GameEngine/Gui.cpp
+src/GameEngine/TriangleGui.h
+src/GameEngine/TriangleGui.cpp
 )
 
 

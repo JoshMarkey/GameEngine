@@ -23,6 +23,14 @@ namespace myengine
 
 	}
 
+	void Entity::onGui()
+	{
+		for (int i = 0; i < m_components.size(); i++)
+		{
+			m_components[i].get()->onGui();
+		}
+	}
+
 	bool Entity::alive()
 	{
 		return m_alive;

@@ -19,5 +19,6 @@ namespace myengine
 		virtual void onInitialise();
 		void tick();
 		void display(std::shared_ptr<Entity> camera);
+		virtual void onGui();
 	};
 }
