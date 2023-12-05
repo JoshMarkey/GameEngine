@@ -252,6 +252,8 @@ src/GameEngine/Gui.h
 src/GameEngine/Gui.cpp
 src/GameEngine/TriangleGui.h
 src/GameEngine/TriangleGui.cpp
+src/GameEngine/Utility.h
+src/GameEngine/Utility.cpp
 )
 
 

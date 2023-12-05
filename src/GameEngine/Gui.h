@@ -5,6 +5,10 @@ namespace myengine
 {
 	struct Core;
 	struct Shader;
+
+	//Simple rect to keep track of gui component positions and size
+	struct Rect;
+
 	struct Gui
 	{
 		void initialise(std::shared_ptr<Core> _core);
@@ -15,6 +19,8 @@ namespace myengine
 		std::string vertPath;
 		std::shared_ptr<Core> m_core;
 		glm::mat4 getProjection();
+	public:
+		void image(rect )
 		
 	};
 }
