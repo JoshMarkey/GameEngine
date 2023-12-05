@@ -5,6 +5,7 @@ namespace myengine
 	struct NativeWindow
 	{
 		~NativeWindow();
+		glm::vec2 getWindowSize();
 	private:
 		friend Core;
 		SDL_Window* m_window;

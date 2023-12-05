@@ -4,12 +4,14 @@ namespace myengine
 {
 	struct Entity;
 	struct Core;
+	struct Gui;
 
 	struct Component
 	{
 	public:
 		std::weak_ptr<Entity> m_entity;
 		std::shared_ptr<Core> getCore();
+		std::shared_ptr<Gui> getGui();
 		float DT();
 		std::shared_ptr<Entity> getEntity();
 	private:

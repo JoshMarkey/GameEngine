@@ -36,7 +36,7 @@ namespace myengine
 					if (keys[i] == event.key.keysym.sym)
 					{
 						keys.erase(keys.begin() + i);
-						releasedKeys.push_back(i);
+						releasedKeys.push_back(event.key.keysym.sym);
 					}
 				}
 			}
@@ -60,7 +60,7 @@ namespace myengine
 					if (keys[i] == event.button.button)
 					{
 						keys.erase(keys.begin() + i);
-						releasedKeys.push_back(i);
+						releasedKeys.push_back(event.button.button);
 					}
 				}
 			}
@@ -89,7 +89,7 @@ namespace myengine
 
 	bool Input::getKeyDown(int keyCode)
 	{
-		for (int i = 0; i < pressedKeys.size(); i++)
+		for (int i = 0; i < pressedKeys.size(); ++i)
 		{
 			if (pressedKeys.at(i) == keyCode)
 			{
@@ -101,9 +101,9 @@ namespace myengine
 
 	bool Input::getKeyUp(int keyCode)
 	{
-		for (int i = 0; i < keys.size(); i++)
+		for (int i = 0; i < releasedKeys.size(); ++i)
 		{
-			if (releasedKeys[i] == keyCode)
+			if (releasedKeys.at(i) == keyCode)
 			{
 				return true;
 			}

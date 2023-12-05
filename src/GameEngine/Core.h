@@ -26,6 +26,7 @@ namespace myengine
 		std::shared_ptr<Audio> getAudio();
 		std::shared_ptr<Gui> getGui();
 		std::shared_ptr<Entity> camera;
+		glm::vec2 getWindowSize();
 
 		void start();
 		void stop();

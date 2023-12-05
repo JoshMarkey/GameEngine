@@ -5,6 +5,8 @@ namespace myengine
 {
 	struct TriangleGui : Component
 	{
+		void onInitialise() override;
 		void onGui() override;
+		bool pressed;
 	};
 }

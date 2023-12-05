@@ -1,16 +1,28 @@
 #include "TriangleGui.h"
 #include "Core.h"
-#include "Gui.h"
 #include "Texture.h"
+#include "Gui.h"
 
 namespace myengine
 {
+	void TriangleGui::onInitialise()
+	{
+		pressed = false;
+	}
 	void TriangleGui::onGui()
 	{
-		std::shared_ptr<Texture> tex = getCore()->getResources()->load<Texture>("../Models/Cat/Tex.png");
-		std::shared_ptr<Shader> guiShader = getCore()->getGui()->getShader();
-		guiShader->m_shader->bindOrthoMatrix(getCore()->getGui()->getProjection(), glm::scale(glm::mat4(1),glm::vec3(100.0f)));
-		guiShader->m_shader->renderOrtho(&getCore()->getGui()->m_Quad, tex->getTexture().get());
+		getGui()->image(myengine::Rect(400, 300, 200, 200), "../Models/OtherTextures/Image.png");
+		if (pressed)
+		{
+			if (getGui()->button(myengine::Rect(200, 50, 200, 200), "../Models/OtherTextures/button1.png"))
+			{
+				pressed = false;
+			}
+		}
+		else if(getGui()->button(myengine::Rect(200, 50, 200, 200), "../Models/OtherTextures/button2.png"))
+		{
+			pressed = true;
+		}
 
 	}
 }

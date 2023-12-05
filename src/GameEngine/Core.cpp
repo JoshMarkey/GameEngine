@@ -25,7 +25,7 @@ namespace myengine
 			{
 				throw std::runtime_error("Failed to initialize SDL");
 			}
-			rtn->m_window->m_window = SDL_CreateWindow("SDL2 Platform",
+			rtn->m_window->m_window = SDL_CreateWindow("GameEngine",
 				SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 				1000, 800, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
 
@@ -157,5 +157,9 @@ namespace myengine
 		std::shared_ptr<Gui> Core::getGui()
 		{
 			return m_gui;
+		}
+		glm::vec2 Core::getWindowSize()
+		{
+			return m_window->getWindowSize();
 		}
 }

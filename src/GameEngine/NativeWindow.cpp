@@ -12,3 +12,11 @@ myengine::NativeWindow::~NativeWindow()
 		SDL_Quit();
 	}
 }
+
+glm::vec2 myengine::NativeWindow::getWindowSize()
+{
+	int w;
+	int h;
+	SDL_GetWindowSize(m_window, &w, &h);
+	return glm::vec2(w, h);
+}
