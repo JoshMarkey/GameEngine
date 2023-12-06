@@ -22,7 +22,7 @@ namespace myengine
 		glm::mat4 getProjection();
 	public:
 		void image(myengine::Rect rect, std::string texPath);
-		bool button(myengine::Rect rect, std::string texPath);
+		int button(myengine::Rect rect, std::string texPath);
 
 	private:
 		void draw(myengine::Rect _rect, std::string _texPath);

@@ -43,20 +43,26 @@ namespace myengine
 	{
 		draw(_rect, _texPath);
 	}
-	bool Gui::button(myengine::Rect rect, std::string texPath)
+	int Gui::button(myengine::Rect rect, std::string texPath)
 	{
 		image(rect, texPath);
-		if (m_core->getInput()->getKeyUp(KeyCodes::leftMouse))
-		{
-			glm::vec2 winSize = m_core->getWindowSize();
-			glm::vec2 mousePos = m_core->getInput()->mousePos;
 
-			if (mousePos.x >= rect.x && mousePos.x <= rect.x + rect.w && winSize.y - mousePos.y >= rect.y && winSize.y - mousePos.y <= rect.y + rect.h)
+		glm::vec2 winSize = m_core->getWindowSize();
+		glm::vec2 mousePos = m_core->getInput()->mousePos;
+
+		if (mousePos.x >= rect.x && mousePos.x <= rect.x + rect.w && winSize.y - mousePos.y >= rect.y && winSize.y - mousePos.y <= rect.y + rect.h)
+		{
+			if (m_core->getInput()->getKeyUp(KeyCodes::leftMouse))
 			{
-				return true;
+				return 2;
+			}
+			else if (m_core->getInput()->getKey(KeyCodes::leftMouse))
+			{
+				return 1;
 			}
 		}
-		return false;
+
+		return 0;
 	}
 
 	void Gui::draw(myengine::Rect _rect, std::string _texPath)
