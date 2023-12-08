@@ -254,6 +254,8 @@ src/GameEngine/TriangleGui.h
 src/GameEngine/TriangleGui.cpp
 src/GameEngine/Utility.h
 src/GameEngine/Utility.cpp
+src/GameEngine/Physics.h
+src/GameEngine/Physics.cpp
 src/GameEngine/raytri.c
 )
 

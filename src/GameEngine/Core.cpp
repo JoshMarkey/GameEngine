@@ -7,6 +7,7 @@
 #include "Transform.h"
 #include "Audio.h"
 #include "Gui.h"
+#include "Physics.h"
 
 namespace myengine
 {
@@ -107,6 +108,7 @@ namespace myengine
 				glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
 				m_enviroment->tick();
+				m_physics->tick();
 
 				for (int i = 0; i < m_entities.size(); i++)
 				{
@@ -157,6 +159,10 @@ namespace myengine
 		std::shared_ptr<Gui> Core::getGui()
 		{
 			return m_gui;
+		}
+		std::shared_ptr<Physics> Core::getPhysics()
+		{
+			return m_physics;
 		}
 		glm::vec2 Core::getWindowSize()
 		{

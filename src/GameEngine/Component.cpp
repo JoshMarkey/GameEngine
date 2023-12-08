@@ -18,6 +18,10 @@ namespace myengine
 	void Component::onInitialise()
 	{
 	}
+	void Component::onPhysicsUpdate()
+	{
+
+	}
 	void Component::tick()
 	{
 		onTick();
@@ -32,6 +36,10 @@ namespace myengine
 	std::shared_ptr<Gui> Component::getGui()
 	{
 		return getCore()->getGui();
+	}
+	std::shared_ptr<Physics> Component::getPhysics()
+	{
+		return getCore()->getPhysics();
 	}
 	float Component::DT()
 	{
