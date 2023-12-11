@@ -20,6 +20,7 @@ namespace myengine
 			rtn->m_resources = std::make_shared<Resources>();
 			rtn->m_input = std::make_shared<Input>();
 			rtn->m_audio = std::make_shared<Audio>();
+			rtn->m_physics = std::make_shared<Physics>();
 			rtn->m_gui = std::make_shared<Gui>();
 			//sdl
 			if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -71,6 +72,7 @@ namespace myengine
 			rtn->m_enviroment = std::make_shared<Enviroment>();
 			rtn->m_enviroment->init();
 			rtn->m_gui->initialise(rtn);
+			rtn->m_physics->Init(rtn);
 			rtn->camera = rtn->addEntity();
 			rtn->camera->addComponent<Camera>();
 			return rtn;
@@ -109,6 +111,10 @@ namespace myengine
 
 				m_enviroment->tick();
 				m_physics->tick();
+				for (int i = 0; i < m_entities.size(); i++)
+				{
+					m_entities[i]->onPhysicsTick();
+				}
 
 				for (int i = 0; i < m_entities.size(); i++)
 				{

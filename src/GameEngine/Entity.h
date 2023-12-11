@@ -44,6 +44,7 @@ namespace myengine
 		void onGui();
 
 	private:
+		void onPhysicsTick();
 		bool alive();
 		friend struct Core;
 		bool m_alive;

@@ -5,6 +5,8 @@
 #include "Enviroment.h"
 #include "AudioSource.h"
 #include "Camera.h"
+#include "BoxCollider.h"
+#include "RigidBody.h"
 
 namespace myengine
 {
@@ -51,6 +53,9 @@ namespace myengine
 	{
 		//getCore()->getResources()->load<AudioSource>("../Audio/dixie_horn.ogg");
 		
+		getEntity()->addComponent<BoxCollider>();
+		getEntity()->addComponent<RigidBody>();
+
 		m_entity.lock()->transform->move(glm::vec3(0, -1.5, -14));
 		getCore()->camera->getComponent<Camera>()->setTarget(getEntity()->transform);
 	}

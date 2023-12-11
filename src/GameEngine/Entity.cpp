@@ -31,6 +31,14 @@ namespace myengine
 		}
 	}
 
+	void Entity::onPhysicsTick()
+	{
+		for (int i = 0; i < m_components.size(); i++)
+		{
+			m_components[i].get()->onPhysicsTick();
+		}
+	}
+
 	bool Entity::alive()
 	{
 		return m_alive;

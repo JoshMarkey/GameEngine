@@ -18,7 +18,7 @@ namespace myengine
 	void Component::onInitialise()
 	{
 	}
-	void Component::onPhysicsUpdate()
+	void Component::onPhysicsTick()
 	{
 
 	}
