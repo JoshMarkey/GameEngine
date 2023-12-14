@@ -69,7 +69,8 @@ namespace myengine
 
 	void Physics::tick()
 	{
-		dynamicsWorld->stepSimulation(m_core.lock()->getEnviroment()->DT(), 10);
+		//m_core.lock()->getEnviroment()->DT()
+		dynamicsWorld->stepSimulation(0, 10);
 	}
 
 	btTransform Physics::getTransform(btRigidBody* body)

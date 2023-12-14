@@ -22,7 +22,7 @@ namespace myengine
 
 	struct Physics
 	{
-		const float GRAVITY = -10;
+		const float GRAVITY = -100;
 		///collision configuration contains default setup for memory, collision setup. Advanced users can create their own configuration.
 		btDefaultCollisionConfiguration* collisionConfiguration;
 
