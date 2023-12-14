@@ -42,7 +42,7 @@ namespace myengine
 
 		void tick();
 		void onGui();
-
+		void onFrameEnd();
 	private:
 		void onPhysicsTick();
 		bool alive();

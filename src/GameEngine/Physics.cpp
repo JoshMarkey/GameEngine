@@ -78,4 +78,9 @@ namespace myengine
 		body->getMotionState()->getWorldTransform(rtn);
 		return rtn;
 	}
+
+	void Physics::setTransform(btRigidBody* body, btTransform trans)
+	{
+		body->getMotionState()->setWorldTransform(trans);
+	}
 }

@@ -29,6 +29,9 @@ namespace myengine
 	void Component::onGui()
 	{
 	}
+	void Component::onFrameEnd()
+	{
+	}
 	std::shared_ptr<Core> Component::getCore()
 	{
 		return m_entity.lock()->getCore();

@@ -51,6 +51,8 @@ namespace myengine
 		void tick();
 
 		btTransform getTransform(btRigidBody* body);
+		void setTransform(btRigidBody* body, btTransform trans);
+
 		
 	};
 }

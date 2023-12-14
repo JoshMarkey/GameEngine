@@ -53,6 +53,23 @@ namespace myengine {
 		getEntity()->transform->rotation = glm::eulerAngles(q);
 	}
 
+	void RigidBody::onFrameEnd()
+	{
+		m_trans = getPhysics()->getTransform(m_body);
+
+		glm::vec3 position = getEntity()->transform->position;
+		glm::quat q = getEntity()->transform->rotation;
+
+		m_trans.setOrigin(btVector3(position.x, position.y, position.z));
+		btQuaternion quatonion;
+		quatonion.setX(q.x);
+		quatonion.setY(q.y);
+		quatonion.setZ(q.z);
+		m_trans.setRotation(quatonion);
+
+		getPhysics()->setTransform(m_body, m_trans);
+	}
+
 	RigidBody::~RigidBody()
 	{
 		delete m_body;

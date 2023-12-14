@@ -11,6 +11,7 @@ namespace myengine
 		void setSimulate(bool _sim);
 		void onInitialise() override;
 		void onPhysicsTick() override;
+		void onFrameEnd() override;
 		~RigidBody();
 	private:
 		float m_mass;

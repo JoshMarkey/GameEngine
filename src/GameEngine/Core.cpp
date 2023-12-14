@@ -134,6 +134,11 @@ namespace myengine
 				}
 
 				SDL_GL_SwapWindow(m_window->m_window);
+
+				for (int i = 0; i < m_entities.size(); i++)
+				{
+					m_entities[i]->onFrameEnd();
+				}
 			}
 		}
 

@@ -25,5 +25,6 @@ namespace myengine
 		void tick();
 		void display(std::shared_ptr<Entity> camera);
 		virtual void onGui();
+		virtual void onFrameEnd();
 	};
 }
