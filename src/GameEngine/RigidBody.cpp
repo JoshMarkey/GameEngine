@@ -26,7 +26,7 @@ namespace myengine {
 		std::shared_ptr<Collider> col = getEntity()->getComponent<Collider>();
 		btCollisionShape* shape = col->m_shape;
 
-		m_mass = 0;
+		m_mass = 1;
 
 		btVector3 localInertia(0, 0, 0);
 		shape->calculateLocalInertia(m_mass, localInertia);

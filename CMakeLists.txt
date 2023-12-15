@@ -257,6 +257,8 @@ src/GameEngine/Utility.cpp
 src/GameEngine/Physics.h
 src/GameEngine/Physics.cpp
 src/GameEngine/raytri.c
+src/GameEngine/MeshCollider.h
+src/GameEngine/MeshCollider.cpp
 )
 
 
