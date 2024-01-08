@@ -7,6 +7,8 @@
 #include "Camera.h"
 #include "BoxCollider.h"
 #include "RigidBody.h"
+#include "SoundSource.h"
+#include "ModelRenderer.h"
 
 namespace myengine
 {
@@ -51,10 +53,13 @@ namespace myengine
 	}
 	void Cat::onInitialise()
 	{
-		getCore()->getResources()->load<AudioSource>("../Audio/dixie_horn.ogg");
-		
-		//getEntity()->addComponent<BoxCollider>();
-		//getEntity()->addComponent<RigidBody>();
+		getEntity()->addComponent<SoundSource>()->play();
+
+		getEntity()->addComponent<ModelRenderer>();
+		getEntity()->addComponent<BoxCollider>();
+		std::shared_ptr<RigidBody> rb = getEntity()->addComponent<RigidBody>();
+		rb->setMass(1.0f);
+		rb->init();
 
 		m_entity.lock()->transform->move(glm::vec3(0, -1.5, -14));
 		getCore()->getPrimaryCam()->setTarget(getEntity()->transform);

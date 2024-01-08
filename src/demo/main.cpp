@@ -13,7 +13,6 @@ int main()
 	std::shared_ptr<Entity> player = core->addEntity();
 	std::shared_ptr<Cat> cat = player->addComponent<Cat>();
 	cat->player = true;
-	player->addComponent<ModelRenderer>();
 	//player->addComponent<BoxCollider>()->setSize(glm::vec3(1.2, 3, 1.2));
 
 	//player->addComponent<RigidBody>();

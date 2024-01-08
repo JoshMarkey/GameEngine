@@ -52,4 +52,10 @@ namespace myengine
 	{
 		texPath = p;
 	}
+	std::vector<bu::Face> ModelRenderer::getFaces()
+	{
+		std::shared_ptr<Model> model = getCore()->getResources()->load<Model>(modelPath);
+		model->getModel()->getId();
+		return model->getFaces();
+	}
 }

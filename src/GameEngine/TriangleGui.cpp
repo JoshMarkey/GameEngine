@@ -11,7 +11,7 @@ namespace myengine
 	}
 	void TriangleGui::onGui()
 	{
-		getGui()->image(myengine::Rect(400, 300, 200, 200), "../Models/OtherTextures/Image.png");
+		//getGui()->image(myengine::Rect(400, 300, 200, 200), "../Models/OtherTextures/Image.png");
 
 		if (pressed)
 		{

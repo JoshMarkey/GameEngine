@@ -23,6 +23,11 @@ namespace myengine
 		return m_texture.lock()->getTexture();
 	}
 
+	std::vector<bu::Face> Model::getFaces()
+	{
+		return m_model->getFaces();
+	}
+
 	
 
 	

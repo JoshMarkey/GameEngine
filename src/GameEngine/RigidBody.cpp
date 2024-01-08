@@ -14,11 +14,7 @@ namespace myengine {
 	{
 		m_mass = mass;
 	}
-	void RigidBody::setSimulate(bool _sim)
-	{
-		simulate = _sim;
-	}
-	void RigidBody::onInitialise()
+	void RigidBody::init()
 	{
 		//Set up P-Transform
 		m_trans.setIdentity();
@@ -26,11 +22,13 @@ namespace myengine {
 		std::shared_ptr<Collider> col = getEntity()->getComponent<Collider>();
 		btCollisionShape* shape = col->m_shape;
 
-		m_mass = 1;
-
+		//m_mass = 1;
 		btVector3 localInertia(0, 0, 0);
-		shape->calculateLocalInertia(m_mass, localInertia);
 
+		if (!col->isStatic)
+		{
+			shape->calculateLocalInertia(m_mass, localInertia);
+		}
 		//Set origin position from transform pos
 		glm::vec3 position = getEntity()->transform->position;
 		m_trans.setOrigin(btVector3(position.x, position.y, position.z));
@@ -41,6 +39,10 @@ namespace myengine {
 		m_body = new btRigidBody(rbInfo);
 		//Add to physics
 		getPhysics()->addObject(m_body);
+	}
+	void RigidBody::setSimulate(bool _sim)
+	{
+		simulate = _sim;
 	}
 
 	void RigidBody::onPhysicsTick()

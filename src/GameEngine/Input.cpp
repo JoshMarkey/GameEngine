@@ -2,6 +2,25 @@
 #include <algorithm>
 namespace myengine
 {
+	void Input::init()
+	{
+		int MaxJoysticks = SDL_NumJoysticks();
+		int ControllerIndex = 0;
+		for (int JoystickIndex = 0; JoystickIndex < MaxJoysticks; ++JoystickIndex)
+		{
+			if (!SDL_IsGameController(JoystickIndex))
+			{
+				continue;
+			}
+			if (ControllerIndex >= MAX_CONTROLLERS)
+			{
+				break;
+			}
+			ControllerHandles[ControllerIndex] = SDL_GameControllerOpen(JoystickIndex);
+			ControllerIndex++;
+		}
+	}
+
 	bool Input::tick()
 	{
 		SDL_Event event;
@@ -64,6 +83,7 @@ namespace myengine
 					}
 				}
 			}
+			//else if (event.)
 		}
 		//MOUSE POS
 		int x;

@@ -23,7 +23,7 @@ namespace myengine
 			rtn->m_physics = std::make_shared<Physics>();
 			rtn->m_gui = std::make_shared<Gui>();
 			//sdl
-			if (SDL_Init(SDL_INIT_VIDEO) < 0)
+			if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) < 0)
 			{
 				throw std::runtime_error("Failed to initialize SDL");
 			}
@@ -124,7 +124,7 @@ namespace myengine
 
 				m_resources->checkDelete();
 
-				for (int x = 0; x >= cameras.size(); x++)
+				for (int x = 0; x < cameras.size(); x++)
 				{
 					lockedCam = cameras[x]->getComponent<Camera>();
 					for (int i = 0; i < m_entities.size(); i++)
@@ -147,6 +147,7 @@ namespace myengine
 					m_entities[i]->onFrameEnd();
 				}
 			}
+
 		}
 
 

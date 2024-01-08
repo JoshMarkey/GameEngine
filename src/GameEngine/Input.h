@@ -1,10 +1,13 @@
 #pragma once
+
 #include <SDL2/SDL.h>
 #include <vector>
 #include <iostream>
 #include <glm/ext.hpp>
 namespace myengine
 {
+#define MAX_CONTROLLERS 4
+
 	struct Core;
 	struct Input
 	{
@@ -12,7 +15,9 @@ namespace myengine
 		std::vector<int> pressedKeys;
 		std::vector<int> releasedKeys;
 		glm::vec2 mousePos;
+		SDL_GameController* ControllerHandles[MAX_CONTROLLERS];
 	public:
+		void init();
 		bool tick();
 		bool getKey(int keyCode);
 		bool getKeyDown(int keyCode);

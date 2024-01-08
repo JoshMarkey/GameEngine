@@ -13,6 +13,7 @@ namespace myengine
 		void setVert(std::string p);
 		void setModel(std::string p);
 		void setTexture(std::string p);
+		std::vector<bu::Face> getFaces();
 	private:
 		graphics::Camera m_cam;
 		std::string modelPath;

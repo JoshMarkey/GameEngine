@@ -9,9 +9,9 @@ namespace myengine
 		void onTick() override;
 		void setMass(float _mass);
 		void setSimulate(bool _sim);
-		void onInitialise() override;
 		void onPhysicsTick() override;
 		void onFrameEnd() override;
+		void init();
 		~RigidBody();
 	private:
 		float m_mass;

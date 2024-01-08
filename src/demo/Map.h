@@ -1,6 +1,6 @@
 #pragma once
 #include <GameEngine/Transform.h>
-#include <GameEngine/BoxCollider.h>
+#include <GameEngine/MeshCollider.h>
 #include <GameEngine/RigidBody.h>
 #include <GameEngine/Core.h>
 #include <GameEngine/Component.h>

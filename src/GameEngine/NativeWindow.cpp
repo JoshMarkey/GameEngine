@@ -15,8 +15,8 @@ myengine::NativeWindow::~NativeWindow()
 
 glm::vec2 myengine::NativeWindow::getWindowSize()
 {
-	int w;
-	int h;
+	int w = 0;
+	int h = 0;
 	SDL_GetWindowSize(m_window, &w, &h);
 	return glm::vec2(w, h);
 }

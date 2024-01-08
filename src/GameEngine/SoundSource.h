@@ -1,21 +1,22 @@
 #pragma once
-#include <AL/al.h>
-#include <AL/alc.h>
+#include "Component.h"
 #include <stdexcept>
 #include <vector>
 #include <string>
 
+
 namespace myengine
 {
-	struct SoundSource
+	struct SoundSource : Component
 	{
 	public:
-		ALCdevice* device;
-		ALCcontext* context;
-		ALuint sourceId;
 		~SoundSource();
 
-		void init();
-		void load_ogg(const std::string& _path, std::vector<unsigned char>& _buffer, ALenum& _format, ALsizei& _freq);
+		void onInitialise() override;
+		void setPath(std::string _path);
+		void play();
+	private:
+		std::string path;
+
 	};
 }

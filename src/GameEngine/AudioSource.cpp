@@ -21,7 +21,15 @@ void AudioSource::onLoad(std::string _path)
 	alGenSources(1, &sourceId);
 
 	alSourcei(sourceId, AL_BUFFER, bufferId);
-	alSourcePlay(sourceId);
+	//alSourcePlay(sourceId);
+}
+
+void AudioSource::play()
+{
+	if (sourceId)
+	{
+		alSourcePlay(sourceId);
+	}
 }
 
 void AudioSource::load_ogg(const std::string & _path, std::vector<unsigned char>&_buffer, ALenum & _format, ALsizei & _freq)

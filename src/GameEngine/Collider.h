@@ -14,6 +14,7 @@ namespace myengine
 		glm::vec3 m_offset;
 
 	public:
+		bool isStatic = false;
 		void setSize(glm::vec3 _s);
 		glm::vec3 getOffset() { return m_offset; }
 		glm::vec3 getSize() { return m_size; }

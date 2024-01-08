@@ -8,8 +8,9 @@ namespace myengine
 
 	public:
 		void onInitialise() override;
+		void addTriangles();
 
 	private:
-
+		btTriangleMesh* trimesh;
 	};
 }

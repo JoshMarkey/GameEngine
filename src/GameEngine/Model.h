@@ -12,6 +12,7 @@ namespace myengine
 		void render();
 		std::shared_ptr<graphics::Model> getModel();
 		std::shared_ptr<graphics::Texture> getTexture();
+		std::vector<bu::Face> getFaces();
 	private:
 		std::shared_ptr<graphics::Model> m_model;
 		std::weak_ptr<Texture> m_texture;

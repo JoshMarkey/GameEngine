@@ -12,6 +12,7 @@ namespace myengine
 	struct AudioSource : Resource
 	{
 		void onLoad(std::string _path) override;
+		void play();
 		~AudioSource();
 	private:
 		ALuint bufferId;
