@@ -7,7 +7,7 @@
 #include "Camera.h"
 namespace myengine
 {
-	void ModelRenderer::onDisplay(std::shared_ptr<Entity> camera)
+	void ModelRenderer::onDisplay()
 	{
 		std::shared_ptr<Entity> entity = m_entity.lock();
 
@@ -16,8 +16,8 @@ namespace myengine
 		std::shared_ptr<Texture> tex = getCore()->getResources()->load<Texture>(texPath);
 
 
-		lightShader->m_shader.get()->bindMatrix("u_Projection", camera->getComponent<Camera>()->getProjection());
-		lightShader->m_shader.get()->bindMatrix("u_Viewing", camera->getComponent<Camera>()->getView());
+		lightShader->m_shader.get()->bindMatrix("u_Projection", getCore()->getPrimaryCam()->getProjection());
+		lightShader->m_shader.get()->bindMatrix("u_Viewing", getCore()->getPrimaryCam()->getView());
 		lightShader->m_shader.get()->bindMatrix("u_Model", entity->transform->getModel());
 
 		lightShader->m_shader.get()->render(model->getModel().get(), tex->getTexture().get());

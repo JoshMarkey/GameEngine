@@ -7,6 +7,6 @@ namespace myengine
 {
 	void MeshCollider::onInitialise()
 	{
-		m_shape = new btBvhTriangleMeshShape();
+		//m_shape = new btBvhTriangleMeshShape();
 	}
 }

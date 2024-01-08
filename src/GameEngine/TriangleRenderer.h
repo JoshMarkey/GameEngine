@@ -9,7 +9,7 @@ namespace myengine
 		TriangleRenderer();
 		~TriangleRenderer();
 	public:
-		void onDisplay(std::shared_ptr<Entity> camera) override;
+		void onDisplay() override;
 		void initialize();
 		void onTick() override;
 		float angle;

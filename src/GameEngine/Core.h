@@ -27,7 +27,8 @@ namespace myengine
 		std::shared_ptr<Audio> getAudio();
 		std::shared_ptr<Gui> getGui();
 		std::shared_ptr<Physics> getPhysics();
-		std::shared_ptr<Entity> camera;
+		std::vector<std::shared_ptr<Entity> > cameras;
+		std::shared_ptr<Camera> getPrimaryCam();
 		glm::vec2 getWindowSize();
 
 		void stop();
@@ -55,6 +56,7 @@ namespace myengine
 
 
 	private:
+		std::shared_ptr< Camera> lockedCam;
 		std::shared_ptr< NativeWindow> m_window;
 		std::shared_ptr< Audio> m_audio;
 		std::vector<std::shared_ptr<Entity>> m_entities;

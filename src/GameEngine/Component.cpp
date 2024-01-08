@@ -12,7 +12,7 @@ namespace myengine
 	void Component::onTick()
 	{
 	}
-	void Component::onDisplay(std::shared_ptr<Entity> camera)
+	void Component::onDisplay()
 	{
 	}
 	void Component::onInitialise()

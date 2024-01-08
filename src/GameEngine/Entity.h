@@ -48,7 +48,7 @@ namespace myengine
 		bool alive();
 		friend struct Core;
 		bool m_alive;
-		void display(std::shared_ptr<Entity> camera);
+		void display();
 		std::shared_ptr<Core> m_core;
 	};
 }

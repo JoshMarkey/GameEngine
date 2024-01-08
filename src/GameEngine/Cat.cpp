@@ -51,12 +51,12 @@ namespace myengine
 	}
 	void Cat::onInitialise()
 	{
-		//getCore()->getResources()->load<AudioSource>("../Audio/dixie_horn.ogg");
+		getCore()->getResources()->load<AudioSource>("../Audio/dixie_horn.ogg");
 		
-		getEntity()->addComponent<BoxCollider>();
-		getEntity()->addComponent<RigidBody>();
+		//getEntity()->addComponent<BoxCollider>();
+		//getEntity()->addComponent<RigidBody>();
 
 		m_entity.lock()->transform->move(glm::vec3(0, -1.5, -14));
-		getCore()->camera->getComponent<Camera>()->setTarget(getEntity()->transform);
+		getCore()->getPrimaryCam()->setTarget(getEntity()->transform);
 	}
 }

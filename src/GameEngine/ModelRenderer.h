@@ -7,7 +7,7 @@ namespace myengine
 	struct Entity;
 	struct ModelRenderer : Component
 	{
-		void onDisplay(std::shared_ptr<Entity> camera) override;
+		void onDisplay() override;
 		void onInitialise() override;
 		void setFrag(std::string p);
 		void setVert(std::string p);

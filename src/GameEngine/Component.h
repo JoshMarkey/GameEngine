@@ -19,11 +19,11 @@ namespace myengine
 	private:
 		friend Entity;
 		virtual void onTick();
-		virtual void onDisplay(std::shared_ptr<Entity> camera);
+		virtual void onDisplay();
 		virtual void onInitialise();
 		virtual void onPhysicsTick();
 		void tick();
-		void display(std::shared_ptr<Entity> camera);
+		void display();
 		virtual void onGui();
 		virtual void onFrameEnd();
 	};

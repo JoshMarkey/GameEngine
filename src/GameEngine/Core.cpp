@@ -73,8 +73,9 @@ namespace myengine
 			rtn->m_enviroment->init();
 			rtn->m_gui->initialise(rtn);
 			rtn->m_physics->Init(rtn);
-			rtn->camera = rtn->addEntity();
-			rtn->camera->addComponent<Camera>();
+			rtn->cameras.push_back(rtn->addEntity());
+			rtn->cameras[0]->addComponent<Camera>();
+			rtn->lockedCam = rtn->cameras[0]->getComponent<Camera>();
 			return rtn;
 		}
 
@@ -123,10 +124,16 @@ namespace myengine
 
 				m_resources->checkDelete();
 
-				for (int i = 0; i < m_entities.size(); i++)
+				for (int x = 0; x >= cameras.size(); x++)
 				{
-					m_entities[i]->display(camera);
+					lockedCam = cameras[x]->getComponent<Camera>();
+					for (int i = 0; i < m_entities.size(); i++)
+					{
+						m_entities[i]->display();
+					}
 				}
+
+				lockedCam = cameras[0]->getComponent<Camera>();
 
 				for (int i = 0; i < m_entities.size(); i++)
 				{
@@ -174,6 +181,10 @@ namespace myengine
 		std::shared_ptr<Physics> Core::getPhysics()
 		{
 			return m_physics;
+		}
+		std::shared_ptr<Camera> Core::getPrimaryCam()
+		{
+			return lockedCam;
 		}
 		glm::vec2 Core::getWindowSize()
 		{
