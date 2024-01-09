@@ -19,7 +19,7 @@ namespace myengine {
 		//Set up P-Transform
 		m_trans.setIdentity();
 		//Get col shape from col components
-		std::shared_ptr<Collider> col = getEntity()->getComponent<Collider>();
+		col = getEntity()->getComponent<Collider>();
 		btCollisionShape* shape = col->m_shape;
 
 		//m_mass = 1;
@@ -57,19 +57,22 @@ namespace myengine {
 
 	void RigidBody::onFrameEnd()
 	{
-		m_trans = getPhysics()->getTransform(m_body);
+		if (!col->isStatic)
+		{
+			m_trans = getPhysics()->getTransform(m_body);
 
-		glm::vec3 position = getEntity()->transform->position;
-		glm::quat q = getEntity()->transform->rotation;
+			glm::vec3 position = getEntity()->transform->position;
+			glm::quat q = getEntity()->transform->rotation;
 
-		m_trans.setOrigin(btVector3(position.x, position.y, position.z));
-		btQuaternion quatonion;
-		quatonion.setX(q.x);
-		quatonion.setY(q.y);
-		quatonion.setZ(q.z);
-		m_trans.setRotation(quatonion);
+			m_trans.setOrigin(btVector3(position.x, position.y, position.z));
+			btQuaternion quatonion;
+			quatonion.setX(q.x);
+			quatonion.setY(q.y);
+			quatonion.setZ(q.z);
+			m_trans.setRotation(quatonion);
 
-		getPhysics()->setTransform(m_body, m_trans);
+			getPhysics()->setTransform(m_body, m_trans);
+		}
 	}
 
 	RigidBody::~RigidBody()

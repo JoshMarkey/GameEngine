@@ -68,7 +68,7 @@ namespace myengine
 				throw std::runtime_error("Failed to make context current");
 			}
 
-
+			rtn->m_input->init();
 			rtn->m_enviroment = std::make_shared<Enviroment>();
 			rtn->m_enviroment->init();
 			rtn->m_gui->initialise(rtn);

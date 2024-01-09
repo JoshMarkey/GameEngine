@@ -9,6 +9,7 @@
 #include "RigidBody.h"
 #include "SoundSource.h"
 #include "ModelRenderer.h"
+#include "AudioListener.h"
 
 namespace myengine
 {
@@ -21,6 +22,7 @@ namespace myengine
 
 	void Cat::onTick()
 	{
+		float speed = 10;
 		if (player)
 		{
 			std::shared_ptr<Entity> entity = m_entity.lock();
@@ -31,37 +33,40 @@ namespace myengine
 			{
 				angle -= 360;
 			}
+			glm::vec2 joystick = getJoystickAxis();
 			
-			if (getCore()->getInput()->getKey(KeyCodes::d))
+			if (getKey(KeyCodes::d) || joystick.x > 0.1)
 			{
-				entity->transform->move(glm::vec3(10, 0, 0) * DT());
+				entity->transform->move(glm::vec3(speed, 0, 0) * DT());
 			}
-			if (getCore()->getInput()->getKey(KeyCodes::a))
+			if (getKey(KeyCodes::a) || joystick.x < -0.1)
 			{
-				entity->transform->move(glm::vec3(-10, 0, 0) * DT());
+				entity->transform->move(glm::vec3(-speed, 0, 0) * DT());
 			}
-			if (getCore()->getInput()->getKey(KeyCodes::w))
+			if (getKey(KeyCodes::w )|| joystick.y < -0.1)
 			{
-				entity->transform->move(glm::vec3(0, 0, -10) * DT());
+				entity->transform->move(glm::vec3(0, 0, -speed) * DT());
 			}
-			if (getCore()->getInput()->getKey(KeyCodes::s))
+			if (getKey(KeyCodes::s) || joystick.y > 0.1)
 			{
-				entity->transform->move(glm::vec3(0, 0, 10) * DT());
+				entity->transform->move(glm::vec3(0, 0, speed) * DT());
 			}
-			
+			std::cout << "Y: " << entity->transform->position.y << std::endl;
 		}
 	}
 	void Cat::onInitialise()
 	{
-		getEntity()->addComponent<SoundSource>()->play();
+		
+		getEntity()->addComponent<AudioListener>();
 
 		getEntity()->addComponent<ModelRenderer>();
 		getEntity()->addComponent<BoxCollider>();
 		std::shared_ptr<RigidBody> rb = getEntity()->addComponent<RigidBody>();
 		rb->setMass(1.0f);
+		rb->setSimulate(true);
 		rb->init();
 
-		m_entity.lock()->transform->move(glm::vec3(0, -1.5, -14));
+		m_entity.lock()->transform->move(glm::vec3(0, -1.8, -14));
 		getCore()->getPrimaryCam()->setTarget(getEntity()->transform);
 	}
 }

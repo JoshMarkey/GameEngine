@@ -16,7 +16,7 @@ namespace myengine
 	void MeshCollider::addTriangles()
 	{
 		std::shared_ptr < ModelRenderer> mod = getEntity()->getComponent<ModelRenderer>();
-		//mod->
+		
 
 		std::vector<bu::Face> faces = mod->getFaces();
 		for (int i = 0; i < faces.size(); i++)

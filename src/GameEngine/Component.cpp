@@ -32,6 +32,22 @@ namespace myengine
 	void Component::onFrameEnd()
 	{
 	}
+	int Component::getKey(int k)
+	{
+		return getCore()->getInput()->getKey(k);
+	}
+	int Component::getKeyUp(int k)
+	{
+		return getCore()->getInput()->getKeyUp(k);
+	}
+	int Component::getKeyDown(int k)
+	{
+		return getCore()->getInput()->getKeyDown(k);
+	}
+	glm::vec2 Component::getJoystickAxis()
+	{
+		return getCore()->getInput()->getJoystickAxis();
+	}
 	std::shared_ptr<Core> Component::getCore()
 	{
 		return m_entity.lock()->getCore();

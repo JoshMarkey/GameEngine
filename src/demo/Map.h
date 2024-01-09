@@ -6,6 +6,7 @@
 #include <GameEngine/Component.h>
 #include <GameEngine/Entity.h>
 #include <GameEngine/ModelRenderer.h>
+#include <GameEngine/SoundSource.h>
 using namespace myengine;
 
 struct Map : Component

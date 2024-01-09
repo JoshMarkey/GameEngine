@@ -16,7 +16,7 @@ namespace myengine
 	private:
 		float m_mass;
 		bool simulate;
-
+		std::shared_ptr<Collider> col;
 		btTransform m_trans;
 		btRigidBody* m_body;
 

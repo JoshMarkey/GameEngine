@@ -4,8 +4,6 @@ namespace myengine
 {
 void AudioSource::onLoad(std::string _path)
 {
-	alListener3f(AL_POSITION, 0.0f, 0.0f, 0.0f);
-
 	ALenum format = 0;
 	ALsizei freq = 0;
 	std::vector<unsigned char> bufferData;

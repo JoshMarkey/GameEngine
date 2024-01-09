@@ -15,17 +15,23 @@ namespace myengine
 		std::vector<int> pressedKeys;
 		std::vector<int> releasedKeys;
 		glm::vec2 mousePos;
+		glm::vec2 leftStick;
+		glm::vec2 rightStick;
 		SDL_GameController* ControllerHandles[MAX_CONTROLLERS];
+		int JOYSTICK_DEAD_ZONE;
 	public:
+		~Input();
 		void init();
 		bool tick();
 		bool getKey(int keyCode);
 		bool getKeyDown(int keyCode);
 		bool getKeyUp(int keyCode);
+		glm::vec2 getJoystickAxis();
 
 	};
 
 	enum KeyCodes {
+		//Keyboard
 		n1 = SDLK_1,
 		n2 = SDLK_2,
 		n3 = SDLK_3,
@@ -64,8 +70,25 @@ namespace myengine
 		m = SDLK_m,
 		shift = SDLK_LSHIFT,
 		control = SDLK_LCTRL,
+		//Mouse
 		leftMouse = SDL_BUTTON_LEFT,
 		rightMouse = SDL_BUTTON_RIGHT,
-		middleMouse = SDL_BUTTON_MIDDLE
+		middleMouse = SDL_BUTTON_MIDDLE,
+
+		//Controller
+		gpadUp = SDL_CONTROLLER_BUTTON_DPAD_UP,
+		gpadDown = SDL_CONTROLLER_BUTTON_DPAD_DOWN,
+		gpadLeft = SDL_CONTROLLER_BUTTON_DPAD_LEFT,
+		gpadRight = SDL_CONTROLLER_BUTTON_DPAD_RIGHT,
+		gpadStart = SDL_CONTROLLER_BUTTON_START,
+		gpadBack = SDL_CONTROLLER_BUTTON_BACK,
+		gpadLShoulder = SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
+		gpadRShoulder = SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,
+		gpadA = SDL_CONTROLLER_BUTTON_A,
+		gpadB = SDL_CONTROLLER_BUTTON_B,
+		gpadX = SDL_CONTROLLER_BUTTON_X,
+		gpadY = SDL_CONTROLLER_BUTTON_Y,
+		gpadStickX = SDL_CONTROLLER_AXIS_LEFTX,
+		gpadStickY = SDL_CONTROLLER_AXIS_RIGHTX
 	};
 }
