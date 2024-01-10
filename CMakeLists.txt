@@ -1,14 +1,37 @@
 cmake_minimum_required(VERSION ${CMAKE_VERSION})
 project(GAMEENGINE)
 
-include_directories(
- src
- contrib/windows-cl-amd64/include
+message(${CMAKE_SYSTEM_NAME})
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
+  include_directories(
+    contrib/emcc-emscripten-wasm/include
+  )
+
+  link_directories(
+  src
+  contrib/emcc-emscripten-wasm/lib
   src/pellet
-)
-link_directories(
- ${PROJECT_SOURCE_DIR}/contrib/windows-cl-amd64/lib
-)
+  )
+
+  set(CMAKE_EXECUTABLE_SUFFIX ".html")
+
+else()
+  include_directories(
+   src
+   contrib/windows-cl-amd64/include
+   src/pellet
+  )
+  link_directories(
+   ${PROJECT_SOURCE_DIR}/contrib/windows-cl-amd64/lib
+  )
+  
+endif()
+
+
+
+
+
 
 add_library(Graphics
 src/Graphics/Model.cpp
