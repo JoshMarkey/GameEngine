@@ -8,6 +8,7 @@ namespace myengine
 		timer = 0;
 		maxTime = 20;
 		m_model = std::make_shared<graphics::Model>(getPath().c_str());
+
 	}
 	void Model::linkTexture(std::shared_ptr<Texture> tex)
 	{

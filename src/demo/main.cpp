@@ -18,7 +18,7 @@ int main()
 	player->addComponent<TriangleGui>();
 
 	//create map entity with 'prefab' map component
-	core->addEntity()->addComponent<Map>();
+	//core->addEntity()->addComponent<Map>();
 
 
 	core->run();

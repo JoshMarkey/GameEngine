@@ -12,6 +12,7 @@ namespace myengine
 	}
 	void TriangleGui::onGui()
 	{
+		/*
 		getGui()->image(myengine::Rect(400, 300, 200, 200), "../resources/Models/OtherTextures/Image.png");
 
 		if (pressed)
@@ -27,6 +28,6 @@ namespace myengine
 			{
 				pressed = true;
 			}
+	}*/
 		}
-	}
 }

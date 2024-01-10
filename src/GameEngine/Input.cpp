@@ -28,7 +28,7 @@ namespace myengine
 
 		for (int i = 0; i < SDL_NumJoysticks(); i++)
 		{
-			std::cout << SDL_JoystickName(SDL_JoystickOpen(i)) << std::endl;
+			//std::cout << SDL_JoystickName(SDL_JoystickOpen(i)) << std::endl;
 		}
 	}
 
@@ -166,7 +166,7 @@ namespace myengine
 		//std::cout << "X: " << leftStick.x << "    Y: " << leftStick.y << std::endl;
 		for (int i = 0; i < pressedKeys.size(); i++)
 		{
-			std::cout << pressedKeys[i] << std::endl;
+			//std::cout << pressedKeys[i] << std::endl;
 		}
 		//MOUSE POS
 		int x;

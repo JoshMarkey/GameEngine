@@ -41,8 +41,10 @@ namespace graphics {
 		glCompileShader(shaderId);
 		GLint success = 0;
 		glGetShaderiv(shaderId, GL_COMPILE_STATUS, &success);
+		std::cout << "1" << std::endl;
 		if (!success)
 		{
+			std::cout << "2" << std::endl;
 			GLint maxLength = 0;
 			glGetShaderiv(shaderId, GL_INFO_LOG_LENGTH,
 				&maxLength);
@@ -53,6 +55,7 @@ namespace graphics {
 			throw std::exception();
 		}
 		glAttachShader(m_id, shaderId);
+		std::cout << "3" << std::endl;
 		return shaderId;
 	}
 

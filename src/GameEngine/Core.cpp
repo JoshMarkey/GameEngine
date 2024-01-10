@@ -98,9 +98,8 @@ namespace myengine
 				self->m_running = false;
 			}
 
-			glClearColor(0, 1, 0, 1);
+			glClearColor(1, 0, 0, 1);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 			self->m_enviroment->tick();
 			self->m_physics->tick();
 			for (int i = 0; i < self->m_entities.size(); i++)
@@ -118,8 +117,9 @@ namespace myengine
 			for (int x = 0; x < self->cameras.size(); x++)
 			{
 				self->lockedCam = self->cameras[x]->getComponent<Camera>();
-				for (int i = 0; i < self->m_entities.size(); i++)
+				for (int i = 0; i < self->m_entities.size(); ++i)
 				{
+
 					self->m_entities[i]->display();
 				}
 			}

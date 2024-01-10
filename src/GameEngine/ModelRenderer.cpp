@@ -14,7 +14,6 @@ namespace myengine
 		std::shared_ptr<Model> model = getCore()->getResources()->load<Model>(modelPath);
 		std::shared_ptr<Texture> tex = getCore()->getResources()->load<Texture>(texPath);
 
-
 		lightShader->m_shader.get()->bindMatrix("u_Projection", getCore()->getPrimaryCam()->getProjection());
 		lightShader->m_shader.get()->bindMatrix("u_Viewing", getCore()->getPrimaryCam()->getView());
 		lightShader->m_shader.get()->bindMatrix("u_Model", entity->transform->getModel());

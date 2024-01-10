@@ -25,7 +25,11 @@ namespace myengine {
 			{
 				std::shared_ptr<T> rtn = std::make_shared<T>();
 				rtn->secondPath = _path2;
+
+				std::cout << "10" << std::endl;
+				std::cout << _path << std::endl;
 				rtn->load(_path);
+				std::cout << "20" << std::endl;
 				m_resources.push_back(rtn);
 				return rtn;
 			}
@@ -33,7 +37,7 @@ namespace myengine {
 			{
 				std::cout << "Error loading resource: " << e.what() << std::endl;
 			}
-
+			return NULL;
 		}
 
 		void deleteResource(std::string _path);
