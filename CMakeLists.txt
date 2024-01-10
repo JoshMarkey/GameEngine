@@ -6,21 +6,24 @@ message(${CMAKE_SYSTEM_NAME})
 if(${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
   include_directories(
     contrib/emcc-emscripten-wasm/include
+    contrib/include
+    src/pellet
+    src
   )
 
   link_directories(
-  src
   contrib/emcc-emscripten-wasm/lib
-  src/pellet
   )
 
   set(CMAKE_EXECUTABLE_SUFFIX ".html")
-
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --preload-file ${CMAKE_SOURCE_DIR}/resources@resources")
+  set(LIBOPENAL openal)
 else()
   include_directories(
-   src
    contrib/windows-cl-amd64/include
-   src/pellet
+   contrib/include
+    src/pellet
+   src
   )
   link_directories(
    ${PROJECT_SOURCE_DIR}/contrib/windows-cl-amd64/lib
@@ -53,7 +56,11 @@ src/Graphics/Camera.h
 src/Graphics/Camera.cpp
 )
 
-target_link_libraries(Graphics glew32 opengl32)
+if(${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
+  target_link_libraries(Graphics GL)
+else()
+  target_link_libraries(Graphics glew32 opengl32)
+endif()
 
 add_library(pellet
   src/pellet/Bullet3Collision/BroadPhaseCollision/b3DynamicBvh.cpp
@@ -279,7 +286,7 @@ src/GameEngine/Utility.h
 src/GameEngine/Utility.cpp
 src/GameEngine/Physics.h
 src/GameEngine/Physics.cpp
-src/GameEngine/raytri.c
+#src/GameEngine/raytri.c
 src/GameEngine/MeshCollider.h
 src/GameEngine/MeshCollider.cpp
 src/GameEngine/AudioListener.h
@@ -292,4 +299,10 @@ src/demo/main.cpp
 src/demo/Map.cpp
 src/demo/Map.h
 )
-target_link_libraries(demo GameEngine pellet Graphics SDL2 openal32)
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
+  target_link_libraries(demo GameEngine pellet Graphics SDL2 AL)
+  set(LIBOPENAL AL)
+else()
+  target_link_libraries(demo GameEngine pellet Graphics SDL2 openal32)
+endif()

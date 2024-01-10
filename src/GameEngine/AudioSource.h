@@ -14,6 +14,7 @@ namespace myengine
 		void onLoad(std::string _path) override;
 		void play();
 		~AudioSource();
+		ALuint getId();
 	private:
 		ALuint bufferId;
 		ALuint sourceId;

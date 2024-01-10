@@ -13,6 +13,9 @@ namespace myengine
 		void load(std::string _path);
 		std::string path;
 		std::string secondPath;
+		bool addTimer(float _dt);
+		float maxTime;
+		float timer;
 	private:
 	};
 }

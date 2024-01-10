@@ -1,4 +1,3 @@
-#pragma once
 #include "TriangleRenderer.h"
 #include "Entity.h"
 #include "Transform.h"
@@ -49,7 +48,7 @@ namespace myengine
 		//m_tex = Texture("../Models/Cat/tex.png");
 
 
-		m_shader = graphics::Shader("../Shaders/GUI/FragShader.txt", "../Shaders/GUI/VertShader.txt");
+		m_shader = graphics::Shader("../resources/Shaders/GUI/FragShader.txt", "../Shaders/GUI/VertShader.txt");
 
 	}
 

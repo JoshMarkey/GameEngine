@@ -103,15 +103,22 @@ namespace graphics {
 		glUseProgram(0);
 	}
 
-	void Shader::bindMatrix(const char* _name, glm::mat4& _mat)
+	void Shader::bindMatrix(const char* _name, glm::mat4 _mat)
 	{
-		glProgramUniformMatrix4fv(m_id, glGetUniformLocation(m_id, _name), 1, GL_FALSE, glm::value_ptr(_mat));
+		glUseProgram(getId());
+		glUniformMatrix4fv(glGetUniformLocation(m_id, _name), 1, GL_FALSE, glm::value_ptr(_mat));
+		glUseProgram(0);
 	}
 
 	void Shader::bindOrthoMatrix(glm::mat4 projection, glm::mat4 model)
 	{
-		glProgramUniformMatrix4fv(m_id, glGetUniformLocation(m_id, "u_Projection"), 1, GL_FALSE, glm::value_ptr(projection));
-		glProgramUniformMatrix4fv(m_id, glGetUniformLocation(m_id, "u_Model"), 1, GL_FALSE, glm::value_ptr(model));
+		//glProgramUniformMatrix4fv(m_id, glGetUniformLocation(m_id, "u_Projection"), 1, GL_FALSE, glm::value_ptr(projection));
+		//glProgramUniformMatrix4fv(m_id, glGetUniformLocation(m_id, "u_Model"), 1, GL_FALSE, glm::value_ptr(model));
+
+		glUseProgram(getId());
+		glUniformMatrix4fv(glGetUniformLocation(m_id, "u_Projection"), 1, GL_FALSE, glm::value_ptr(projection));
+		glUniformMatrix4fv(glGetUniformLocation(m_id, "u_Model"), 1, GL_FALSE, glm::value_ptr(model));
+		glUseProgram(0);
 	}
 
 	void Shader::render2Textures(Vao* mesh, const char* _name1, GLuint tex1, const char* _name2, GLuint tex2)

@@ -1,5 +1,7 @@
 #include "Resources.h"
+#include "Enviroment.h"
 
+#include "Core.h"
 void myengine::Resources::deleteResource(std::string _path)
 {
 	deleteFlags.push_back(_path);
@@ -7,20 +9,38 @@ void myengine::Resources::deleteResource(std::string _path)
 
 void myengine::Resources::checkDelete()
 {
+	for (int it = 0; it < m_resources.size(); ++it)
+	{
+		bool check = m_resources[it]->addTimer(core->getEnviroment()->DT());
+		if (check)
+		{
+			deleteFlags.push_back(m_resources[it]->getPath());
+		}
+	}
+
+
+
 	while (deleteFlags.size() > 0)
 	{
-		for (auto it = std::begin(m_resources); it != std::end(m_resources); ++it)
+		std::string path = deleteFlags.at(0);
+
+		for (int ri = 0; ri < m_resources.size(); ri++)
 		{
-			if (it->get()->getPath() == deleteFlags.at(0))
+			if (m_resources.at(ri)->getPath() == path)
 			{
-				m_resources.erase(it);
-				break;
+				m_resources.erase(find(m_resources.begin(), m_resources.end(), m_resources.at(ri)));
+				deleteFlags.erase(deleteFlags.begin());
+				ri = 10000;
 			}
+
 		}
 
-		std::cout << "Unable to find resource: " << deleteFlags.at(0) << std::endl;
-		deleteFlags.erase(deleteFlags.begin());
 	}
+}
+
+void myengine::Resources::init(std::shared_ptr<Core> _core)
+{
+	core = _core;
 }
 
 

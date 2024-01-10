@@ -19,3 +19,11 @@ void myengine::Resource::load(std::string _path)
 	onLoad(_path);
 }
 
+bool myengine::Resource::addTimer(float _dt)
+{
+	timer += _dt;
+	if(timer > maxTime)
+		return true;
+	return false;
+}
+

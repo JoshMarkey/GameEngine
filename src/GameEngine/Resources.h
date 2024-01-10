@@ -5,6 +5,7 @@
 #include "Texture.h"
 #include "Shader.h"
 namespace myengine {
+	struct Core;
 	struct Resources
 	{
 	public:
@@ -14,7 +15,10 @@ namespace myengine {
 			for (size_t i = 0; i < m_resources.size(); ++i)
 			{
 				if (m_resources.at(i)->getPath() == _path)
+				{
+					m_resources.at(i)->timer = 0;
 					return std::dynamic_pointer_cast<T>  (m_resources.at(i));
+				}
 			}
 
 			try
@@ -34,10 +38,11 @@ namespace myengine {
 
 		void deleteResource(std::string _path);
 		void checkDelete();
-
+		void init(std::shared_ptr<Core> _core);
 
 	private:
 		std::vector<std::shared_ptr<Resource> > m_resources;
 		std::vector<std::string> deleteFlags;
+		std::shared_ptr<Core> core;
 	};
 }

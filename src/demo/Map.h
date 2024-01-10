@@ -1,12 +1,5 @@
 #pragma once
-#include <GameEngine/Transform.h>
-#include <GameEngine/MeshCollider.h>
-#include <GameEngine/RigidBody.h>
-#include <GameEngine/Core.h>
-#include <GameEngine/Component.h>
-#include <GameEngine/Entity.h>
-#include <GameEngine/ModelRenderer.h>
-#include <GameEngine/SoundSource.h>
+#include "../GameEngine/GameEngine.h"
 using namespace myengine;
 
 struct Map : Component

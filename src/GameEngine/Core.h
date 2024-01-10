@@ -4,10 +4,10 @@
 #include <SDL2/SDL.h>
 #include "Resources.h"
 #include "Input.h"
+#include "Entity.h"
 #include "Camera.h"
 namespace myengine
 {
-	struct Entity;
 	struct NativeWindow;
 	struct Enviroment;
 	struct Audio;
@@ -55,7 +55,6 @@ namespace myengine
 
 
 
-	private:
 		std::shared_ptr< Camera> lockedCam;
 		std::shared_ptr< NativeWindow> m_window;
 		std::shared_ptr< Audio> m_audio;

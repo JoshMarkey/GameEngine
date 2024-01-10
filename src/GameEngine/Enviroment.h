@@ -1,15 +1,20 @@
+#ifdef _WIN32
+    #include <Windows.h>
+#endif // #ifdef _WIN32
 
-#include <windows.h>
 
 namespace myengine
 {
 	struct Core;
 	struct Enviroment
 	{
-	private:
 		friend Core;
+#ifdef _WIN32
 		DWORD lastTime;
-		float deltaTime;
+#else
+		double lastTime;
+#endif // #ifdef _WIN32
+		double deltaTime;
 		void tick();
 		void init();
 	public:

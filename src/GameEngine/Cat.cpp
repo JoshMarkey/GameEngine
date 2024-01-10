@@ -51,14 +51,13 @@ namespace myengine
 			{
 				entity->transform->move(glm::vec3(0, 0, speed) * DT());
 			}
-			std::cout << "Y: " << entity->transform->position.y << std::endl;
 		}
 	}
 	void Cat::onInitialise()
 	{
 		
 		getEntity()->addComponent<AudioListener>();
-
+		getEntity()->addComponent<SoundSource>()->play();
 		getEntity()->addComponent<ModelRenderer>();
 		getEntity()->addComponent<BoxCollider>();
 		std::shared_ptr<RigidBody> rb = getEntity()->addComponent<RigidBody>();

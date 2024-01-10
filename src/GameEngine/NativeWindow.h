@@ -6,8 +6,6 @@ namespace myengine
 	{
 		~NativeWindow();
 		glm::vec2 getWindowSize();
-	private:
-		friend Core;
 		SDL_Window* m_window;
 		SDL_GLContext m_context;
 

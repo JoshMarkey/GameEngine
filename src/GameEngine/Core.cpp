@@ -1,4 +1,3 @@
-#pragma once
 #include "Core.h"
 #include "Entity.h"
 #include <Graphics/rend.h>
@@ -8,6 +7,10 @@
 #include "Audio.h"
 #include "Gui.h"
 #include "Physics.h"
+#ifdef __EMSCRIPTEN__
+	#include <emscripten.h>
+#endif // __EMSCRIPTEN__
+
 
 namespace myengine
 {
@@ -68,6 +71,7 @@ namespace myengine
 				throw std::runtime_error("Failed to make context current");
 			}
 
+			rtn->m_resources->init(rtn);
 			rtn->m_input->init();
 			rtn->m_enviroment = std::make_shared<Enviroment>();
 			rtn->m_enviroment->init();
@@ -77,6 +81,63 @@ namespace myengine
 			rtn->cameras[0]->addComponent<Camera>();
 			rtn->lockedCam = rtn->cameras[0]->getComponent<Camera>();
 			return rtn;
+		}
+
+		static void loop(void* _userData)
+		{
+			Core* self = (Core*)_userData;
+
+			if (!self->m_input->tick())
+			{
+				self->m_running = false;
+				return;
+			}
+
+			if (self->m_input->getKeyDown(SDLK_ESCAPE))
+			{
+				self->m_running = false;
+			}
+
+			glClearColor(0, 1, 0, 1);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+			self->m_enviroment->tick();
+			self->m_physics->tick();
+			for (int i = 0; i < self->m_entities.size(); i++)
+			{
+				self->m_entities[i]->onPhysicsTick();
+			}
+
+			for (int i = 0; i < self->m_entities.size(); i++)
+			{
+				self->m_entities[i]->tick();
+			}
+
+			self->m_resources->checkDelete();
+
+			for (int x = 0; x < self->cameras.size(); x++)
+			{
+				self->lockedCam = self->cameras[x]->getComponent<Camera>();
+				for (int i = 0; i < self->m_entities.size(); i++)
+				{
+					self->m_entities[i]->display();
+				}
+			}
+
+			self->lockedCam = self->cameras[0]->getComponent<Camera>();
+
+			for (int i = 0; i < self->m_entities.size(); i++)
+			{
+				self->m_entities[i]->onGui();
+			}
+
+			SDL_GL_SwapWindow(self->m_window->m_window);
+
+			for (int i = 0; i < self->m_entities.size(); i++)
+			{
+				self->m_entities[i]->onFrameEnd();
+			}
+
 		}
 
 		std::shared_ptr<Entity> Core::addEntity()
@@ -93,61 +154,16 @@ namespace myengine
 		}
 
 		void Core::run()
-		{
+		{			
 			m_running = true;
+#ifdef __EMSCRIPTEN__
+			emscripten_set_main_loop_arg(loop, (void*)this, 0, 1);
+#else
 			while (m_running)
 			{
-				if (!m_input->tick())
-				{
-					return;
-				}
-
-				if (m_input->getKeyDown(SDLK_ESCAPE))
-				{
-					m_running = false;
-				}
-
-				glClearColor(0, 1, 0, 1);
-				glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-
-				m_enviroment->tick();
-				m_physics->tick();
-				for (int i = 0; i < m_entities.size(); i++)
-				{
-					m_entities[i]->onPhysicsTick();
-				}
-
-				for (int i = 0; i < m_entities.size(); i++)
-				{
-					m_entities[i]->tick();
-				}
-
-				m_resources->checkDelete();
-
-				for (int x = 0; x < cameras.size(); x++)
-				{
-					lockedCam = cameras[x]->getComponent<Camera>();
-					for (int i = 0; i < m_entities.size(); i++)
-					{
-						m_entities[i]->display();
-					}
-				}
-
-				lockedCam = cameras[0]->getComponent<Camera>();
-
-				for (int i = 0; i < m_entities.size(); i++)
-				{
-					m_entities[i]->onGui();
-				}
-
-				SDL_GL_SwapWindow(m_window->m_window);
-
-				for (int i = 0; i < m_entities.size(); i++)
-				{
-					m_entities[i]->onFrameEnd();
-				}
+				loop((void*)this);
 			}
-
+#endif
 		}
 
 

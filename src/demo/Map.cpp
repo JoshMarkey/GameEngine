@@ -13,8 +13,8 @@ void Map::onInitialise()
 	std::shared_ptr<Entity> entity = getEntity();
 	std::shared_ptr<ModelRenderer> model = entity->addComponent<ModelRenderer>();
 
-	model->setModel("../Models/Map/Model.obj");
-	model->setTexture("../Models/Map/Tex.png");
+	model->setModel("../resources/Models/Map/Model.obj");
+	model->setTexture("../resources/Models/Map/Tex.png");
 
 	entity->addComponent<MeshCollider>();
 	std::shared_ptr<RigidBody> rb = getEntity()->addComponent<RigidBody>();

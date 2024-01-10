@@ -94,7 +94,7 @@ void splitString(const std::string& input, char splitter,
 }
 
 template <typename T>
-GLuint loadModel(const std::string& path, size_t& vertexCount, std::vector<Face>& faces = std::vector<Face>{})
+GLuint loadModel(const std::string& path, size_t& vertexCount, std::vector<Face>& faces)
 {
   std::vector<glm::vec3> positions;
   std::vector<glm::vec2> tcs;
@@ -311,6 +311,12 @@ GLuint loadModel(const std::string& path, size_t& vertexCount, std::vector<Face>
   }
 
   return vaoId;
+}
+template <typename T>
+GLuint loadModel(const std::string& path, size_t& vertexCount)
+{
+    std::vector<Face> faces;
+    loadModel<T>(path,vertexCount, faces);
 }
 
 }

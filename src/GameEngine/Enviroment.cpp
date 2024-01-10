@@ -1,5 +1,9 @@
 #include "Enviroment.h"
 #include <iostream>
+#ifndef _WIN32
+#include <sys/time.h>
+#endif // !_WIN32
+
 namespace myengine
 {
 	void Enviroment::init()
@@ -20,7 +24,7 @@ namespace myengine
 			gettimeofday(&tv, NULL);
 			double curr = (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000;
 #endif
-			float diff = curr - lastTime;
+			double diff = curr - lastTime;
 
 
 			deltaTime = diff / 1000.0f;

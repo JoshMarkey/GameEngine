@@ -1,3 +1,4 @@
+#pragma once
 #include<memory>
 #include<vector>
 namespace myengine
@@ -43,12 +44,12 @@ namespace myengine
 		void tick();
 		void onGui();
 		void onFrameEnd();
-	private:
 		void onPhysicsTick();
+		void display();
+	private:
 		bool alive();
 		friend struct Core;
 		bool m_alive;
-		void display();
 		std::shared_ptr<Core> m_core;
 	};
 }

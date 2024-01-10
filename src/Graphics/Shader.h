@@ -27,7 +27,7 @@ namespace graphics {
 		~Shader();
 		void link();
 		GLuint getId();
-		void bindMatrix(const char* _name, glm::mat4& _mat);
+		void bindMatrix(const char* _name, glm::mat4 _mat);
 		void bindFloat(const char* _name, float _brightness);
 		void bindOrthoMatrix(glm::mat4 _projection, glm::mat4 _model);
 		void render(Model* _mesh, Texture* _tex, bool _backface = true);

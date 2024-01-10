@@ -1,4 +1,3 @@
-#pragma once
 #include "Entity.h"
 #include "AudioListener.h"
 #include "Transform.h"

@@ -1,4 +1,3 @@
-#pragma once
 #include "ModelRenderer.h"
 #include "Entity.h"
 #include "Transform.h"
@@ -25,10 +24,10 @@ namespace myengine
 
 	void ModelRenderer::onInitialise()
 	{
-		modelPath = "../Models/Cat/Model.obj";
-		texPath = "../Models/Cat/Tex.png";
-		fragPath = "../Shaders/Light/FragShader.txt";
-		vertPath = "../Shaders/Light/VertShader.txt";
+		modelPath = "../resources/Models/Cat/Model.obj";
+		texPath = "../resources/Models/Cat/Tex.png";
+		fragPath = "../resources/Shaders/Light/FragShader.txt";
+		vertPath = "../resources/Shaders/Light/VertShader.txt";
 
 		std::shared_ptr<Model> mod = getCore()->getResources()->load<Model>(modelPath);
 	}

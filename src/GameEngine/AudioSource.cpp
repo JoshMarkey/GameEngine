@@ -4,6 +4,9 @@ namespace myengine
 {
 void AudioSource::onLoad(std::string _path)
 {
+	path = _path;
+	maxTime = 5;
+	timer = 0;
 	ALenum format = 0;
 	ALsizei freq = 0;
 	std::vector<unsigned char> bufferData;
@@ -26,8 +29,14 @@ void AudioSource::play()
 {
 	if (sourceId)
 	{
+		timer = 0;
 		alSourcePlay(sourceId);
 	}
+}
+
+ALuint AudioSource::getId()
+{
+	return sourceId;
 }
 
 void AudioSource::load_ogg(const std::string & _path, std::vector<unsigned char>&_buffer, ALenum & _format, ALsizei & _freq)

@@ -5,6 +5,7 @@ namespace myengine
 	
 	void Input::init()
 	{
+		
 		JOYSTICK_DEAD_ZONE = 8000;
 		int MaxJoysticks = SDL_NumJoysticks();
 		int ControllerIndex = 0;
@@ -220,6 +221,7 @@ namespace myengine
 
 	Input::~Input()
 	{
+		/*
 		int MaxJoysticks = SDL_NumJoysticks();
 		int ControllerIndex = 0;
 		for (int JoystickIndex = 0; JoystickIndex < MaxJoysticks; ++JoystickIndex)
@@ -234,7 +236,7 @@ namespace myengine
 			}
 
 			SDL_GameControllerClose(ControllerHandles[i]);
-		}
+		}*/
 	}
 
 }

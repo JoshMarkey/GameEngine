@@ -26,8 +26,8 @@ namespace myengine
 		m_Quad.addVbo(pos);
 		m_Quad.addVbo(coords);
 
-		fragPath = "../Shaders/GUI/FragShader.txt";
-		vertPath = "../Shaders/GUI/VertShader.txt";
+		fragPath = "../resources/Shaders/GUI/FragShader.txt";
+		vertPath = "../resources/Shaders/GUI/VertShader.txt";
 	}
 
 	std::shared_ptr<Shader> Gui::getShader()
