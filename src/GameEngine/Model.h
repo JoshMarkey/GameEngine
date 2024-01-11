@@ -8,7 +8,7 @@ namespace myengine
 	struct Model : Resource
 	{
 		void onLoad(std::string _path) override;
-		void linkTexture(std::shared_ptr<Texture> tex);
+		void linkTexture(std::shared_ptr<Texture> _tex);
 		void render();
 		std::shared_ptr<graphics::Model> getModel();
 		std::shared_ptr<graphics::Texture> getTexture();

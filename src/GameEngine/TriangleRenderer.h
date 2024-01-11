@@ -12,7 +12,7 @@ namespace myengine
 		void onDisplay() override;
 		void initialize();
 		void onTick() override;
-		float angle;
+		float m_angle;
 	private:
 		graphics::Vao m_Quad;
 		graphics::Model m_mesh;

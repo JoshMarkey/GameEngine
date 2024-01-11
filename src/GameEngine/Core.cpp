@@ -7,6 +7,8 @@
 #include "Audio.h"
 #include "Gui.h"
 #include "Physics.h"
+#include "PointLight.h"
+
 #ifdef __EMSCRIPTEN__
 	#include <emscripten.h>
 #endif // __EMSCRIPTEN__
@@ -14,7 +16,7 @@
 
 namespace myengine
 {
-		std::shared_ptr<Core> Core::initialize()
+		std::shared_ptr<Core> Core::initialise()
 		{
 			std::shared_ptr<Core> rtn = std::make_shared<Core>();
 			rtn->m_self = rtn;
@@ -71,15 +73,15 @@ namespace myengine
 				throw std::runtime_error("Failed to make context current");
 			}
 
-			rtn->m_resources->init(rtn);
-			rtn->m_input->init();
+			rtn->m_resources->initialise(rtn);
+			rtn->m_input->initialise();
 			rtn->m_enviroment = std::make_shared<Enviroment>();
-			rtn->m_enviroment->init();
+			rtn->m_enviroment->initialise();
 			rtn->m_gui->initialise(rtn);
-			rtn->m_physics->Init(rtn);
-			rtn->cameras.push_back(rtn->addEntity());
-			rtn->cameras[0]->addComponent<Camera>();
-			rtn->lockedCam = rtn->cameras[0]->getComponent<Camera>();
+			rtn->m_physics->initialise(rtn);
+			rtn->m_cams.push_back(rtn->addEntity());
+			rtn->m_cams[0]->addComponent<Camera>();
+			rtn->m_lockedCam = rtn->m_cams[0]->getComponent<Camera>();
 			return rtn;
 		}
 
@@ -100,8 +102,8 @@ namespace myengine
 
 			glClearColor(1, 0, 0, 1);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			self->m_enviroment->tick();
-			self->m_physics->tick();
+			self->m_enviroment->onTick();
+			self->m_physics->onTick();
 			for (int i = 0; i < self->m_entities.size(); i++)
 			{
 				self->m_entities[i]->onPhysicsTick();
@@ -114,9 +116,9 @@ namespace myengine
 
 			self->m_resources->checkDelete();
 
-			for (int x = 0; x < self->cameras.size(); x++)
+			for (int x = 0; x < self->m_cams.size(); x++)
 			{
-				self->lockedCam = self->cameras[x]->getComponent<Camera>();
+				self->m_lockedCam = self->m_cams[x]->getComponent<Camera>();
 				for (int i = 0; i < self->m_entities.size(); ++i)
 				{
 
@@ -124,14 +126,14 @@ namespace myengine
 				}
 			}
 
-			self->lockedCam = self->cameras[0]->getComponent<Camera>();
+			self->m_lockedCam = self->m_cams[0]->getComponent<Camera>();
 
 			for (int i = 0; i < self->m_entities.size(); i++)
 			{
 				self->m_entities[i]->onGui();
 			}
 
-			SDL_GL_SwapWindow(self->m_window->m_window);
+			SDL_GL_SwapWindow(self->getWindow());
 
 			for (int i = 0; i < self->m_entities.size(); i++)
 			{
@@ -148,7 +150,7 @@ namespace myengine
 
 			rtn->m_core = m_self.lock();
 			rtn->m_self = rtn;
-			rtn->transform = rtn->addComponent<Transform>();
+			rtn->m_transform = rtn->addComponent<Transform>();
 
 			return rtn;
 		}
@@ -201,10 +203,20 @@ namespace myengine
 		}
 		std::shared_ptr<Camera> Core::getPrimaryCam()
 		{
-			return lockedCam;
+			return m_lockedCam;
 		}
 		glm::vec2 Core::getWindowSize()
 		{
 			return m_window->getWindowSize();
+		}
+		std::shared_ptr<PointLight> Core::getLight()
+		{
+			if(m_lights.size() > 0)
+				return m_lights[0];
+			return NULL;
+		}
+		SDL_Window* Core::getWindow()
+		{
+			return m_window->getWindow();
 		}
 }

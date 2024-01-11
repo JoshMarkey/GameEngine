@@ -3,11 +3,16 @@
 #include "Core.h"
 #include "Enviroment.h"
 #include "Gui.h"
+#include "Transform.h"
 namespace myengine
 {
 	std::shared_ptr<Entity> Component::getEntity()
 	{
 		return m_entity.lock();
+	}
+	glm::vec3 Component::getPosition()
+	{
+		return getEntity()->m_transform->getPosition();
 	}
 	void Component::onTick()
 	{

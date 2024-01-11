@@ -29,6 +29,7 @@ namespace graphics {
 		GLuint getId();
 		void bindMatrix(const char* _name, glm::mat4 _mat);
 		void bindFloat(const char* _name, float _brightness);
+		void bindVec3(const char* _name, glm::vec3 _vec3);
 		void bindOrthoMatrix(glm::mat4 _projection, glm::mat4 _model);
 		void render(Model* _mesh, Texture* _tex, bool _backface = true);
 		void renderOrtho(Vao* _mesh, Texture* _tex);

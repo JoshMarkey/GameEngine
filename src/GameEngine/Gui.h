@@ -16,18 +16,18 @@ namespace myengine
 		
 		graphics::Vao m_Quad;
 		std::shared_ptr<Shader> getShader();
-		std::string fragPath;
-		std::string vertPath;
+		std::string m_fragPath;
+		std::string m_vertPath;
 		std::shared_ptr<Core> m_core;
 		glm::mat4 getProjection();
 	public:
-		void image(myengine::Rect rect, std::string texPath);
-		int button(myengine::Rect rect, std::string texPath);
+		void image(myengine::Rect _rect, std::string _texPath);
+		int button(myengine::Rect _rect, std::string _texPath);
 
 	private:
 		void draw(myengine::Rect _rect, std::string _texPath);
 		//Convert an input pixel coord to normalized device coords
-		float convertCoords(float inputPixel, float winStart, float winEnd, float rangeLow, float rangeHigh);
+		float convertCoords(float _inputPixel, float _winStart, float _winEnd, float _rangeLow, float _rangeHigh);
 		
 	};
 }

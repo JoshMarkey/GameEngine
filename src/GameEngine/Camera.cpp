@@ -6,7 +6,7 @@ namespace myengine
 {
 	glm::mat4 Camera::getProjection()
 	{
-		return glm::perspective(glm::radians(fov), aspect, nearPlane, farPlane);
+		return glm::perspective(glm::radians(m_fov), m_aspect, m_nearPlane, m_farPlane);
 	}
 
 	glm::mat4 Camera::getView()
@@ -14,23 +14,23 @@ namespace myengine
 		glm::vec3 targetPos = glm::vec3(5, 0.0f, -30);
 		if (target != NULL)
 		{
-			targetPos = target->position;
+			targetPos = target->getPosition();
 		}
 		
-		return glm::lookAt(getEntity()->transform->position, targetPos, glm::vec3(0, 1, 0));
+		return glm::lookAt(getEntity()->m_transform->getPosition(), targetPos, glm::vec3(0, 1, 0));
 	}
 	void Camera::onInitialise()
 	{
-		fov = 45;
-		aspect = 1;
-		nearPlane = 0.01;
-		farPlane = 150;
+		m_fov = 45;
+		m_aspect = 1;
+		m_nearPlane = 0.01;
+		m_farPlane = 150;
 	}
 	void Camera::onTick()
 	{
 		if (target)
 		{
-			getEntity()->transform->position = glm::vec3(target->position.x, target->position.y + 4, target->position.z + 15);
+			getEntity()->m_transform->getPosition() = glm::vec3(target->getPosition().x, target->getPosition().y + 4, target->getPosition().z + 15);
 		}
 
 		/*

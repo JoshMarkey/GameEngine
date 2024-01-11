@@ -11,22 +11,24 @@ namespace myengine
 	struct Core;
 	struct Input
 	{
-		std::vector<int> keys;
-		std::vector<int> pressedKeys;
-		std::vector<int> releasedKeys;
-		glm::vec2 mousePos;
-		glm::vec2 leftStick;
-		glm::vec2 rightStick;
-		SDL_GameController* ControllerHandles[MAX_CONTROLLERS];
-		int JOYSTICK_DEAD_ZONE;
 	public:
 		~Input();
-		void init();
+		void initialise();
 		bool tick();
-		bool getKey(int keyCode);
-		bool getKeyDown(int keyCode);
-		bool getKeyUp(int keyCode);
+		bool getKey(int _keyCode);
+		bool getKeyDown(int _keyCode);
+		bool getKeyUp(int _keyCode);
 		glm::vec2 getJoystickAxis();
+		glm::vec2 getMousePos();
+		glm::vec2 m_mousePos;
+	private:
+		std::vector<int> m_keys;
+		std::vector<int> m_pressedKeys;
+		std::vector<int> m_releasedKeys;
+		glm::vec2 m_leftStick;
+		glm::vec2 m_rightStick;
+		SDL_GameController* m_ControllerHandles[MAX_CONTROLLERS];
+		int JOYSTICK_DEAD_ZONE;
 
 	};
 

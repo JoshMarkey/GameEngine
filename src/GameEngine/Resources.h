@@ -1,5 +1,4 @@
 #pragma once
-#include "Resource.h"
 #include <exception>
 #include "Model.h"
 #include "Texture.h"
@@ -26,10 +25,7 @@ namespace myengine {
 				std::shared_ptr<T> rtn = std::make_shared<T>();
 				rtn->secondPath = _path2;
 
-				std::cout << "10" << std::endl;
-				std::cout << _path << std::endl;
 				rtn->load(_path);
-				std::cout << "20" << std::endl;
 				m_resources.push_back(rtn);
 				return rtn;
 			}
@@ -40,13 +36,15 @@ namespace myengine {
 			return NULL;
 		}
 
+
+		Resources();
 		void deleteResource(std::string _path);
 		void checkDelete();
-		void init(std::shared_ptr<Core> _core);
+		void initialise(std::shared_ptr<Core> _core);
 
 	private:
 		std::vector<std::shared_ptr<Resource> > m_resources;
-		std::vector<std::string> deleteFlags;
-		std::shared_ptr<Core> core;
+		std::vector<std::string> m_dirtyFlags;
+		std::shared_ptr<Core> m_core;
 	};
 }

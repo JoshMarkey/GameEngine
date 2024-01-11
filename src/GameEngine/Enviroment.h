@@ -10,13 +10,13 @@ namespace myengine
 	{
 		friend Core;
 #ifdef _WIN32
-		DWORD lastTime;
+		DWORD m_lastTime;
 #else
-		double lastTime;
+		double m_lastTime;
 #endif // #ifdef _WIN32
-		double deltaTime;
-		void tick();
-		void init();
+		double m_deltaTime;
+		void onTick();
+		void initialise();
 	public:
 		float DT();
 

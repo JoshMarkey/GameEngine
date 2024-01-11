@@ -26,13 +26,13 @@ namespace myengine
 		m_Quad.addVbo(pos);
 		m_Quad.addVbo(coords);
 
-		fragPath = "../resources/Shaders/GUI/FragShader.txt";
-		vertPath = "../resources/Shaders/GUI/VertShader.txt";
+		m_fragPath = "../resources/Shaders/GUI/FragShader.txt";
+		m_vertPath = "../resources/Shaders/GUI/VertShader.txt";
 	}
 
 	std::shared_ptr<Shader> Gui::getShader()
 	{
-		return m_core->getResources()->load<Shader>(fragPath, vertPath);
+		return m_core->getResources()->load<Shader>(m_fragPath, m_vertPath);
 	}
 
 	glm::mat4 Gui::getProjection()
@@ -48,7 +48,7 @@ namespace myengine
 		image(rect, texPath);
 
 		glm::vec2 winSize = m_core->getWindowSize();
-		glm::vec2 mousePos = m_core->getInput()->mousePos;
+		glm::vec2 mousePos = m_core->getInput()->m_mousePos;
 
 		if (mousePos.x >= rect.x && mousePos.x <= rect.x + rect.w && winSize.y - mousePos.y >= rect.y && winSize.y - mousePos.y <= rect.y + rect.h)
 		{

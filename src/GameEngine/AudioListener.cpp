@@ -5,7 +5,7 @@
 
 void myengine::AudioListener::onTick()
 {
-	glm::vec3 newPos = getEntity()->transform->position;
+	glm::vec3 newPos = getEntity()->m_transform->getPosition();
 	if (newPos != lastPos)
 	{
 		alListener3f(AL_POSITION, newPos.x, newPos.y, newPos.z);

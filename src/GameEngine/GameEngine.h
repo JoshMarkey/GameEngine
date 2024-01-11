@@ -1,5 +1,6 @@
 #include "Utility.h"
 //#include "raytri.c"
+#include "PointLight.h"
 #include "Audio.h"
 #include "AudioListener.h"
 #include "AudioSource.h"

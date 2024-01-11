@@ -6,17 +6,17 @@
 
 namespace myengine
 {
-	void Enviroment::init()
+	void Enviroment::initialise()
 	{
 #ifdef _WIN32
-		lastTime = GetTickCount();
+		m_lastTime = GetTickCount();
 #else
 		struct timeval tv = { 0 };
 		gettimeofday(&tv, NULL);
-		lastTime = (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000;
+		m_lastTime = (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000;
 #endif
 	}
-		void Enviroment::tick() {
+		void Enviroment::onTick() {
 #ifdef _WIN32
 			DWORD curr = GetTickCount();
 #else
@@ -24,18 +24,18 @@ namespace myengine
 			gettimeofday(&tv, NULL);
 			double curr = (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000;
 #endif
-			double diff = curr - lastTime;
+			double diff = curr - m_lastTime;
 
 
-			deltaTime = diff / 1000.0f;
-			lastTime = curr;
+			m_deltaTime = diff / 1000.0f;
+			m_lastTime = curr;
 		}
 		float Enviroment::DT()
 		{
-			if (deltaTime == 0.0f)
+			if (m_deltaTime == 0.0f)
 			{
 				return 0.01f;
 			}
-			return deltaTime;
+			return m_deltaTime;
 		}
 }

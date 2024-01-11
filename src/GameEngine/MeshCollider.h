@@ -11,6 +11,6 @@ namespace myengine
 		void addTriangles();
 
 	private:
-		btTriangleMesh* trimesh;
+		btTriangleMesh* m_trimesh;
 	};
 }

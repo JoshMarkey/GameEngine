@@ -16,8 +16,8 @@ namespace myengine
 		~AudioSource();
 		ALuint getId();
 	private:
-		ALuint bufferId;
-		ALuint sourceId;
+		ALuint m_bufferId;
+		ALuint m_sourceId;
 		void load_ogg(const std::string& _path, std::vector<unsigned char>& _buffer, 
 			ALenum& _format, ALsizei& _freq);
 	};

@@ -18,9 +18,9 @@ namespace myengine
 		void setTarget(std::shared_ptr<Transform> _t);
 		std::shared_ptr<Transform> target;
 	private:
-		float fov;
-		float aspect;
-		float farPlane;
-		float nearPlane;
+		float m_fov;
+		float m_aspect;
+		float m_farPlane;
+		float m_nearPlane;
 	};
 }

@@ -15,9 +15,9 @@ namespace myengine
 		bool player = false;
 	private:
 		graphics::Camera m_cam;
-		std::string modelPath;
-		std::string texPath;
-		std::string vertPath;
-		std::string fragPath;
+		std::string m_modelPath;
+		std::string m_texPath;
+		std::string m_vertPath;
+		std::string m_fragPath;
 	};
 }

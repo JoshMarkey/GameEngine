@@ -17,6 +17,9 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
 
   set(CMAKE_EXECUTABLE_SUFFIX ".html")
   set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --preload-file ${CMAKE_SOURCE_DIR}/resources@resources")
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s TOTAL_MEMORY=1500MB")
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s TOTAL_STACK=1000MB")
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s NO_DISABLE_EXCEPTION_CATCHING")
   set(LIBOPENAL openal)
 else()
   include_directories(
@@ -291,6 +294,8 @@ src/GameEngine/MeshCollider.h
 src/GameEngine/MeshCollider.cpp
 src/GameEngine/AudioListener.h
 src/GameEngine/AudioListener.cpp
+src/GameEngine/PointLight.h
+src/GameEngine/PointLight.cpp
 )
 
 

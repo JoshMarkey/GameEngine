@@ -18,25 +18,25 @@ void AudioSource::onLoad(std::string _path)
 	alBufferData(bufferId, format, &bufferData.at(0),
 		static_cast<ALsizei>(bufferData.size()), freq);
 
-	sourceId = 0;
-	alGenSources(1, &sourceId);
+	m_sourceId = 0;
+	alGenSources(1, &m_sourceId);
 
-	alSourcei(sourceId, AL_BUFFER, bufferId);
+	alSourcei(m_sourceId, AL_BUFFER, bufferId);
 	//alSourcePlay(sourceId);
 }
 
 void AudioSource::play()
 {
-	if (sourceId)
+	if (m_sourceId)
 	{
 		timer = 0;
-		alSourcePlay(sourceId);
+		alSourcePlay(m_sourceId);
 	}
 }
 
 ALuint AudioSource::getId()
 {
-	return sourceId;
+	return m_sourceId;
 }
 
 void AudioSource::load_ogg(const std::string & _path, std::vector<unsigned char>&_buffer, ALenum & _format, ALsizei & _freq)
@@ -76,6 +76,6 @@ void AudioSource::load_ogg(const std::string & _path, std::vector<unsigned char>
 
 AudioSource::~AudioSource()
 {
-	alDeleteSources(1, &sourceId);
-	alDeleteBuffers(1, &bufferId);
+	alDeleteSources(1, &m_sourceId);
+	alDeleteBuffers(1, &m_bufferId);
 } }

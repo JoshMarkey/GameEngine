@@ -10,6 +10,5 @@ namespace myengine
 		void onLoad(std::string _path) override;
 		std::shared_ptr<graphics::Shader> m_shader;
 		
-	private:
 	};
 }

@@ -41,10 +41,8 @@ namespace graphics {
 		glCompileShader(shaderId);
 		GLint success = 0;
 		glGetShaderiv(shaderId, GL_COMPILE_STATUS, &success);
-		std::cout << "1" << std::endl;
 		if (!success)
 		{
-			std::cout << "2" << std::endl;
 			GLint maxLength = 0;
 			glGetShaderiv(shaderId, GL_INFO_LOG_LENGTH,
 				&maxLength);
@@ -55,7 +53,6 @@ namespace graphics {
 			throw std::exception();
 		}
 		glAttachShader(m_id, shaderId);
-		std::cout << "3" << std::endl;
 		return shaderId;
 	}
 
@@ -99,10 +96,10 @@ namespace graphics {
 		return m_id;
 	}
 
-	void Shader::bindFloat(const char* _name, float brightness)
+	void Shader::bindFloat(const char* _name, float _val)
 	{
 		glUseProgram(getId());
-		glProgramUniform1f(m_id, glGetUniformLocation(m_id, _name), brightness);
+		glUniform1f(glGetUniformLocation(m_id, _name), _val);
 		glUseProgram(0);
 	}
 
@@ -110,6 +107,13 @@ namespace graphics {
 	{
 		glUseProgram(getId());
 		glUniformMatrix4fv(glGetUniformLocation(m_id, _name), 1, GL_FALSE, glm::value_ptr(_mat));
+		glUseProgram(0);
+	}
+	void Shader::bindVec3(const char* _name, glm::vec3 _vec3)
+	{
+		glUseProgram(getId());
+		glUniform3f(glGetUniformLocation(m_id, _name), _vec3.x, _vec3.y, _vec3.z);
+		//glUniform3fv(glGenLists)
 		glUseProgram(0);
 	}
 

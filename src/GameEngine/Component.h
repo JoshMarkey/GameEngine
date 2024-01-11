@@ -1,8 +1,10 @@
 #pragma once
 #include <memory>
 #include "glm/vec2.hpp"
+#include "glm/vec3.hpp"
 namespace myengine
 {
+	struct Transform;
 	struct Entity;
 	struct Core;
 	struct Gui;
@@ -11,16 +13,17 @@ namespace myengine
 	struct Component
 	{
 	public:
-		int getKey(int k);
-		int getKeyUp(int k);
-		int getKeyDown(int k);
+		int getKey(int _k);
+		int getKeyUp(int _k);
+		int getKeyDown(int _k);
 		glm::vec2 getJoystickAxis();
-		std::weak_ptr<Entity> m_entity;
 		std::shared_ptr<Core> getCore();
 		std::shared_ptr<Gui> getGui();
 		std::shared_ptr<Physics> getPhysics();
 		float DT();
 		std::shared_ptr<Entity> getEntity();
+		glm::vec3 getPosition();
+		std::weak_ptr<Entity> m_entity;
 	private:
 		friend Entity;
 		virtual void onTick();
@@ -28,7 +31,6 @@ namespace myengine
 		virtual void onInitialise();
 		virtual void onPhysicsTick();
 		void tick();
-		void display();
 		virtual void onGui();
 		virtual void onFrameEnd();
 	};

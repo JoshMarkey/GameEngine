@@ -23,36 +23,39 @@ namespace myengine
 
 	struct Physics
 	{
+	public:
+		void onTick();
+		void initialise(std::shared_ptr<Core> _core);
+		void addObject(btRigidBody* _body);
+
+
+		btTransform getTransform(btRigidBody* _body);
+		void setTransform(btRigidBody* _body, btTransform _trans);
+		~Physics();
+
+	private:
 		const float GRAVITY = -100;
 		///collision configuration contains default setup for memory, collision setup. Advanced users can create their own configuration.
-		btDefaultCollisionConfiguration* collisionConfiguration;
+		btDefaultCollisionConfiguration* m_collisionConfiguration;
 
 		///use the default collision dispatcher. For parallel processing you can use a diffent dispatcher (see Extras/BulletMultiThreaded)
-		btCollisionDispatcher* dispatcher;
+		btCollisionDispatcher* m_dispatcher;
 
 		///btDbvtBroadphase is a good general purpose broadphase. You can also try out btAxis3Sweep.
-		btBroadphaseInterface* overlappingPairCache;
+		btBroadphaseInterface* m_overlappingPairCache;
 
 		///the default constraint solver. For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
-		btSequentialImpulseConstraintSolver* solver;
+		btSequentialImpulseConstraintSolver* m_solver;
 
 		//Physics world contains simulation
-		btDiscreteDynamicsWorld* dynamicsWorld;
+		btDiscreteDynamicsWorld* m_dynamicsWorld;
 
 		//Different shape presets to be used
-		btAlignedObjectArray<btCollisionShape*> collisionShapes;
+		btAlignedObjectArray<btCollisionShape*> m_collisionShapes;
 
 		std::weak_ptr<Core> m_core;
 
-		void Init(std::shared_ptr<Core> core);
-		~Physics();
 
-		void addObject(btRigidBody* body);
-
-		void tick();
-
-		btTransform getTransform(btRigidBody* body);
-		void setTransform(btRigidBody* body, btTransform trans);
 
 		
 	};

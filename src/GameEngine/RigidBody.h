@@ -15,9 +15,10 @@ namespace myengine
 		~RigidBody();
 	private:
 		float m_mass;
-		bool simulate;
-		std::shared_ptr<Collider> col;
+		bool m_simulate;
+		std::shared_ptr<Collider> m_collider;
 		btTransform m_trans;
 		btRigidBody* m_body;
 
-	};}
+	};
+}

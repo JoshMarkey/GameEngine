@@ -6,31 +6,55 @@
 namespace myengine {
 	Transform::Transform()
 	{
-		position = glm::vec3(0);
-		rotation = glm::vec3(0);
-		scale = glm::vec3(1);
+		m_position = glm::vec3(0);
+		m_rotation = glm::vec3(0);
+		m_scale = glm::vec3(1);
 	}
 
 	glm::mat4 Transform::getModel()
 	{
-		glm::mat4 rtn = glm::translate(glm::mat4(1), position);
+		glm::mat4 rtn = glm::translate(glm::mat4(1), m_position);
 
-		rtn = glm::rotate(rtn, glm::radians(rotation.x), glm::vec3(1, 0, 0));
-		rtn = glm::rotate(rtn, glm::radians(rotation.y), glm::vec3(0, 1, 0));
-		rtn = glm::rotate(rtn, glm::radians(rotation.z), glm::vec3(0, 0, 1));
+		rtn = glm::rotate(rtn, glm::radians(m_rotation.x), glm::vec3(1, 0, 0));
+		rtn = glm::rotate(rtn, glm::radians(m_rotation.y), glm::vec3(0, 1, 0));
+		rtn = glm::rotate(rtn, glm::radians(m_rotation.z), glm::vec3(0, 0, 1));
 
-		rtn = glm::scale(rtn, scale);
+		rtn = glm::scale(rtn, m_scale);
 
 		return rtn;
 	}
 
 	void Transform::move(glm::vec3 pos)
 	{
-		position += pos;
+		m_position += pos;
 	}
 
 	void Transform::rotate(glm::vec3 rot)
 	{
-		rotation += rot;
+		m_rotation += rot;
+	}
+	glm::vec3 Transform::getPosition()
+	{
+		return m_position;
+	}
+	glm::vec3 Transform::getRotation()
+	{
+		return m_rotation;
+	}
+	glm::vec3 Transform::getScale()
+	{
+		return m_scale;
+	}
+	void Transform::setRotation(glm::vec3 _rot)
+	{
+		m_rotation = _rot;
+	}
+	void Transform::setPosition(glm::vec3 _pos)
+	{
+		m_position = _pos;
+	}
+	void Transform::setScale(glm::vec3 _scale)
+	{
+		m_scale = _scale;
 	}
 }

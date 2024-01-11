@@ -16,8 +16,8 @@ namespace myengine
 		{
 			std::shared_ptr<T> rtn = std::make_shared<T>();
 			rtn->m_entity = m_self;
-			rtn->onInitialise();
 			m_components.push_back(rtn);
+			rtn->onInitialise();
 			return rtn;
 		}
 
@@ -37,7 +37,7 @@ namespace myengine
 		}
 		std::weak_ptr<Entity> m_self;
 		std::vector<std::shared_ptr<Component>> m_components;
-		std::shared_ptr<Transform> transform;
+		std::shared_ptr<Transform> m_transform;
 		void kill();
 		std::shared_ptr<Core> getCore();
 

@@ -4,72 +4,72 @@
 
 namespace myengine
 {
-	void Physics::Init(std::shared_ptr<Core> core)
+	void Physics::initialise(std::shared_ptr<Core> core)
 	{
 		m_core = core;
 
-		collisionConfiguration = new btDefaultCollisionConfiguration();
+		m_collisionConfiguration = new btDefaultCollisionConfiguration();
 
 		///use the default collision dispatcher. For parallel processing you can use a diffent dispatcher (see Extras/BulletMultiThreaded)
-		dispatcher = new btCollisionDispatcher(collisionConfiguration);
+		m_dispatcher = new btCollisionDispatcher(m_collisionConfiguration);
 
 		///btDbvtBroadphase is a good general purpose broadphase. You can also try out btAxis3Sweep.
-		overlappingPairCache = new btDbvtBroadphase();
+		m_overlappingPairCache = new btDbvtBroadphase();
 
 		///the default constraint solver. For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
-		solver = new btSequentialImpulseConstraintSolver;
+		m_solver = new btSequentialImpulseConstraintSolver;
 
-		dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
+		m_dynamicsWorld = new btDiscreteDynamicsWorld(m_dispatcher, m_overlappingPairCache, m_solver, m_collisionConfiguration);
 
-		dynamicsWorld->setGravity(btVector3(0, GRAVITY, 0));
+		m_dynamicsWorld->setGravity(btVector3(0, GRAVITY, 0));
 	}
 
 
 	Physics::~Physics()
 	{
-		for (int i = dynamicsWorld->getNumCollisionObjects() - 1; i >= 0; i--)
+		for (int i = m_dynamicsWorld->getNumCollisionObjects() - 1; i >= 0; i--)
 		{
-			btCollisionObject* obj = dynamicsWorld->getCollisionObjectArray()[i];
+			btCollisionObject* obj = m_dynamicsWorld->getCollisionObjectArray()[i];
 			btRigidBody* body = btRigidBody::upcast(obj);
 			if (body && body->getMotionState())
 			{
 				delete body->getMotionState();
 			}
-			dynamicsWorld->removeCollisionObject(obj);
+			m_dynamicsWorld->removeCollisionObject(obj);
 			delete obj;
 		}
 
 		//delete collision shapes
-		for (int j = 0; j < collisionShapes.size(); j++)
+		for (int j = 0; j < m_collisionShapes.size(); j++)
 		{
-			btCollisionShape* shape = collisionShapes[j];
-			collisionShapes[j] = 0;
+			btCollisionShape* shape = m_collisionShapes[j];
+			m_collisionShapes[j] = 0;
 			delete shape;
 		}
 
 		//delete dynamics world
-		delete dynamicsWorld;
+		delete m_dynamicsWorld;
 
 		//delete solver
-		delete solver;
+		delete m_solver;
 
 		//delete broadphase
-		delete overlappingPairCache;
+		delete m_overlappingPairCache;
 
 		//delete dispatcher
-		delete dispatcher;
+		delete m_dispatcher;
 
-		delete collisionConfiguration;
+		delete m_collisionConfiguration;
 	}
 
 	void Physics::addObject(btRigidBody* body)
 	{
-		dynamicsWorld->addRigidBody(body);
+		m_dynamicsWorld->addRigidBody(body);
 	}
 
-	void Physics::tick()
+	void Physics::onTick()
 	{
-		dynamicsWorld->stepSimulation(m_core.lock()->getEnviroment()->DT(), 10);
+		m_dynamicsWorld->stepSimulation(m_core.lock()->getEnviroment()->DT(), 10);
 	}
 
 	btTransform Physics::getTransform(btRigidBody* body)

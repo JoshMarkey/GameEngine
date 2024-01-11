@@ -19,18 +19,18 @@ namespace myengine {
 		//Set up P-Transform
 		m_trans.setIdentity();
 		//Get col shape from col components
-		col = getEntity()->getComponent<Collider>();
-		btCollisionShape* shape = col->m_shape;
+		m_collider = getEntity()->getComponent<Collider>();
+		btCollisionShape* shape = m_collider->m_shape;
 
 		//m_mass = 1;
 		btVector3 localInertia(0, 0, 0);
 
-		if (!col->isStatic)
+		if (!m_collider->m_isStatic)
 		{
 			shape->calculateLocalInertia(m_mass, localInertia);
 		}
 		//Set origin position from transform pos
-		glm::vec3 position = getEntity()->transform->position;
+		glm::vec3 position = getEntity()->m_transform->getPosition();
 		m_trans.setOrigin(btVector3(position.x, position.y, position.z));
 
 		//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
@@ -42,27 +42,27 @@ namespace myengine {
 	}
 	void RigidBody::setSimulate(bool _sim)
 	{
-		simulate = _sim;
+		m_simulate = _sim;
 	}
 
 	void RigidBody::onPhysicsTick()
 	{		
 		m_trans = getPhysics()->getTransform(m_body);
-		getEntity()->transform->position = glm::vec3(m_trans.getOrigin().getX(), m_trans.getOrigin().getY(), m_trans.getOrigin().getZ());
+		getEntity()->m_transform->getPosition() = glm::vec3(m_trans.getOrigin().getX(), m_trans.getOrigin().getY(), m_trans.getOrigin().getZ());
 
 		glm::vec3 rot = glm::vec3(m_trans.getRotation().getX(), m_trans.getRotation().getY(), m_trans.getRotation().getZ());
 		glm::quat q = rot;
-		getEntity()->transform->rotation = glm::eulerAngles(q);
+		getEntity()->m_transform->getRotation() = glm::eulerAngles(q);
 	}
 
 	void RigidBody::onFrameEnd()
 	{
-		if (!col->isStatic)
+		if (!m_collider->m_isStatic)
 		{
 			m_trans = getPhysics()->getTransform(m_body);
 
-			glm::vec3 position = getEntity()->transform->position;
-			glm::quat q = getEntity()->transform->rotation;
+			glm::vec3 position = getEntity()->m_transform->getPosition();
+			glm::quat q = getEntity()->m_transform->getRotation();
 
 			m_trans.setOrigin(btVector3(position.x, position.y, position.z));
 			btQuaternion quatonion;

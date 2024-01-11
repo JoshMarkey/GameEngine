@@ -8,6 +8,7 @@
 #include "Camera.h"
 namespace myengine
 {
+	struct PointLight;
 	struct NativeWindow;
 	struct Enviroment;
 	struct Audio;
@@ -17,7 +18,7 @@ namespace myengine
 	struct Core
 	{
 	public:
-		static std::shared_ptr<Core> initialize();
+		static std::shared_ptr<Core> initialise();
 		std::shared_ptr<Entity> addEntity();
 		void run();
 		~Core();
@@ -27,9 +28,12 @@ namespace myengine
 		std::shared_ptr<Audio> getAudio();
 		std::shared_ptr<Gui> getGui();
 		std::shared_ptr<Physics> getPhysics();
-		std::vector<std::shared_ptr<Entity> > cameras;
+		std::vector<std::shared_ptr<Entity> > m_cams;
 		std::shared_ptr<Camera> getPrimaryCam();
 		glm::vec2 getWindowSize();
+		std::shared_ptr<PointLight> getLight();
+
+		SDL_Window* getWindow();
 
 		void stop();
 
@@ -54,18 +58,18 @@ namespace myengine
 		}
 
 
-
-		std::shared_ptr< Camera> lockedCam;
+		std::vector<std::shared_ptr<PointLight> > m_lights;
+		std::shared_ptr< Camera> m_lockedCam;
 		std::shared_ptr< NativeWindow> m_window;
 		std::shared_ptr< Audio> m_audio;
 		std::vector<std::shared_ptr<Entity>> m_entities;
-		bool m_running;
 		std::weak_ptr<Core>m_self;
 		std::shared_ptr<Enviroment> m_enviroment;
 		std::shared_ptr<Resources> m_resources;
 		std::shared_ptr<Input> m_input;
 		std::shared_ptr<Gui> m_gui;
 		std::shared_ptr<Physics> m_physics;
+		bool m_running;
 	};
 
 }

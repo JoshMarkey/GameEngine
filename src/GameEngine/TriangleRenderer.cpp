@@ -12,13 +12,13 @@ namespace myengine
 	}
 	TriangleRenderer::TriangleRenderer()
 	{
-		angle = 0.0f;
+		m_angle = 0.0f;
 	}
 
 	void TriangleRenderer::onDisplay()
 	{
 		std::shared_ptr<Entity> entity = m_entity.lock();
-		m_shader.bindOrthoMatrix(entity->transform->getProjection(), entity->transform->getModel());
+		m_shader.bindOrthoMatrix(entity->m_transform->getProjection(), entity->m_transform->getModel());
 		m_shader.renderOrtho(&m_Quad, &m_tex);
 	}
 
@@ -55,12 +55,12 @@ namespace myengine
 	void TriangleRenderer::onTick()
 	{
 		std::shared_ptr<Entity> entity = m_entity.lock();
-		angle = 360 * DT();
+		m_angle = 360 * DT();
 		//std::cout << angle << std::endl;
-		entity->transform->rotate(glm::vec3(0, angle, 0));
-		if (angle > 360)
+		entity->m_transform->rotate(glm::vec3(0, m_angle, 0));
+		if (m_angle > 360)
 		{
-			angle -= 360;
+			m_angle -= 360;
 		}
 	}
 }

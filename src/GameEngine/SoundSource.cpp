@@ -12,32 +12,32 @@ namespace myengine
 	}
 	void SoundSource::onTick()
 	{
-		if (sound->getId());
+		if (m_sound->getId());
 		{
-			glm::vec3 newPos = getEntity()->transform->position;
+			glm::vec3 newPos = getEntity()->m_transform->getPosition();
 			if (newPos != lastPos)
 			{
-				alSource3f(sound->getId(), AL_POSITION, newPos.x, newPos.y, newPos.z);
+				alSource3f(m_sound->getId(), AL_POSITION, newPos.x, newPos.y, newPos.z);
 				lastPos = newPos;
 			}}
 	}
 
 	void SoundSource::onInitialise()
 	{
-		path = "../resources/Audio/dixie_horn.ogg";
+		m_path = "../resources/Audio/dixie_horn.ogg";
 	}
 	
 	void SoundSource::setPath(std::string _path)
 	{
-		path = _path;
+		m_path = _path;
 	}
 
 	void SoundSource::play()
 	{
 		std::shared_ptr<Core> core = getCore();
 		std::shared_ptr<Resources> r = core->getResources();
-		sound = r->load<AudioSource>(path);
-		sound->play();
+		m_sound = r->load<AudioSource>(m_path);
+		m_sound->play();
 	}
 
 	
