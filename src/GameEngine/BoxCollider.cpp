@@ -10,7 +10,7 @@ namespace myengine
 
 	void BoxCollider::onInitialise()
 	{
-		m_shape = new btBoxShape(btVector3(btScalar(1.), btScalar(2.3), btScalar(1.)));
+		m_shape = new btBoxShape(btVector3(btScalar(2.0), btScalar(2.0), btScalar(2.0)));
 		m_isStatic = false;
 	}
 

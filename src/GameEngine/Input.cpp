@@ -1,11 +1,12 @@
 #include "Input.h"
+#include "Core.h"
 #include <algorithm>
 namespace myengine
 {
 	
-	void Input::initialise()
+	void Input::initialise(std::shared_ptr<Core> _core)
 	{
-		
+		m_core = _core;
 		JOYSTICK_DEAD_ZONE = 8000;
 		int MaxJoysticks = SDL_NumJoysticks();
 		int ControllerIndex = 0;
@@ -222,6 +223,11 @@ namespace myengine
 	glm::vec2 Input::getMousePos()
 	{
 		return m_mousePos;
+	}
+
+	void Input::centerMouse()
+	{
+		SDL_WarpMouseInWindow(NULL, m_core->getWindowSize().x / 2, m_core->getWindowSize().y / 2);
 	}
 
 	Input::~Input()

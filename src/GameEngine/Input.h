@@ -9,26 +9,33 @@ namespace myengine
 #define MAX_CONTROLLERS 4
 
 	struct Core;
+	/*
+	Handles all player input
+	Support for mouse, keyboard and controller
+	Enum "KeyCodes" so user doesnt need to interface SDL
+	*/
 	struct Input
 	{
 	public:
 		~Input();
-		void initialise();
+		void initialise(std::shared_ptr<Core> _core);
 		bool tick();
-		bool getKey(int _keyCode);
-		bool getKeyDown(int _keyCode);
-		bool getKeyUp(int _keyCode);
-		glm::vec2 getJoystickAxis();
-		glm::vec2 getMousePos();
+		bool getKey(int _keyCode);//returns true while input key is down
+		bool getKeyDown(int _keyCode);//True on frame key is pressed
+		bool getKeyUp(int _keyCode);//True on frame key is released
+		glm::vec2 getJoystickAxis();//Vec2 of joystick position
+		glm::vec2 getMousePos();//Vec2 of mouse coord pos in respect to window
 		glm::vec2 m_mousePos;
+		void centerMouse();//Call this to teleport mouse to center. Useful for 1st person camera
 	private:
+		std::shared_ptr<Core> m_core;
 		std::vector<int> m_keys;
 		std::vector<int> m_pressedKeys;
 		std::vector<int> m_releasedKeys;
 		glm::vec2 m_leftStick;
 		glm::vec2 m_rightStick;
-		SDL_GameController* m_ControllerHandles[MAX_CONTROLLERS];
-		int JOYSTICK_DEAD_ZONE;
+		SDL_GameController* m_ControllerHandles[MAX_CONTROLLERS]; //TODO add multi controller support
+		int JOYSTICK_DEAD_ZONE; //Deadzone control for joystick input
 
 	};
 
@@ -72,6 +79,7 @@ namespace myengine
 		m = SDLK_m,
 		shift = SDLK_LSHIFT,
 		control = SDLK_LCTRL,
+		space = SDLK_SPACE,
 		//Mouse
 		leftMouse = SDL_BUTTON_LEFT,
 		rightMouse = SDL_BUTTON_RIGHT,

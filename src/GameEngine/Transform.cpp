@@ -11,6 +11,11 @@ namespace myengine {
 		m_scale = glm::vec3(1);
 	}
 
+	void Transform::onFrameEnd()
+	{
+		m_lastPosition = m_position;
+	}
+
 	glm::mat4 Transform::getModel()
 	{
 		glm::mat4 rtn = glm::translate(glm::mat4(1), m_position);
@@ -56,5 +61,9 @@ namespace myengine {
 	void Transform::setScale(glm::vec3 _scale)
 	{
 		m_scale = _scale;
+	}
+	glm::vec3 Transform::getLastPos()
+	{
+		return m_lastPosition;
 	}
 }

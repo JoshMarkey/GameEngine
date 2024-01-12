@@ -1,7 +1,13 @@
+#pragma once
 #include "Graphics/rend.h"
 namespace myengine
 {
 	struct Core;
+
+	/*
+	Wrapper for SDL window
+	Getter for window size
+	*/
 	struct NativeWindow
 	{
 		~NativeWindow();

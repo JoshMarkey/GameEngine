@@ -25,7 +25,7 @@ namespace myengine
 			rtn->m_resources = std::make_shared<Resources>();
 			rtn->m_input = std::make_shared<Input>();
 			rtn->m_audio = std::make_shared<Audio>();
-			rtn->m_physics = std::make_shared<Physics>();
+			//rtn->m_physics = std::make_shared<Physics>();
 			rtn->m_gui = std::make_shared<Gui>();
 			//sdl
 			if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) < 0)
@@ -74,11 +74,11 @@ namespace myengine
 			}
 
 			rtn->m_resources->initialise(rtn);
-			rtn->m_input->initialise();
+			rtn->m_input->initialise(rtn);
 			rtn->m_enviroment = std::make_shared<Enviroment>();
 			rtn->m_enviroment->initialise();
 			rtn->m_gui->initialise(rtn);
-			rtn->m_physics->initialise(rtn);
+			//rtn->m_physics->initialise(rtn);
 			rtn->m_cams.push_back(rtn->addEntity());
 			rtn->m_cams[0]->addComponent<Camera>();
 			rtn->m_lockedCam = rtn->m_cams[0]->getComponent<Camera>();
@@ -103,15 +103,26 @@ namespace myengine
 			glClearColor(1, 0, 0, 1);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			self->m_enviroment->onTick();
-			self->m_physics->onTick();
+
+			/*self->m_physics->onTick();
 			for (int i = 0; i < self->m_entities.size(); i++)
 			{
 				self->m_entities[i]->onPhysicsTick();
 			}
+			*/
 
 			for (int i = 0; i < self->m_entities.size(); i++)
 			{
-				self->m_entities[i]->tick();
+				try
+				{
+					self->m_entities[i]->tick();
+				}
+				catch (std::exception& e)
+				{
+					std::cout << "Error loading resource: " << e.what() << std::endl;
+					self->m_entities[i]->setAlive(false);
+					self->m_entities[i]->kill();
+				}
 			}
 
 			self->m_resources->checkDelete();
@@ -138,6 +149,22 @@ namespace myengine
 			for (int i = 0; i < self->m_entities.size(); i++)
 			{
 				self->m_entities[i]->onFrameEnd();
+			}
+
+			bool looping = true;
+
+			while (looping)
+			{
+				looping = false;
+				for (int i = 0; i < self->m_entities.size(); i++)
+				{
+					if (!self->m_entities[i]->alive())
+					{
+						self->m_entities.erase(find(self->m_entities.begin(), self->m_entities.end(), self->m_entities.at(i)));
+						looping = true;
+						break;
+					}
+				}
 			}
 
 		}

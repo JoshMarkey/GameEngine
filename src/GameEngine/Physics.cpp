@@ -22,6 +22,7 @@ namespace myengine
 		m_dynamicsWorld = new btDiscreteDynamicsWorld(m_dispatcher, m_overlappingPairCache, m_solver, m_collisionConfiguration);
 
 		m_dynamicsWorld->setGravity(btVector3(0, GRAVITY, 0));
+
 	}
 
 
@@ -69,7 +70,7 @@ namespace myengine
 
 	void Physics::onTick()
 	{
-		m_dynamicsWorld->stepSimulation(m_core.lock()->getEnviroment()->DT(), 10);
+		m_dynamicsWorld->stepSimulation(m_core.lock()->getEnviroment()->DT());
 	}
 
 	btTransform Physics::getTransform(btRigidBody* body)

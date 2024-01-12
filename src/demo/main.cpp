@@ -1,8 +1,8 @@
 #include <iostream>
 #include "Map.h"
 #include "GameEngine/PointLight.h"
-#include <GameEngine/Cat.h>
 #include <GameEngine/TriangleGui.h>
+#include "GameManager.h"
 #undef main
 using namespace myengine;
 
@@ -10,17 +10,10 @@ int main()
 {
 	std::shared_ptr<Core> core = Core::initialise();
 
-	std::shared_ptr<Entity> player = core->addEntity();
-	std::shared_ptr<Cat> cat = player->addComponent<Cat>();
-	cat->player = true;
+	//Controls whole game
+	std::shared_ptr<Entity> game = core->addEntity();
+	std::shared_ptr<GameManager> gameManager = game->addComponent<GameManager>();
 
-	player->addComponent<TriangleGui>();
-
-	//create map entity with 'prefab' map component
-	core->addEntity()->addComponent<Map>();
-
-	std::shared_ptr<Entity> light = core->addEntity();
-	light->addComponent<PointLight>();
 
 
 	core->run();

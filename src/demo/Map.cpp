@@ -16,10 +16,10 @@ void Map::onInitialise()
 
 	model->setModel("../resources/Models/Map/Model.obj");
 	model->setTexture("../resources/Models/Map/Tex.png");
-
+	/*
 	entity->addComponent<MeshCollider>();
 	std::shared_ptr<RigidBody> rb = getEntity()->addComponent<RigidBody>();
 	rb->setMass(0);
 	rb->init();
-
+	*/
 }

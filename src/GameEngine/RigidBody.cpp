@@ -5,10 +5,6 @@
 #include "Core.h"
 
 namespace myengine {
-	void RigidBody::onTick()
-	{
-		
-	}
 
 	void RigidBody::setMass(float mass)
 	{
@@ -48,11 +44,12 @@ namespace myengine {
 	void RigidBody::onPhysicsTick()
 	{		
 		m_trans = getPhysics()->getTransform(m_body);
-		getEntity()->m_transform->getPosition() = glm::vec3(m_trans.getOrigin().getX(), m_trans.getOrigin().getY(), m_trans.getOrigin().getZ());
+		glm::vec3 pos = glm::vec3(m_trans.getOrigin().getX(), m_trans.getOrigin().getY(), m_trans.getOrigin().getZ());
+		getEntity()->m_transform->setPosition(pos);
 
 		glm::vec3 rot = glm::vec3(m_trans.getRotation().getX(), m_trans.getRotation().getY(), m_trans.getRotation().getZ());
 		glm::quat q = rot;
-		getEntity()->m_transform->getRotation() = glm::eulerAngles(q);
+		getEntity()->m_transform->setRotation(glm::eulerAngles(q));
 	}
 
 	void RigidBody::onFrameEnd()

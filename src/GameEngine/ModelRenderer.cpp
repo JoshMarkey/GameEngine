@@ -9,7 +9,7 @@ namespace myengine
 {
 	void ModelRenderer::onDisplay()
 	{
-		std::shared_ptr<Entity> entity = m_entity.lock();
+		std::shared_ptr<Entity> entity = getEntity();
 		std::shared_ptr<Shader> shader;
 
 		//If light in scene, use light shader
@@ -38,7 +38,7 @@ namespace myengine
 		
 
 
-		shader->m_shader.get()->render(model->getModel().get(), tex->getTexture().get());
+		shader->m_shader.get()->render(model->getModel().get(), tex->getTexture().get(),backface);
 	}
 
 	void ModelRenderer::onInitialise()
@@ -51,6 +51,7 @@ namespace myengine
 		m_defaultVertPath = "../resources/Shaders/Default/VertShader.txt";
 
 		std::shared_ptr<Model> mod = getCore()->getResources()->load<Model>(m_modelPath);
+		backface = true;
 	}
 
 	void ModelRenderer::setFrag(std::string p)
@@ -77,5 +78,9 @@ namespace myengine
 		std::shared_ptr<Model> model = getCore()->getResources()->load<Model>(m_modelPath);
 		model->getModel()->getId();
 		return model->getFaces();
+	}
+	void ModelRenderer::setBackFace(bool b)
+	{
+		backface = b;
 	}
 }

@@ -4,6 +4,7 @@
 
 namespace myengine
 {
+	//Component for hearing audio sources
 	struct AudioListener : Component
 	{
 	public:

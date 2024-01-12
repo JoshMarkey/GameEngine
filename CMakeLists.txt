@@ -263,8 +263,6 @@ src/GameEngine/Shader.cpp
 src/GameEngine/Shader.h
 src/GameEngine/Input.cpp
 src/GameEngine/Input.h
-src/GameEngine/Cat.cpp
-src/GameEngine/Cat.h
 src/GameEngine/ModelRenderer.cpp
 src/GameEngine/ModelRenderer.h
 src/GameEngine/BoxCollider.cpp
@@ -296,13 +294,31 @@ src/GameEngine/AudioListener.h
 src/GameEngine/AudioListener.cpp
 src/GameEngine/PointLight.h
 src/GameEngine/PointLight.cpp
+src/GameEngine/KCollider.h
+src/GameEngine/KCollider.cpp
+src/GameEngine/KRigidBody.h
+src/GameEngine/KRigidBody.cpp
 )
 
 
 add_executable(demo
 src/demo/main.cpp
+src/demo/FloorPrefab.cpp
+src/demo/FloorPrefab.h
+src/demo/Laser.cpp
+src/demo/Laser.h
+src/demo/Menu.cpp
+src/demo/Menu.h
+src/demo/Player.cpp
+src/demo/Player.h
 src/demo/Map.cpp
 src/demo/Map.h
+src/demo/GameManager.cpp
+src/demo/GameManager.h
+src/demo/Block.cpp
+src/demo/Block.h
+src/demo/SkyBox.cpp
+src/demo/SkyBox.h
 )
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")

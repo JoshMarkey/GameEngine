@@ -40,14 +40,15 @@ namespace myengine
 		std::shared_ptr<Transform> m_transform;
 		void kill();
 		std::shared_ptr<Core> getCore();
-
+		std::shared_ptr<Transform> getTransform();
 		void tick();
 		void onGui();
 		void onFrameEnd();
 		void onPhysicsTick();
 		void display();
-	private:
 		bool alive();
+		void setAlive(bool _bool);
+	private:
 		friend struct Core;
 		bool m_alive;
 		std::shared_ptr<Core> m_core;

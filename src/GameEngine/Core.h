@@ -32,7 +32,6 @@ namespace myengine
 		std::shared_ptr<Camera> getPrimaryCam();
 		glm::vec2 getWindowSize();
 		std::shared_ptr<PointLight> getLight();
-
 		SDL_Window* getWindow();
 
 		void stop();

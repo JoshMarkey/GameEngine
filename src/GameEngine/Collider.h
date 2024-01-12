@@ -6,6 +6,11 @@
 
 namespace myengine
 {
+	/*
+	Physics collider parent.
+	Contains a shape which is the actual collider - to be set by child
+	Can set offsets and size. As well as set if the collider is static
+	*/
 	struct Collider : Component
 	{
 	public:

@@ -11,49 +11,91 @@ namespace myengine
 
 	glm::mat4 Camera::getView()
 	{
-		glm::vec3 targetPos = glm::vec3(5, 0.0f, -30);
+		
 		if (target != NULL)
 		{
 			targetPos = target->getPosition();
 		}
-		
-		return glm::lookAt(getEntity()->m_transform->getPosition(), targetPos, glm::vec3(0, 1, 0));
+		/*
+		if (first)
+		{
+			first = false;
+			return glm::lookAt(getEntity()->m_transform->getPosition(), glm::vec3(5, 0.0f, -30), up);
+		}
+		*/
+		return glm::lookAt(getEntity()->m_transform->getPosition(), targetPos, up);
 	}
+
 	void Camera::onInitialise()
 	{
-		m_fov = 45;
+		first = true;
+		m_fov = 45.0f;
 		m_aspect = 1;
 		m_nearPlane = 0.01;
 		m_farPlane = 150;
+
+		m_cameraAnglex = 0.0f;
+		m_cameraAngley = 0.0f;
+
+		m_speed = 5;
+		m_mouseSpeed = 0.5f;
+		targetPos = glm::vec3(5, 0.0f, -30);
+		up = glm::vec3(0, 1, 0);
+
+		getEntity()->getTransform()->setPosition(glm::vec3(4,5,15));
+		getEntity()->getTransform()->rotate(glm::vec3(0,0,0));
 	}
 	void Camera::onTick()
 	{
+		/*
 		if (target)
 		{
-			getEntity()->m_transform->getPosition() = glm::vec3(target->getPosition().x, target->getPosition().y + 4, target->getPosition().z + 15);
-		}
+			getEntity()->m_transform->setPosition(glm::vec3(target->getPosition().x, target->getPosition().y + 4, target->getPosition().z + 15));
+		}*/
 
-		/*
-		std::shared_ptr<Entity> entity = getEntity();
-		if (getCore()->getInput()->getKey(KeyCodes::d))
-		{
-			entity->transform->move(glm::vec3(10, 0, 0) * DT());
-		}
-		if (getCore()->getInput()->getKey(KeyCodes::a))
-		{
-			entity->transform->move(glm::vec3(-10, 0, 0) * DT());
-		}
-		if (getCore()->getInput()->getKey(KeyCodes::w))
-		{
-			entity->transform->move(glm::vec3(0, 0, -10) * DT());
-		}
-		if (getCore()->getInput()->getKey(KeyCodes::s))
-		{
-			entity->transform->move(glm::vec3(0, 0, 10) * DT());
-		} */
+#ifdef WIN32
+		cameraFollowMouse();
+#endif
+		
 	}
 	void Camera::setTarget(std::shared_ptr<Transform> _t)
 	{
 		target = _t;
+	}
+	void Camera::cameraFollowMouse()
+	{
+		glm::vec2 win = getCore()->getWindowSize();
+		m_cameraAnglex += (getCore()->getInput()->getMousePos().x - win.x/2)   * -m_mouseSpeed * DT();
+		m_cameraAngley -= (getCore()->getInput()->getMousePos().y - win.y/2) * m_mouseSpeed * DT();
+
+		//Calculate different directions for dynamic tranlation
+		glm::vec3 direction(cos(m_cameraAngley) * sin(m_cameraAnglex), sin(m_cameraAngley), cos(m_cameraAngley) * cos(m_cameraAnglex));
+		glm::vec3 right = glm::vec3(sin(m_cameraAnglex - 3.14f / 2.0f), 0, cos(m_cameraAnglex - 3.14f / 2.0f));
+		up = glm::cross(right, direction);
+
+
+		glm::vec2 joystick = getJoystickAxis();
+
+		// Move camera
+		if (getKey(KeyCodes::w) || joystick.y < -0.1)
+		{
+			getEntity()->getTransform()->move(direction * m_speed * DT());
+
+		}
+		if (getKey(KeyCodes::s) || joystick.y > 0.1)
+		{
+			getEntity()->getTransform()->move(-direction * m_speed * DT());
+		}
+		if (getKey(KeyCodes::d) || joystick.x > 0.1)
+		{
+			getEntity()->getTransform()->move(right * m_speed * DT());
+
+		}
+		if (getKey(KeyCodes::a) || joystick.x < -0.1)
+		{
+			getEntity()->getTransform()->move(-right * m_speed * DT());
+		}
+		//update view matrix
+		targetPos = getEntity()->getTransform()->getPosition() + direction;
 	}
 }

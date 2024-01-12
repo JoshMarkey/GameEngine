@@ -64,10 +64,15 @@ namespace graphics {
 
 	Shader::~Shader()
 	{
+#ifdef __EMSCRIPTEN__
+		glDeleteShader(m_vertShader);
+		glDeleteShader(m_fragShader);
+#else
 		glDetachShader(m_vertShader, m_id);
 		glDetachShader(m_fragShader, m_id);
 		glDeleteShader(m_vertShader);
 		glDeleteShader(m_fragShader);
+#endif
 	}
 
 	void Shader::link()

@@ -1,3 +1,4 @@
+#pragma once
 #include "Component.h"
 #include <glm/glm.hpp>
 
@@ -7,6 +8,7 @@ namespace myengine
 	{
 		Transform();
 	public:
+		void onFrameEnd() override;
 		glm::mat4 getProjection();
 		glm::mat4 getModel();
 		void move(glm::vec3 pos);
@@ -17,7 +19,9 @@ namespace myengine
 		void setRotation(glm::vec3 _rot);
 		void setPosition(glm::vec3 _pos);
 		void setScale(glm::vec3 _scale);
+		glm::vec3 getLastPos();
 	private:
+		glm::vec3 m_lastPosition;
 		glm::vec3 m_position;
 		glm::vec3 m_rotation;
 		glm::vec3 m_scale;

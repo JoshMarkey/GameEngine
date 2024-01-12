@@ -20,21 +20,23 @@ subject to the following restrictions:
 namespace myengine
 {
 	struct Core;
-
+	/*
+	Contains all Bullet physics world logic
+	*/
 	struct Physics
 	{
 	public:
-		void onTick();
-		void initialise(std::shared_ptr<Core> _core);
-		void addObject(btRigidBody* _body);
+		void onTick();//Step physics world
+		void initialise(std::shared_ptr<Core> _core);//Create a very simple dynamic world for colliders to be added
+		void addObject(btRigidBody* _body);//Used inside rigid bodies to add the body to the world
 
 
-		btTransform getTransform(btRigidBody* _body);
-		void setTransform(btRigidBody* _body, btTransform _trans);
+		btTransform getTransform(btRigidBody* _body);//Returns the physics transform with updated position and rotation after the physics tick
+		void setTransform(btRigidBody* _body, btTransform _trans);//This is used to inject non physics movement into physics world to kepp them synced
 		~Physics();
 
 	private:
-		const float GRAVITY = -100;
+		const float GRAVITY = -0.1;
 		///collision configuration contains default setup for memory, collision setup. Advanced users can create their own configuration.
 		btDefaultCollisionConfiguration* m_collisionConfiguration;
 

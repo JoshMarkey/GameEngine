@@ -9,6 +9,11 @@
 
 namespace myengine
 {
+	/*
+	Audio resource loaded from .ogg files.
+	Call play to play sound.
+	Onload is called when the resource is created. Loads file and creates source & buffer
+	*/
 	struct AudioSource : Resource
 	{
 		void onLoad(std::string _path) override;

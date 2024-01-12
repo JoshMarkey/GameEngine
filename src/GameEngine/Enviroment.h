@@ -1,3 +1,4 @@
+#pragma once
 #ifdef _WIN32
     #include <Windows.h>
 #endif // #ifdef _WIN32
@@ -6,6 +7,8 @@
 namespace myengine
 {
 	struct Core;
+	//Handles delta time for various compilers
+	//Call DT() on the instance to get time passed since last Frame
 	struct Enviroment
 	{
 		friend Core;

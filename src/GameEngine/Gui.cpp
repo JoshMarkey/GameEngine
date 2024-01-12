@@ -56,7 +56,7 @@ namespace myengine
 			{
 				return 2;
 			}
-			else if (m_core->getInput()->getKey(KeyCodes::leftMouse))
+			else
 			{
 				return 1;
 			}
