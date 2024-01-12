@@ -16,6 +16,7 @@ namespace myengine {
 		m_lastPosition = m_position;
 	}
 
+	//Create matrix each time to ensure values are up to date
 	glm::mat4 Transform::getModel()
 	{
 		glm::mat4 rtn = glm::translate(glm::mat4(1), m_position);

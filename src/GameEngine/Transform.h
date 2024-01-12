@@ -4,6 +4,11 @@
 
 namespace myengine
 {
+	/*
+	Transform component is automatically added to every component created
+	Contains position, rotation and scale for entity
+	Also includes some convinience functions like move and rotate
+	*/
 	struct Transform : Component
 	{
 		Transform();

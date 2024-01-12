@@ -5,7 +5,7 @@ namespace myengine
 	void Gui::initialise(std::shared_ptr<Core> _core)
 	{
 		m_core = _core;
-
+		//Create Vbos
 		std::shared_ptr<graphics::Vbo> pos = std::make_shared<graphics::Vbo>();
 		pos->add(glm::vec3(0.0f, 1.0f, 0.0f));
 		pos->add(glm::vec3(0.0f, 0.0f, 0.0f));
@@ -22,7 +22,7 @@ namespace myengine
 		coords->add(glm::vec2(1.0f, 1.0f));
 		coords->add(glm::vec2(1.0f, 0.0f));
 		coords->add(glm::vec2(0.0f, 0.0f));
-
+		//Create quad VAO
 		m_Quad.addVbo(pos);
 		m_Quad.addVbo(coords);
 
@@ -49,7 +49,7 @@ namespace myengine
 
 		glm::vec2 winSize = m_core->getWindowSize();
 		glm::vec2 mousePos = m_core->getInput()->m_mousePos;
-
+		//Button->mouse collision
 		if (mousePos.x >= rect.x && mousePos.x <= rect.x + rect.w && winSize.y - mousePos.y >= rect.y && winSize.y - mousePos.y <= rect.y + rect.h)
 		{
 			if (m_core->getInput()->getKeyUp(KeyCodes::leftMouse))
@@ -64,7 +64,7 @@ namespace myengine
 
 		return 0;
 	}
-
+	//Draw specified rect with texture
 	void Gui::draw(myengine::Rect _rect, std::string _texPath)
 	{
 		std::shared_ptr<Texture> tex = m_core->getResources()->load<Texture>(_texPath);

@@ -12,7 +12,7 @@ namespace myengine
 	}
 	glm::vec3 Component::getPosition()
 	{
-		return getEntity()->m_transform->getPosition();
+		return getEntity()->getTransform()->getPosition();
 	}
 	void Component::onTick()
 	{
@@ -37,6 +37,8 @@ namespace myengine
 	void Component::onFrameEnd()
 	{
 	}
+
+	//Lots of shortcuts
 	int Component::getKey(int k)
 	{
 		return getCore()->getInput()->getKey(k);

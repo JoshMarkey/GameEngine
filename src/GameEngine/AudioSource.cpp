@@ -39,6 +39,7 @@ ALuint AudioSource::getId()
 	return m_sourceId;
 }
 
+//Load .ogg files
 void AudioSource::load_ogg(const std::string & _path, std::vector<unsigned char>&_buffer, ALenum & _format, ALsizei & _freq)
 {
 	int channels = 0;
@@ -73,7 +74,7 @@ void AudioSource::load_ogg(const std::string & _path, std::vector<unsigned char>
 	// Clean up the read data
 	free(output);
 }
-
+//Clear source and buffer
 AudioSource::~AudioSource()
 {
 	alDeleteSources(1, &m_sourceId);

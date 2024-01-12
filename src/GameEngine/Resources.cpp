@@ -12,6 +12,7 @@ void myengine::Resources::deleteResource(std::string _path)
 
 void myengine::Resources::checkDelete()
 {
+	//Check if any resources are queued to be deleted
 	for (int it = 0; it < m_resources.size(); ++it)
 	{
 		bool check = m_resources[it]->addTimer(m_core->getEnviroment()->DT());
@@ -22,7 +23,7 @@ void myengine::Resources::checkDelete()
 	}
 
 
-
+	//If they are flagged, delete
 	while (m_dirtyFlags.size() > 0)
 	{
 		std::string path = m_dirtyFlags.at(0);

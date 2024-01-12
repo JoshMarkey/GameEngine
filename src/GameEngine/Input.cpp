@@ -6,6 +6,7 @@ namespace myengine
 	
 	void Input::initialise(std::shared_ptr<Core> _core)
 	{
+		//Open all controllers in order to read input
 		m_core = _core;
 		JOYSTICK_DEAD_ZONE = 8000;
 		int MaxJoysticks = SDL_NumJoysticks();
@@ -163,12 +164,14 @@ namespace myengine
 				}
 			}
 		}
-
-		//std::cout << "X: " << leftStick.x << "    Y: " << leftStick.y << std::endl;
+		//Useful debugging here for if input device isnt being picked up
+		/*
 		for (int i = 0; i < m_pressedKeys.size(); i++)
 		{
-			//std::cout << m_pressedKeys[i] << std::endl;
+			std::cout << m_pressedKeys[i] << std::endl;
 		}
+		*/
+
 		//MOUSE POS
 		int x;
 		int y;

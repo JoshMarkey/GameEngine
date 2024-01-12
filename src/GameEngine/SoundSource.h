@@ -9,8 +9,7 @@
 namespace myengine
 {
 	/*
-	Wrapper for resource
-
+	Wrapper for sound resource
 	*/
 	struct SoundSource : Component
 	{
@@ -23,7 +22,7 @@ namespace myengine
 		void setLoop(bool _b);//Set to tru to loop audio
 		glm::vec3 lastPos{ 0 };
 		void onInitialise() override;//Set default path to error handle
-		void setPath(std::string _path);
+		void setPath(std::string _path);//Change file path
 		void play();
 	private:
 		std::string m_path;

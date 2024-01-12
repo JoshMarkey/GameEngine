@@ -15,6 +15,7 @@ namespace myengine
 
 	void MeshCollider::addTriangles()
 	{
+		//Steal all triangles from mesh and insert into physics shape
 		std::shared_ptr < ModelRenderer> mod = getEntity()->getComponent<ModelRenderer>();
 		
 

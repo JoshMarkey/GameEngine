@@ -14,7 +14,7 @@ namespace myengine
 	{
 		if (m_sound->getId());
 		{
-			glm::vec3 newPos = getEntity()->m_transform->getPosition();
+			glm::vec3 newPos = getEntity()->getTransform()->getPosition();
 			if (newPos != lastPos)
 			{
 				alSource3f(m_sound->getId(), AL_POSITION, newPos.x, newPos.y, newPos.z);

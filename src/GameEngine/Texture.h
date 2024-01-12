@@ -4,6 +4,9 @@
 
 namespace myengine 
 {
+	/*
+	Texture loader
+	*/
 	struct Texture : Resource
 	{
 	public:

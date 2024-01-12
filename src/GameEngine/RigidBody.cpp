@@ -26,7 +26,7 @@ namespace myengine {
 			shape->calculateLocalInertia(m_mass, localInertia);
 		}
 		//Set origin position from transform pos
-		glm::vec3 position = getEntity()->m_transform->getPosition();
+		glm::vec3 position = getEntity()->getTransform()->getPosition();
 		m_trans.setOrigin(btVector3(position.x, position.y, position.z));
 
 		//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
@@ -45,11 +45,11 @@ namespace myengine {
 	{		
 		m_trans = getPhysics()->getTransform(m_body);
 		glm::vec3 pos = glm::vec3(m_trans.getOrigin().getX(), m_trans.getOrigin().getY(), m_trans.getOrigin().getZ());
-		getEntity()->m_transform->setPosition(pos);
+		getEntity()->getTransform()->setPosition(pos);
 
 		glm::vec3 rot = glm::vec3(m_trans.getRotation().getX(), m_trans.getRotation().getY(), m_trans.getRotation().getZ());
 		glm::quat q = rot;
-		getEntity()->m_transform->setRotation(glm::eulerAngles(q));
+		getEntity()->getTransform()->setRotation(glm::eulerAngles(q));
 	}
 
 	void RigidBody::onFrameEnd()
@@ -58,8 +58,8 @@ namespace myengine {
 		{
 			m_trans = getPhysics()->getTransform(m_body);
 
-			glm::vec3 position = getEntity()->m_transform->getPosition();
-			glm::quat q = getEntity()->m_transform->getRotation();
+			glm::vec3 position = getEntity()->getTransform()->getPosition();
+			glm::quat q = getEntity()->getTransform()->getRotation();
 
 			m_trans.setOrigin(btVector3(position.x, position.y, position.z));
 			btQuaternion quatonion;

@@ -33,7 +33,7 @@ namespace myengine
 
 		shader->m_shader.get()->bindMatrix("u_Projection", getCore()->getPrimaryCam()->getProjection());
 		shader->m_shader.get()->bindMatrix("u_Viewing", getCore()->getPrimaryCam()->getView());
-		shader->m_shader.get()->bindMatrix("u_Model", entity->m_transform->getModel());
+		shader->m_shader.get()->bindMatrix("u_Model", entity->getTransform()->getModel());
 
 		
 
@@ -43,6 +43,7 @@ namespace myengine
 
 	void ModelRenderer::onInitialise()
 	{
+		//Default paths to start with. Should limit errors.
 		m_modelPath = "../resources/Models/Cat/Model.obj";
 		m_texPath = "../resources/Models/Cat/Tex.png";
 		m_lightFragPath = "../resources/Shaders/Light/FragShader.txt";

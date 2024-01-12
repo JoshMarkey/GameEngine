@@ -4,11 +4,12 @@
 #include "Core.h"
 namespace myengine
 {
+	//Create new View and Projection matrices each time to ensure they are always up to date
 	glm::mat4 Camera::getProjection()
 	{
 		return glm::perspective(glm::radians(m_fov), m_aspect, m_nearPlane, m_farPlane);
 	}
-
+	
 	glm::mat4 Camera::getView()
 	{
 		
@@ -16,14 +17,8 @@ namespace myengine
 		{
 			targetPos = target->getPosition();
 		}
-		/*
-		if (first)
-		{
-			first = false;
-			return glm::lookAt(getEntity()->m_transform->getPosition(), glm::vec3(5, 0.0f, -30), up);
-		}
-		*/
-		return glm::lookAt(getEntity()->m_transform->getPosition(), targetPos, up);
+		
+		return glm::lookAt(getEntity()->getTransform()->getPosition(), targetPos, up);
 	}
 
 	void Camera::onInitialise()
@@ -47,21 +42,27 @@ namespace myengine
 	}
 	void Camera::onTick()
 	{
-		/*
+		
 		if (target)
 		{
-			getEntity()->m_transform->setPosition(glm::vec3(target->getPosition().x, target->getPosition().y + 4, target->getPosition().z + 15));
-		}*/
+			getEntity()->getTransform()->setPosition(glm::vec3(target->getPosition().x, target->getPosition().y + 4, target->getPosition().z + 15));
+		}
 
+
+		//This is for stopping the mouse tracking on the web build as it was really buggy
+		//I have set up a different camera view which disables all camera movement
+		//Not the most ideal solution, but it is there just to prove the web build works
 #ifdef WIN32
 		cameraFollowMouse();
-#endif
-		
+#endif		
 	}
 	void Camera::setTarget(std::shared_ptr<Transform> _t)
 	{
 		target = _t;
 	}
+
+	// this is a free flying camera option the user can make use of if they like
+	//Can be useful for debugging
 	void Camera::cameraFollowMouse()
 	{
 		glm::vec2 win = getCore()->getWindowSize();
@@ -73,6 +74,8 @@ namespace myengine
 		glm::vec3 right = glm::vec3(sin(m_cameraAnglex - 3.14f / 2.0f), 0, cos(m_cameraAnglex - 3.14f / 2.0f));
 		up = glm::cross(right, direction);
 
+
+		//Get both keyboard and controller input to control the camera
 
 		glm::vec2 joystick = getJoystickAxis();
 

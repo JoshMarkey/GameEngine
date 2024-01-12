@@ -5,6 +5,8 @@
 namespace myengine
 {
 	struct Entity;
+	//Test component for open GL renderering
+	//Should only be used for debugging and testing
 	struct TriangleRenderer : Component
 	{
 		TriangleRenderer();

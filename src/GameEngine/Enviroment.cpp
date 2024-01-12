@@ -8,6 +8,8 @@ namespace myengine
 {
 	void Enviroment::initialise()
 	{
+		//Each platform has their own methods of getting the current time
+		//These ifdefs allow for each platform to work without having to change any of the code
 #ifdef _WIN32
 		m_lastTime = GetTickCount();
 #else

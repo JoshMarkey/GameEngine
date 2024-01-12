@@ -27,7 +27,7 @@ namespace myengine
 
 		return CollisionCheck(a, b, ahs, bhs);
 	}
-
+	//Kludge method
 	bool KCollider::CollisionCheck(glm::vec3 _a, glm::vec3 _b, glm::vec3 _ahs, glm::vec3 _bhs)
 	{
 		if (_a.x > _b.x)

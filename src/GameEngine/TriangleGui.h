@@ -4,6 +4,8 @@
 
 namespace myengine
 {
+	//Test component for GUI elements
+	//Should only be used for testing
 	struct TriangleGui : Component
 	{
 		void onInitialise() override;

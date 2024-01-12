@@ -15,5 +15,5 @@ void FloorPrefab::onInitialise()
 		}
 	}
 
-	getCore()->getPrimaryCam()->setTarget(blocks[17]->getEntity()->m_transform);
+	getCore()->getPrimaryCam()->setTarget(blocks[17]->getEntity()->getTransform());
 }
